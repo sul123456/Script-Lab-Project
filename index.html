@@ -79,110 +79,131 @@ function referenceDNA(){
  }
  return dna;
 }
+function audienceWorld(){
+ const b=state.basic,B=state.brief;
+ const raw=(b.tg+' '+b.p+' '+b.u+' '+B.why+' '+B.truth+' '+B.change+' '+B.message+' '+B.story+' '+B.tone).trim();
+ const low=raw.toLowerCase();
+ const age=(raw.match(/\\b(\\d{2})\\s*(?:year|yr)/i)||[])[1]||'';
+ const profile={age,product:b.p,usp:b.u,tg:b.tg,truth:B.truth,change:B.change,message:B.message,story:B.story,tone:B.tone};
+ if(/alumni|college|iit|iim|top college|premier college/.test(low)&&/credit card|card/.test(low)){
+  profile.kind='alumni_card';
+  profile.person='A 45-year-old senior MNC professional from a top-college alumni network';
+  profile.habits='He is experienced, comparison-minded and used to getting offers; he does not get excited by a generic card pitch.';
+  profile.tension='He is constantly looking for a better deal, so a normal offer will not feel special.';
+  profile.world='Mumbai corporate life, alumni WhatsApp groups, office desk/boardroom, airport travel and occasional alumni reunions';
+  profile.routes=[
+   {name:'THE OFFER HE DIDN’T HAVE TO HUNT FOR',place:'MNC office, late evening',hook:'He has four browser tabs open comparing credit-card offers while finishing a board deck. A colleague sees the tabs and laughs: “Still hunting for a better deal?”',turn:'His phone pings with an alumni-group message: an offer reserved for members of his college network. For once, the better offer has found him.',device:'The deal-hunter is caught doing what he always does, then the behaviour reverses.',payoff:'He closes the other tabs without comparing them.'},
+   {name:'THE ALUMNI GROUP HAS ONE MORE BENEFIT',place:'Alumni WhatsApp group during a workday',hook:'A senior alumnus posts a reunion photograph. The chat fills with nostalgia, old jokes and people comparing what they still use from college.',turn:'Someone posts: “Apparently the college has one more thing for us.” It is an exclusive credit-card offer for alumni.',device:'The alumni group chat becomes a live reveal; every message raises the value of the relationship before the card appears.',payoff:'The protagonist, usually the one asking for a better deal, simply replies: “Okay. This one is worth looking at.”'},
+   {name:'THE BOARDROOM NEGOTIATOR',place:'MNC boardroom, just before a presentation',hook:'The protagonist negotiates everything: vendor rates, hotel upgrades, flight fares. A colleague jokingly calls him “the better-deal guy.”',turn:'During a break he sees a credit-card offer specifically unlocked by his alumni status.',device:'His professional instinct to negotiate becomes the character trait that makes the offer meaningful.',payoff:'For once, he does not negotiate. He smiles: “This one came pre-negotiated.”'},
+   {name:'THE REUNION BILL',place:'Top-college alumni dinner',hook:'At a reunion dinner, friends tease him for checking every bill and hunting for offers even after 20 years of working.',turn:'The restaurant bill arrives. Before he reaches for his usual card, his phone shows the alumni-specific card offer.',device:'The exact behaviour friends are teasing him about becomes the setup for the reveal.',payoff:'He looks at the group: “You people finally got me a better offer.”'},
+   {name:'THE JUNIOR KNOWS HIS WEAKNESS',place:'MNC cafeteria',hook:'A younger colleague catches him comparing three offers on his phone and says, “Sir, you actually compare all this?”',turn:'The junior assumes he is about to find another generic deal. Instead, the protagonist shows an alumni-exclusive offer and explains why it feels different.',device:'Generational reversal: the junior thinks the senior is obsessively deal-hunting; the senior gets to reveal a genuinely personal offer.',payoff:'Junior: “Okay, that is a serious alumni benefit.”'},
+   {name:'THE COLLEGE GAVE HIM SOMETHING AGAIN',place:'Home, after work',hook:'His old college sweatshirt is being packed away before a house move. His spouse asks why he still keeps it.',turn:'He says, “Some things stay useful.” His phone then shows the alumni-specific card offer.',device:'The old college object becomes the bridge between an emotional association and a present-day tangible reward.',payoff:'He looks at the sweatshirt, then the phone: “Looks like college still has surprises.”'}
+  ];
+ } else if(/fcnr|deposit|usd|interest|repatri/.test(low)){
+  profile.kind='fcnr';
+  profile.person='An NRI who is financially savvy and accustomed to comparing rates';
+  profile.routes=[
+   {name:'THE RATE HE IS WAITING FOR',place:'Video call between two NRI friends',hook:'One friend is about to leave for dinner; the other keeps refreshing a rate page.',turn:'The friend assumes he is obsessing over markets. He is actually locking an FCNR(B) rate before the stated deadline.',device:'Curiosity through ordinary friendship rather than a product announcement.',payoff:'The friend finally asks the questions the viewer would ask: repatriation, tax, then “what is the catch?”'},
+   {name:'THE PITCH HE CAN’T INTERRUPT',place:'Pitch-show set',hook:'Two judges challenge a presenter before he can finish the first sentence.',turn:'Every interruption becomes the next proof point: rate, repatriation, tax, currencies.',device:'The format is the creative engine, not decoration.',payoff:'The judges themselves summarise why the offer matters before the deadline lands.'},
+   {name:'THE FAMILY GROUP QUESTION',place:'Family WhatsApp group',hook:'Someone asks where the NRI should park USD money for the next few years.',turn:'Three family members give predictable advice. One sends a simple question: “Can you repatriate everything?”',device:'The group conversation naturally surfaces the questions in the order a real investor would ask them.',payoff:'The NRI stops reading the noise and opens the ICICI option.'}
+  ];
+ } else if(/nri|home loan|money transfer|account|upi/.test(low)){
+  profile.kind='nri';
+  profile.person='An NRI visiting India who wants maximum family time and minimum banking errands';
+  profile.routes=[
+   {name:'THE FIVE-STOP ITINERARY',place:'Parents’ home before an India visit',hook:'Dad has prepared a colour-coded itinerary for every banking task during the NRI’s short trip.',turn:'The itinerary keeps growing until the son asks why all these places are necessary.',device:'The father’s over-planning becomes the comedy engine.',payoff:'One NRI account collapses the itinerary.'},
+   {name:'THE FRIEND WHO ALWAYS HAS ANOTHER TRICK',place:'Kachori shop with an RI friend',hook:'Two old friends compete over who has become more “digital” since college.',turn:'The RI friend pays by UPI. The NRI casually reveals he can do the same with his international number, then reveals more.',device:'Friendly one-upmanship turns product capabilities into escalation.',payoff:'The RI friend can only respond with another kachori.'},
+   {name:'THE CALL FROM HOME',place:'NRI’s workday abroad',hook:'His mother calls with one more India task while he is between meetings.',turn:'Instead of promising to do it on his next visit, he handles it digitally.',device:'The recurring family interruption becomes the proof of convenience.',payoff:'The mother realises she has run out of excuses to call him to the bank.'}
+  ];
+ } else {
+  profile.kind='general';
+  profile.person=b.tg||'the target customer';
+  profile.world=B.story||'an everyday setting';
+  profile.routes=[
+   {name:'THE HABIT THAT GIVES IT AWAY',place:'a recognisable everyday setting',hook:'Show one specific habit from the target audience before showing the product.',turn:'That habit creates the tension the product can resolve.',device:'Character behaviour, not product information, drives the film.',payoff:'The character reacts to the product in a way that reveals why it matters.'},
+   {name:'THE UNEXPECTED PERSON WHO NOTICES',place:'a social/work setting',hook:'Someone close to the protagonist notices a behaviour the protagonist thinks is normal.',turn:'Their observation exposes the real problem.',device:'Relationship creates the reveal.',payoff:'The protagonist sees the product differently after the demonstration.'},
+   {name:'THE THING THEY ALWAYS DO',place:'a specific routine',hook:'A repeated routine becomes increasingly absurd.',turn:'A small product capability breaks the pattern.',device:'Repetition and escalation.',payoff:'The old routine becomes the final joke.'}
+  ];
+ }
+ return profile;
+}
 function makeRoutes(){
- const b=state.basic,B=state.brief,p=b.p,u=b.u,c=b.cta,d=b.duration,who=b.tg;
- const dna=referenceDNA();
- const benefit=benefitPhrase(u);
- const extras=secondaryBenefits(u);
- const chosen=[];
- for(let i=0;i<6;i++) chosen.push(dna[i%dna.length]);
- return chosen.map((x,i)=>{
-  const beats=x.beats;
-  const lines=x.dialogue;
-  const timing=(n)=>{const starts=[0,.16,.34,.52,.70,.86];const ends=[.16,.34,.52,.70,.86,1];return Math.round(d*starts[n])+'–'+Math.round(d*ends[n])+'s'};
-  let rows=[];
-  if(x.name==='YOUNGER SELF APPROVAL'){
-   rows=[
-    ['1',timing(0),'Extreme close-up of a personal object from '+who+' years ago. Hold just long enough for recognition.','“'+lines[0]+'”','HOOK · establish identity without explaining it'],
-    ['2',timing(1),'The old photo/object subtly moves. Younger self notices the present-day protagonist and reacts.','“'+lines[1]+'”','VISUAL REVEAL · younger self approval'],
-    ['3',timing(2),'Present-day protagonist draws out '+p+'. Younger self leans in / reacts with curiosity.','“'+lines[2]+'”','BRAND · let the reveal breathe'],
-    ['4',timing(3),'One benefit appears as a simple real-world action: '+benefit+'.','“'+lines[3]+'”','BENEFIT · one clean beat, not a list'],
-    ['5',timing(4),'Present-day protagonist looks at younger self. Younger self gives a small, unmistakable approval gesture.','“'+lines[4]+'”','EMOTIONAL PAYOFF'],
-    ['6',timing(5),'Product/end frame. Keep mandatory fee/offer information here.','',c+' · END FRAME']
-   ];
-  } else if(x.name==='THE TIME-SHIFT REVEAL'){
-   rows=[
-    ['1',timing(0),'Open on a specific past milestone/object from the protagonist’s earlier life.','“'+lines[0]+'”','HOOK · specific memory'],
-    ['2',timing(1),'A continuous visual transition lets years pass around the protagonist while the original object remains in frame.','“'+lines[1]+'”','CREATIVE DEVICE · time moves, product does not'],
-    ['3',timing(2),'The old object transforms/refolds/reveals '+p+'. No explanatory VO during the actual reveal.','“'+lines[2]+'”','PRODUCT REVEAL · let visual do the work'],
-    ['4',timing(3),'One benefit lands simply: '+benefit+'.'+(extras[0]?' A second supporting benefit stays in supers.':'') ,'“'+lines[3]+'”','RATIONAL BEAT'],
-    ['5',timing(4),'Return to the protagonist in the present. A restrained smile/reaction connects past achievement to present recognition.','“'+lines[4]+'”','PAYOFF · meaning before CTA'],
-    ['6',timing(5),'End frame carries mandatory offer/fee/CTA information.','',c+' · END FRAME']
-   ];
-  } else if(x.name==='THE BENEFIT IN REAL LIFE'){
-   rows=[
-    ['1',timing(0),'Start with a real-life trigger that matters to '+who+'. Avoid product shots.','“'+lines[0]+'”','HUMAN SETUP'],
-    ['2',timing(1),'Protagonist uses '+p+'. The benefit changes the physical situation on screen.','“'+lines[1]+'”','PRODUCT ENTERS THROUGH ACTION'],
-    ['3',timing(2),'Make the strongest benefit visually literal: '+benefit+'.','“'+lines[2]+'”','BENEFIT AS DEVICE'],
-    ['4',timing(3),'A second real-life need appears and a supporting benefit resolves it.'+(extras[0]?' '+extras[0]+'.':'') ,'“'+lines[3]+'”','ESCALATION · second proof'],
-    ['5',timing(4),'Product returns to protagonist’s hand. The audience now understands why it matters.','“'+lines[4]+'”','PAYOFF'],
-    ['6',timing(5),'End frame with mandatory offer/fees/CTA.','',c+' · END FRAME']
-   ];
-  } else if(x.name==='PITCHROOM Q&A'){
-   rows=[
-    ['1',timing(0),'A presenter enters a recognisable pitch-show / judging setup. Judges are already sceptical.','“'+lines[0]+'”','FORMAT IS THE IDEA'],
-    ['2',timing(1),'Judge asks the first question the audience would naturally ask about '+p+'.','“'+lines[1]+'”','QUESTION → BENEFIT'],
-    ['3',timing(2),'Presenter answers directly with the strongest proof point: '+benefit+'.','“'+lines[2]+'”','DIRECT ANSWER'],
-    ['4',timing(3),'Second judge immediately asks the next rational question.','“'+lines[3]+'”','ESCALATE THROUGH QUESTIONS'],
-    ['5',timing(4),'Answer with the next key benefit, then let judges summarise what they have heard.','“'+lines[4]+'”','BENEFIT STACK'],
-    ['6',timing(5),'Judge asks for the catch. Presenter reveals the real urgency and CTA.','“'+lines[5]+'”','PAYOFF → '+c]
-   ];
-  } else if(x.name==='CURIOSITY DEADLINE'){
-   rows=[
-    ['1',timing(0),'Two friends are in the middle of an ordinary plan. One suddenly refuses to leave.','“'+lines[0]+'”','ORDINARY WORLD'],
-    ['2',timing(1),'The other notices the unusual urgency but does not understand it.','“'+lines[1]+'”','INTRIGUE'],
-    ['3',timing(2),'Question: why now? Hold the answer for another beat.','“'+lines[2]+'”','CURIOSITY'],
-    ['4',timing(3),'Reveal '+p+' as the reason. Show '+benefit+' rather than explaining a list.','“'+lines[3]+'”','REVEAL'],
-    ['5',timing(4),'Friend asks the natural follow-up. Product/offer answers it.','“'+lines[4]+'”','PROOF'],
-    ['6',timing(5),'Land the deadline/CTA only after the reason is understood.','“'+lines[5]+'”',c+' · PAYOFF']
-   ];
-  } else if(x.name==='PRECISION PLANNING'){
-   rows=[
-    ['1',timing(0),'A character treats a simple '+who+' task like a military operation: map, whistle, schedule, props.','“'+lines[0]+'”','CHARACTER COMEDY'],
-    ['2',timing(1),'Rapid-fire itinerary grows absurd: multiple places, counters, calls and waiting.','“'+lines[1]+'”','ESCALATION'],
-    ['3',timing(2),'Second character interrupts with one obvious question.','“'+lines[2]+'”','TURN'],
-    ['4',timing(3),'They reveal '+p+' and show that the jobs can happen in one place.','“'+lines[3]+'”','PRODUCT AS RELEASE'],
-    ['5',timing(4),'First character processes the simplification; benefits appear as supers, not dialogue dump.','“'+lines[4]+'”','REACTION'],
-    ['6',timing(5),'End on a simple search/CTA device.','“'+lines[5]+'”',c+' · END FRAME']
-   ];
-  } else if(x.name==='RELATIONSHIP UPMANSHIP'){
-   rows=[
-    ['1',timing(0),'Two people in a recognisable relationship are doing something ordinary.','“'+lines[0]+'”','RELATIONSHIP FIRST'],
-    ['2',timing(1),'Character A makes a confident claim about how they have solved something.','“'+lines[1]+'”','SETUP'],
-    ['3',timing(2),'Character B casually reveals '+p+' as a better way.','“'+lines[2]+'”','ONE-UP REVEAL'],
-    ['4',timing(3),'B demonstrates '+benefit+' while A watches.','“'+lines[3]+'”','PROOF THROUGH ACTION'],
-    ['5',timing(4),'A reacts with genuine surprise, amusement or reluctant respect.','“'+lines[4]+'”','REACTION IS THE PAYOFF'],
-    ['6',timing(5),'Brand/CTA arrives after the relationship beat.','',c+' · END FRAME']
-   ];
-  } else if(x.name==='CHARACTER HABIT'){
-   rows=[
-    ['1',timing(0),'Open on a distinctive recurring habit that immediately tells us who the character is.','“'+lines[0]+'”','CHARACTER HOOK'],
-    ['2',timing(1),'Friend/commentator calls out the behaviour.','“'+lines[1]+'”','PERSONALITY'],
-    ['3',timing(2),'Character gives a quick, in-character response before product enters.','“'+lines[2]+'”','SETUP'],
-    ['4',timing(3),'Product feature resolves the practical problem without changing the character’s personality.','“'+lines[3]+'”','PRODUCT DEMONSTRATION'],
-    ['5',timing(4),'The original habit returns with a twist that delivers the joke.','“'+lines[4]+'”','PAYOFF'],
-    ['6',timing(5),'CTA/end frame.','',c+' · END FRAME']
-   ];
-  } else if(x.name==='VISUAL TRANSFORMATION'){
-   rows=[
-    ['1',timing(0),'Establish one physical object representing the problem.','“'+lines[0]+'”','VISUAL HOOK'],
-    ['2',timing(1),'The object behaves unexpectedly as the problem grows.','“'+lines[1]+'”','BUILD'],
-    ['3',timing(2),p+' enters and physically changes the object/world.','“'+lines[2]+'”','TRANSFORMATION'],
-    ['4',timing(3),'The transformation demonstrates '+benefit+'.','“'+lines[3]+'”','PROOF'],
-    ['5',timing(4),'Return to the original object; now it has a new meaning.','“'+lines[4]+'”','PAYOFF'],
-    ['6',timing(5),'End frame.','',c+' · END FRAME']
-   ];
+ const b=state.basic,B=state.brief,p=b.p,u=b.u,c=b.cta,d=b.duration;
+ const w=audienceWorld();
+ const benefit=benefitPhrase(u), extras=secondaryBenefits(u);
+ const concepts=w.routes;
+ const timing=(n)=>{const starts=[0,.15,.32,.49,.66,.84];const ends=[.15,.32,.49,.66,.84,1];return Math.round(d*starts[n])+'–'+Math.round(d*ends[n])+'s'};
+ return concepts.slice(0,6).map((x,i)=>{
+  let rows;
+  const b1=benefit, b2=extras[0]||'the additional benefit';
+  if(w.kind==='alumni_card'){
+   if(x.name==='THE OFFER HE DIDN’T HAVE TO HUNT FOR'){
+    rows=[
+     ['1',timing(0),x.place+'. '+x.hook,'“Still hunting for a better deal?”','CHARACTER SETUP · deal hunter'],
+     ['2',timing(1),'Close on four offer-comparison tabs. He flips between rates, rewards and fees while his board deck waits behind them.','“I just like knowing I got the better one.”','HUMAN TRUTH · specific behaviour'],
+     ['3',timing(2),'His alumni WhatsApp group pings. He opens a message showing an offer unlocked specifically for alumni. The browser tabs remain visible behind it.','“Wait… this one came to me?”','REVEAL · the hunt reverses'],
+     ['4',timing(3),'He reads the offer: '+b1+'. No generic benefit monologue; the offer itself is the proof of recognition.','“Okay. That changes the comparison.”','BENEFIT · one clean proof'],
+     ['5',timing(4),'He closes all four comparison tabs, one by one. His colleague watches, surprised.','“You are not comparing?” / “Not this one.”','PAYOFF · behaviour changes'],
+     ['6',timing(5),'Card + mandatory fee/offer supers + CTA.','',c+' · END FRAME']
+    ];
+   } else if(x.name==='THE ALUMNI GROUP HAS ONE MORE BENEFIT'){
+    rows=[
+     ['1',timing(0),x.place+'. '+x.hook,'“Look at us. Twenty years later and the group is still noisy.”','HUMAN SETUP'],
+     ['2',timing(1),'Messages fly: reunion photos, old nicknames, one person boasting about a new upgrade. Then one message stops the scroll: “One more thing for alumni.”','“One more thing?”','CURIOSITY · message becomes device'],
+     ['3',timing(2),'The protagonist opens the alumni-specific card offer. His expression changes from nostalgic to genuinely interested.','“Now that is a benefit of staying connected.”','REVEAL'],
+     ['4',timing(3),'Show the strongest offer: '+b1+'. Keep secondary benefits as visual supers.','“And it is actually useful.”','PRODUCT PROOF'],
+     ['5',timing(4),'The group chat fills with reactions. He types, pauses, deletes a long comparison message, and simply sends: “I am in.”','“Okay. This one is worth looking at.”','PAYOFF · understated privilege'],
+     ['6',timing(5),'Product/end frame with mandatory fees and CTA.','',c+' · END FRAME']
+    ];
+   } else if(x.name==='THE BOARDROOM NEGOTIATOR'){
+    rows=[
+     ['1',timing(0),x.place+'. '+x.hook,'“You negotiated the vendor down again?”','CHARACTER HOOK'],
+     ['2',timing(1),'Colleague lists his habits: flight upgrade, hotel rate, vendor discount. He proudly opens another comparison screen.','“Why pay more when you can get better?”','CHARACTER DEFINITION'],
+     ['3',timing(2),'During the break, his phone shows an alumni-only card offer. He reads it twice.','“This came because I am an alumnus?”','REVEAL'],
+     ['4',timing(3),'He sees '+b1+'. For once, there is no negotiation screen, no coupon search, no comparison.','“This one came pre-negotiated.”','BENEFIT AS CHARACTER PAYOFF'],
+     ['5',timing(4),'Colleague looks at him waiting for the usual bargaining. He simply applies / taps through.','“No negotiation?” / “None needed.”','PAYOFF'],
+     ['6',timing(5),'Card + mandatory fee/offer/CTA.','',c+' · END FRAME']
+    ];
+   } else if(x.name==='THE REUNION BILL'){
+    rows=[
+     ['1',timing(0),x.place+'. '+x.hook,'“Twenty years and you still check every offer?”','HUMAN SETUP'],
+     ['2',timing(1),'Bill arrives. Friends predict he will compare cards before paying. He reaches for his phone instead.','“Of course I will check.”','SETUP'],
+     ['3',timing(2),'An alumni-specific card offer is already on his screen. Friends lean in.','“Actually… you guys gave me the better one.”','REVEAL'],
+     ['4',timing(3),'Show '+b1+' through the payment/offer visual.','“That is not a bad reunion gift.”','BENEFIT'],
+     ['5',timing(4),'Friends laugh because the lifelong deal-hunter has finally stopped searching.','“You finally found one?” / “No. It found me.”','PAYOFF'],
+     ['6',timing(5),'Card + mandatory end-frame information.','',c+' · END FRAME']
+    ];
+   } else if(x.name==='THE JUNIOR KNOWS HIS WEAKNESS'){
+    rows=[
+     ['1',timing(0),x.place+'. '+x.hook,'“Sir, you actually compare all this?”','RELATIONSHIP SETUP'],
+     ['2',timing(1),'The junior watches him compare three offers and assumes this is just another obsession.','“Better offer is better offer.”','CHARACTER BEHAVIOUR'],
+     ['3',timing(2),'He opens the alumni-specific offer and hands the phone to the junior.','“This one is for our alumni.”','REVEAL'],
+     ['4',timing(3),'Junior sees '+b1+' and the fee waiver/other mandatory offer details.','“Okay… that is actually special.”','PROOF'],
+     ['5',timing(4),'The senior closes the other tabs. Junior looks genuinely impressed.','“Now you get it.”','PAYOFF'],
+     ['6',timing(5),'Card + CTA/end frame.','',c+' · END FRAME']
+    ];
+   } else {
+    rows=[
+     ['1',timing(0),x.place+'. '+x.hook,'“Why do you still keep that?”','EMOTIONAL SETUP'],
+     ['2',timing(1),'He explains what the college meant to him. His phone lights up with the alumni-specific card offer.','“Because some things stay with you.”','BRIDGE'],
+     ['3',timing(2),'He looks from the old college object to the new card offer.','“And apparently… some things come back.”','REVEAL'],
+     ['4',timing(3),'Show '+b1+'. Keep the alumni connection as the emotional reason for attention.','“That is a nice surprise.”','BENEFIT'],
+     ['5',timing(4),'He puts the old object back carefully and keeps the phone in hand.','“Looks like college still has surprises.”','PAYOFF'],
+     ['6',timing(5),'Card + mandatory fee/CTA.','',c+' · END FRAME']
+    ];
+   }
   } else {
+   const q=x.hook, turn=x.turn, dev=x.device;
    rows=[
-    ['1',timing(0),'Observe one specific behaviour from '+who+' that feels true, not invented for advertising.','“'+lines[0]+'”','HUMAN OBSERVATION'],
-    ['2',timing(1),'Push that behaviour one step further until it creates tension.','“'+lines[1]+'”','ESCALATION'],
-    ['3',timing(2),'A character asks the question the audience is now asking.','“'+lines[2]+'”','CURIOSITY'],
-    ['4',timing(3),p+' enters as the answer and demonstrates '+benefit+'.','“'+lines[3]+'”','REVEAL'],
-    ['5',timing(4),'Character reaction makes the benefit memorable.','“'+lines[4]+'”','REACTION'],
-    ['6',timing(5),'End frame.','',c+' · END FRAME']
+    ['1',timing(0),x.place+'. '+q,'', 'SPECIFIC SITUATION · establish people, place and behaviour'],
+    ['2',timing(1),'Escalate the behaviour before the product appears: '+turn,'', 'ESCALATION · no product yet'],
+    ['3',timing(2),'The creative device now turns the situation: '+dev,'', 'CREATIVE TURN'],
+    ['4',timing(3),'Introduce '+p+' only when the audience understands the tension. Demonstrate '+b1+'.','', 'PRODUCT AS ANSWER'],
+    ['5',timing(4),'Show the character reaction/payoff: '+x.payoff,'', 'HUMAN PAYOFF'],
+    ['6',timing(5),'End frame with '+c+' and mandatory information.','', 'CTA']
    ];
   }
-  return {name:x.name,type:x.mechanism,device:x.mechanism,plot:'Built from the reference-script grammar: '+x.mechanism,rows:rows};
+  return {name:x.name,type:'Original situation-led route',device:x.device||'Character + situation + creative turn',plot:x.hook+' → '+x.turn+' → '+x.payoff,rows};
  });
 }
 function wireMakeScripts(){const b=$('makeScriptsBtn');if(b){b.disabled=false}}
