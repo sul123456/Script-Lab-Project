@@ -114,10 +114,19 @@ function makeRoutes(){
 }
 function wireMakeScripts(){const b=$('makeScriptsBtn');if(b){b.onclick=function(e){e.preventDefault();makeScripts()};b.disabled=false}}
 function makeScripts(){
- const routes=makeRoutes();
- const selected=(state.basic.zones||[]).join(', ');
- const durationNote=state.basic.duration<=20?'Built for compression: one device, one tension, one reveal, one payoff.':state.basic.duration<=30?'Built for a complete mini-story with room for escalation and reaction.':state.basic.duration<=40?'Built for a fuller setup, character beat, reveal and proof.':'Built for a richer narrative arc with room for behaviour, escalation, product demonstration and payoff.';
- document.getElementById('workspace').innerHTML='<div class="card"><div class="title">Creative Brain — '+state.basic.duration+' sec</div><div class="sub">'+durationNote+' Creative zones: '+esc(selected||'Adaptive')+'</div></div>'+routes.map(render).join('');
+ try{
+  if(!state.basic||!state.brief) throw new Error('Brief data is missing. Please go back and rebuild the brief.');
+  const routes=makeRoutes();
+  if(!Array.isArray(routes)||!routes.length) throw new Error('No creative routes were generated.');
+  const selected=(state.basic.zones||[]).join(', ');
+  const durationNote=state.basic.duration<=20?'Built for compression: one device, one tension, one reveal, one payoff.':state.basic.duration<=30?'Built for a complete mini-story with room for escalation and reaction.':state.basic.duration<=40?'Built for a fuller setup, character beat, reveal and proof.':'Built for a richer narrative arc with room for behaviour, escalation, product demonstration and payoff.';
+  const cards=routes.map(x=>render(x)).join('');
+  $('workspace').innerHTML='<div class="card"><div class="title">Creative Brain — '+state.basic.duration+' sec</div><div class="sub">'+esc(durationNote)+' Creative zones: '+esc(selected||'Adaptive')+'</div></div>'+cards;
+  $('workspace').scrollIntoView({behavior:'smooth',block:'start'});
+ }catch(err){
+  console.error('Script Lab makeScripts error:',err);
+  $('workspace').innerHTML='<div class="card"><div class="title">Creative Brain could not generate the scripts</div><div class="hint">The brief is saved. Please try Make Scripts again.</div><div class="hint" style="margin-top:8px">'+esc(err&&err.message?err.message:String(err))+'</div><button type="button" class="primary" style="margin-top:14px" onclick="makeScripts()">Try Again →</button></div>';
+ }
 }
 function render(r){return '<article class="card"><div class="head"><div><div class="route">'+esc(r.name)+'</div><div class="meta">'+esc(r.type)+' · '+state.basic.duration+'s · plot-led</div></div><div class="actions"><button onclick="copyScript(this)">Copy Script</button><button onclick="toggleRefine(this)">Refine Script</button><button onclick="makeScripts()">Another Story</button><select onchange="mood(this)"><option>Change Mood</option><option>Witty</option><option>Emotional</option><option>Premium</option><option>Cinematic</option><option>Bold</option><option>Humorous</option><option>Smart</option><option>Storytelling</option><option>Surprise Me</option></select></div></div><div class="plot"><div class="k">THE PLOT</div><div class="v">'+esc(r.plot)+'</div><div class="hint" style="margin-top:6px">Creative device: '+esc(r.device)+'</div></div><div class="table"><div class="row"><div class="cell th">Shot</div><div class="cell th">Timing</div><div class="cell th">Visual</div><div class="cell th">Dialogue</div><div class="cell th">Super / note</div></div>'+r.rows.map(a=>'<div class="row">'+a.map(v=>'<div class="cell">'+esc(v)+'</div>').join('')+'</div>').join('')+'</div><div class="refine"><textarea placeholder="Make the dialogue more natural / funnier / punchier without changing the plot"></textarea><button class="mini" onclick="applyRefine(this)">Apply to Script</button></div><div class="cta">END FRAME · '+esc(state.basic.cta)+'</div></article>'}
 function scriptText(article){const rows=[...article.querySelectorAll('.table .row')].slice(1);return article.querySelector('.route').innerText+'\n\nPLOT: '+article.querySelector('.plot .v').innerText+'\n\n'+rows.map(r=>{const x=r.querySelectorAll('.cell');return x[0].innerText+' | '+x[1].innerText+' | VISUAL: '+x[2].innerText+' | DIALOGUE: '+x[3].innerText+' | NOTE: '+x[4].innerText}).join('\n')+'\n\n'+article.querySelector('.cta').innerText}
