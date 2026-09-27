@@ -20,7 +20,7 @@ function setDuration(v,b){$('duration').value=v;b.parentElement.querySelectorAll
 const $=id=>document.getElementById(id),esc=s=>String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');let state={basic:{},answers:{},brief:null};
 const qs=[['situation','What is the human situation in which this message can naturally come alive?','A real situation gives the story somewhere to happen.'],['problem','What is the natural problem, tension or question the protagonist would have?','The story needs something to solve or reveal.'],['change','What should the audience think, feel or do differently at the end?','This defines the desired change.'],['story','What kind of story feels most natural?',['Family','Friends','Workplace','Couple','Everyday life','Observational','Unexpected','Surprise me']],['emotion','What should the viewer feel at the end?',['Amused','Awakened','Emotional','Empowered','Surprised','Other']],['avoid','What should the film NOT feel like?',['Product advertisement','Lecture','Preachy','Corporate','Over-emotional','Other']],['takeaway','What is the one thought you want the viewer to take away?','This keeps the script single-minded.'],['mandatories','Any mandatory product point, branding, legal or wording requirement?','Nothing important should be lost in the story.']];
 function infer(){let s=($('product').value+' '+$('usps').value+' '+$('tg').value).toLowerCase();return /fcnr|deposit|interest|yield|usd|currency|investment/.test(s)?'financial opportunity':/money2india|remit|send money|transfer/.test(s)?'everyday human situation → product solution':/forex|travel|reload|trip/.test(s)?'current behaviour → desired behaviour':/woman|women|gender|savings account/.test(s)?'social / human insight':'product benefit through a human situation'}
-function startLab(){state.basic={tg:$('tg').value.trim()||'Defined audience',p:$('product').value.trim()||'the product',u:$('usps').value.trim()||'the key product benefit',cta:$('cta').value.trim()||'Explore now',duration:+$('duration').value||30};renderQuestions()}
+function startLab(){state.basic={tg:$('tg').value.trim()||'Defined audience',p:$('product').value.trim()||'the product',u:$('usps').value.trim()||'the key product benefit',cta:$('cta').value.trim()||'Explore now',duration:+$('duration').value||20,zones:[...document.querySelectorAll('#zones .zone.on')].map(x=>x.textContent)};state.answers={};renderQuestions()}
 function missing(){return qs.filter(q=>!state.answers[q[0]])}
 function renderQuestions(){let m=missing().slice(0,5);if(!m.length)return buildBrief();let pct=Math.round((1-(missing().length/qs.length))*100);$('workspace').innerHTML='<div class="card"><div class="title">Let’s sharpen the brief</div><div class="sub">I only need a few inputs before I build the story.</div><div class="progress"><span style="width:'+pct+'%"></span></div>'+m.map(q=>q[2] instanceof Array?'<div class="question"><div class="q">'+q[1]+'</div><div class="chips">'+q[2].map(x=>'<button class="chip" onclick="pick(this,\''+q[0]+'\')">'+x+'</button>').join('')+'</div></div>':'<div class="question"><div class="q">'+q[1]+'</div><textarea id="q_'+q[0]+'" placeholder="Your answer…"></textarea><div class="hint">'+q[2]+'</div></div>').join('')+'<div class="smartActions"><button class="primary" onclick="saveQ()">Continue →</button><button class="secondary" onclick="skipQ()">Skip remaining</button></div></div>'}
 function pick(b,id){b.parentElement.querySelectorAll('.chip').forEach(x=>x.classList.remove('on'));b.classList.add('on');state.answers[id]=b.textContent}
@@ -28,21 +28,95 @@ function saveQ(){missing().slice(0,5).forEach(q=>{let x=$('q_'+q[0]);if(x&&x.val
 function skipQ(){missing().forEach(q=>state.answers[q[0]]='Not specified');buildBrief()}
 function buildBrief(){let a=state.answers,b=state.basic;state.brief={type:infer(),who:b.tg,why:a.situation||'Create a relevant human reason to care',truth:a.problem||'There is a real friction or unanswered question',change:a.change||'Think about the message, feel its relevance, and act',message:a.takeaway||b.u,story:a.story||'Everyday life',tone:a.emotion||'Natural and memorable',mandatories:a.mandatories||b.u,guardrails:a.avoid||'Avoid a forced product-ad feel'};let B=state.brief;$('workspace').innerHTML='<div class="card"><div class="title">Sharper Brief</div><div class="sub">This is now the single source of truth for the script.</div><div class="briefGrid">'+[['WHO',B.who],['WHY',B.why],['HUMAN TRUTH',B.truth],['DESIRED CHANGE',B.change],['CORE MESSAGE',B.message],['CREATIVE OPPORTUNITY',B.type],['STORY DIRECTION',B.story],['TONE / FEEL',B.tone],['MANDATORIES',B.mandatories],['GUARDRAILS',B.guardrails]].map(x=>'<div class="briefItem"><div class="k">'+x[0]+'</div><div class="v">'+esc(x[1])+'</div></div>').join('')+'</div><div class="smartActions"><button class="primary" onclick="makeScripts()">Make Scripts →</button><button class="secondary" onclick="downloadBrief()">Download brief</button><button class="secondary" onclick="copyBrief()">Copy brief</button></div></div>'}
 function timing(n,d){let a=[0,0,.18,.38,.62,.82][n]||0,b=[.18,.38,.62,.82,1][n-1]||1;return Math.round(d*a)+'–'+Math.round(d*b)+'s'}
-function makeScripts(){
- const b=state.basic,B=state.brief,p=b.p,u=b.u,c=b.cta,d=b.duration,T=n=>timing(n,d);
- const routes=/financial opportunity/.test(B.type)?[
- ['THE USD THAT GOT A JOB','Money as a character','Idle USD becomes a character tired of sitting around.',[['1',T(1),'NRI sees USD sitting untouched.','“You’re just sitting there, doing absolutely nothing?”','Human hook'],['2',T(2),'The NRI questions the inactivity.','“You could actually be doing something useful.”','Tension'],['3',T(3),p+' enters naturally as the answer.','“So, I can actually put these dollars to work?”','Product as plot point'],['4',T(4),'Show the key supplied benefit: '+u,'“Now that sounds like a much better job.”','Proof'],['5',T(5),'The USD is no longer idle.','“Much better. At least you’re doing something.”','Payoff → '+c]]],
- ['THE USD PITCH','Reverse sales pitch','The money itself questions where it is being put.',[['1',T(1),'NRI is about to make a financial decision.','“Before you move me, where exactly are you putting me?”','Pattern interrupt'],['2',T(2),'The real concern: '+B.truth,'“Fair question. I’d want to know that too.”','Human tension'],['3',T(3),p+' is introduced as a considered option.','“Actually, you might be exactly what I’m looking for.”','Natural entry'],['4',T(4),'One decisive benefit: '+u,'“That’s exactly the kind of answer I wanted.”','Proof'],['5',T(5),'The money accepts the decision.','“Deal. Let’s get this moving.”','Payoff → '+c]]],
- ['THE MOST EXPENSIVE WAITING GAME','Cost of inaction','Waiting becomes the antagonist.',[['1',T(1),'NRI keeps postponing the decision.','“I’ll decide later. There’s no real rush, right?”','Repeat as comic device'],['2',T(2),'Time passes.','“Right… I’ll get around to it later.”','Visual time'],['3',T(3),'A friend asks what they are waiting for.','“Actually, I don’t even know what I’m waiting for.”','Reveal tension'],['4',T(4),p+' becomes the considered solution: '+u,'“Okay, that actually changes the equation for me.”','Resolution'],['5',T(5),'The character finally acts.','“Okay. Let’s stop waiting and actually do it.”','Payoff → '+c]]]
- ]:/everyday human situation/.test(B.type)?[
- ['THE MONEY THAT REFUSES TO MOVE','Everyday comedy','A familiar sending-money-home frustration becomes a tiny comic obstacle course.',[['1',T(1),B.who+' is trying to send money home.','“Why does sending money always become such a whole thing?”','Start in life'],['2',T(2),'The friction appears: '+B.truth,'“I just want to send the money and get on with my day.”','Recognisable'],['3',T(3),p+' is suggested as the simpler route.','“Wait, I can actually do the whole thing this way?”','Natural discovery'],['4',T(4),'Show the relevant benefit: '+u,'“That was actually much easier than I expected.”','Show, don’t tell'],['5',T(5),'Money reaches its purpose and life resumes.','“Right. Now, where were we before this?”','Payoff → '+c]]],
- ['THE FAMILY GROUP CHAT','Social situation','A family request creates the natural reason for the transfer solution.',[['1',T(1),'Family chat fills with messages from home.','“Can you please send it today? We need it.”','Relationship hook'],['2',T(2),'The NRI faces the friction: '+B.truth,'“Yes, yes, I’m doing it. Give me a minute.”','Real tension'],['3',T(3),p+' becomes the practical answer.','“Oh, I can just do the whole thing right here.”','Behaviour-led'],['4',T(4),'Show the relevant action/benefit: '+u,'“Done. That was surprisingly straightforward.”','Visual proof'],['5',T(5),'Conversation returns to family life.','“Now, tell me what everyone is eating over there.”','Payoff → '+c]]]
- ]:[ 
- ['THE HUMAN MOMENT','Human situation → solution','A recognisable moment creates tension; the product appears only when genuinely needed.',[['1',T(1),B.who+' in a real moment: '+B.why,'','Behaviour first'],['2',T(2),'The problem becomes specific: '+B.truth,'“There has to be a simpler way of doing this.”','Human tension'],['3',T(3),p+' enters because the character needs an answer.','“You know what? This could actually work for me.”','Product as plot point'],['4',T(4),'Show one decisive proof: '+u,'“That’s exactly what I needed — simple and straightforward.”','One proof'],['5',T(5),'Return to the original moment, now changed.','“Done. Now I can get back to normal life.”','Payoff → '+c]]],
- ['THE QUESTION','Question → discovery → payoff','A genuine question leads to discovery.',[['1',T(1),B.who+' faces the situation: '+B.why,'“Okay, so what am I actually supposed to do?”','Curiosity hook'],['2',T(2),'The old way creates friction: '+B.truth,'“That sounds like way more work than it should be.”','Human conflict'],['3',T(3),p+' enters naturally as the answer.','“Why didn’t I think of doing it that way before?”','Story solution'],['4',T(4),'One action demonstrates: '+u,'“Oh, that’s much easier than I thought it would be.”','Show, don’t explain'],['5',T(5),'The question is resolved.','“Sorted. That was easier than expected.”','Payoff → '+c]]],
- ['THE PLOT TWIST','Expectation → surprise → meaning','The audience thinks the story is about one thing, then discovers what it is really about.',[['1',T(1),'Open on an apparently unrelated situation involving '+B.who+'.','“Okay, this is definitely not going the way I expected.”','Curiosity'],['2',T(2),'The situation exposes: '+B.truth,'“Actually, that’s the real problem we should solve.”','Human truth'],['3',T(3),p+' becomes relevant unexpectedly but logically.','“Wait, that actually changes things quite a bit.”','Turn, not pitch'],['4',T(4),'Benefit experienced in action: '+u,'“Okay, now I actually get why this matters.”','Behaviour proof'],['5',T(5),'The opening situation lands differently.','“Sometimes the smarter answer really is the simpler one.”','Payoff → '+c]]]
+function creativeDevice(zones,routeIndex){
+ const z=(zones||[]).join(' ').toLowerCase();
+ const pool=[];
+ if(/witty|humorous/.test(z)) pool.push('character-led situational comedy');
+ if(/emotional/.test(z)) pool.push('small human moment with an emotional turn');
+ if(/premium/.test(z)) pool.push('quiet contrast between ordinary and considered behaviour');
+ if(/cinematic/.test(z)) pool.push('visual transformation / match-cut device');
+ if(/bold|scroll-stopper/.test(z)) pool.push('unexpected visual or pattern interrupt');
+ if(/smart|insight-led/.test(z)) pool.push('sharp human observation that reframes the problem');
+ if(/storytelling/.test(z)) pool.push('mini-story with a clear reveal and payoff');
+ if(!pool.length) pool.push('recognisable human situation with a reveal');
+ return pool[routeIndex%pool.length];
+}
+function benefitPhrase(u){
+ const s=String(u||'the key benefit').trim();
+ const parts=s.split(/[,;\n|]+/).map(x=>x.trim()).filter(Boolean);
+ return parts[0]||s;
+}
+function secondaryBenefits(u){
+ return String(u||'').split(/[,;\n|]+/).map(x=>x.trim()).filter(Boolean).slice(1,4);
+}
+function makeRoutes(){
+ const b=state.basic,B=state.brief,p=b.p,u=b.u,c=b.cta,d=b.duration,who=b.tg,truth=B.truth,why=B.why,benefit=benefitPhrase(u),extras=secondaryBenefits(u);
+ const extra=extras.length?extras.join(' · '):'the supporting benefits';
+ const routes=[
+  {name:'THE ORDINARY MOMENT',type:'Observation → discovery',device:creativeDevice(b.zones,0),
+   plot:'Start with a small, recognisable moment from '+who+'. Let the audience recognise the behaviour before the product is named.',
+   rows:[
+    ['1','0–'+Math.round(d*.18)+'s','Open inside the human situation: '+why+'. No branding yet.','“'+(B.story==='Surprise me'?'Wait… what are we doing here?':'I thought this was going to be simple.')+'”','Human hook'],
+    ['2',Math.round(d*.18)+'–'+Math.round(d*.38)+'s','The friction becomes visible: '+truth+'.','“There has to be an easier way.”','Tension'],
+    ['3',Math.round(d*.38)+'–'+Math.round(d*.62)+'s','The character discovers '+p+' as a natural answer.','“Hang on — '+p+' can do that?”','Reveal'],
+    ['4',Math.round(d*.62)+'–'+Math.round(d*.82)+'s','Demonstrate the benefit in action: '+benefit+'.','“Oh. That actually makes life easier.”','Proof'],
+    ['5',Math.round(d*.82)+'–'+d+'s','Return to the original moment, now changed.','“Right. Back to life.”','Payoff → '+c]
+   ]},
+  {name:'THE ESCALATING PROBLEM',type:'Repetition → escalation → release',device:creativeDevice(b.zones,1),
+   plot:'Turn one everyday problem into a comic or dramatic escalation, then remove the problem with the product.',
+   rows:[
+    ['1','0–'+Math.round(d*.16)+'s','Character attempts '+why+'.','“Okay. One thing at a time.”','Setup'],
+    ['2',Math.round(d*.16)+'–'+Math.round(d*.34)+'s','A second task/problem appears: '+truth+'.','“And now this too?”','Escalation'],
+    ['3',Math.round(d*.34)+'–'+Math.round(d*.52)+'s','Another complication piles on. Use behaviour, not exposition.','“Seriously?”','Escalation'],
+    ['4',Math.round(d*.52)+'–'+Math.round(d*.72)+'s','A second character interrupts with the smarter route: '+p+'.','“Why are you still doing it that way?”','Turn'],
+    ['5',Math.round(d*.72)+'–'+Math.round(d*.88)+'s','Show '+benefit+' solving the accumulated problem.','“That’s… much simpler.”','Demonstration'],
+    ['6',Math.round(d*.88)+'–'+d+'s','Reaction lands the joke/relief, then CTA.','“Problem solved.”','Payoff → '+c]
+   ]},
+  {name:'THE CHARACTER UPTURN',type:'Relationship → upmanship → reveal',device:creativeDevice(b.zones,2),
+   plot:'Use two characters with a believable relationship. One character thinks they have the advantage; the other reveals the product as the quiet one-up.',
+   rows:[
+    ['1','0–'+Math.round(d*.18)+'s','Two characters in a familiar setting. Character A talks about something they have managed easily.','“Look at me — finally got that sorted.”','Relationship'],
+    ['2',Math.round(d*.18)+'–'+Math.round(d*.36)+'s','A new task exposes the gap: '+truth+'.','“Wait… you still have to do that?”','Contrast'],
+    ['3',Math.round(d*.36)+'–'+Math.round(d*.56)+'s','Character B casually reveals '+p+'.','“Actually, I can do it right here.”','Reveal'],
+    ['4',Math.round(d*.56)+'–'+Math.round(d*.76)+'s','B demonstrates '+benefit+'.','“You can do that too?”','Upmanship'],
+    ['5',Math.round(d*.76)+'–'+Math.round(d*.9)+'s','A reacts; keep the reaction human rather than explanatory.','“Okay… that’s impressive.”','Reaction'],
+    ['6',Math.round(d*.9)+'–'+d+'s','Brand/product lands after the relationship beat.','“Next time, I’m doing it your way.”','Payoff → '+c]
+   ]},
+  {name:'THE UNEXPECTED REVEAL',type:'Intrigue → reveal → payoff',device:creativeDevice(b.zones,3),
+   plot:'Open on an apparently unrelated action. Make the viewer ask a question before revealing what the character is actually doing.',
+   rows:[
+    ['1','0–'+Math.round(d*.2)+'s','Show a curious visual connected to the character but hide the reason.','“Wait… what are you doing?”','Intrigue'],
+    ['2',Math.round(d*.2)+'–'+Math.round(d*.4)+'s','Second character guesses incorrectly; character stays focused.','“You’ll see.”','Curiosity'],
+    ['3',Math.round(d*.4)+'–'+Math.round(d*.6)+'s','Reveal: it is about '+p+'.','“I’m sorting this before it becomes a problem.”','Reveal'],
+    ['4',Math.round(d*.6)+'–'+Math.round(d*.8)+'s','Benefit appears through action: '+benefit+'.','“That’s why.”','Proof'],
+    ['5',Math.round(d*.8)+'–'+d+'s','The opening visual gets a second meaning; finish with a memorable line.','“Sometimes the smart move is doing it before you need to.”','Payoff → '+c]
+   ]},
+  {name:'THE VISUAL DEVICE',type:'Visual metaphor → demonstration',device:'make the product benefit physically visible',
+   plot:'Build the film around one visual device so the audience understands the benefit by seeing it, not hearing a list.',
+   rows:[
+    ['1','0–'+Math.round(d*.18)+'s','Establish '+why+' with one strong visual metaphor.','“What if this could just… be easier?”','Visual hook'],
+    ['2',Math.round(d*.18)+'–'+Math.round(d*.38)+'s','The visual device reacts to the problem.','“There it is.”','Build'],
+    ['3',Math.round(d*.38)+'–'+Math.round(d*.58)+'s','Product enters and changes the visual world: '+p+'.','“Now watch this.”','Transformation'],
+    ['4',Math.round(d*.58)+'–'+Math.round(d*.78)+'s','Use the device to demonstrate '+benefit+'.','“One move. Done.”','Proof'],
+    ['5',Math.round(d*.78)+'–'+d+'s','Resolve the visual metaphor and let the brand/message breathe.','“That’s what I call simple.”','Payoff → '+c]
+   ]},
+  {name:'THE SMALL HUMAN TRUTH',type:'Insight → behaviour → meaning',device:creativeDevice(b.zones,4),
+   plot:'Find one behaviour that says something true about '+who+', then let the product solve the tension without preaching.',
+   rows:[
+    ['1','0–'+Math.round(d*.2)+'s','Observe a telling behaviour: '+why+'.','“We all do this.”','Human truth'],
+    ['2',Math.round(d*.2)+'–'+Math.round(d*.4)+'s','Push the behaviour one step further: '+truth+'.','“And then we wonder why it takes so long.”','Recognition'],
+    ['3',Math.round(d*.4)+'–'+Math.round(d*.6)+'s','Character notices a better route through '+p+'.','“What if I just did it this way?”','Discovery'],
+    ['4',Math.round(d*.6)+'–'+Math.round(d*.8)+'s','Show '+benefit+' rather than listing it.','“Oh. That changes it.”','Proof'],
+    ['5',Math.round(d*.8)+'–'+d+'s','Land the human thought before the CTA.','“Maybe it was never supposed to be that complicated.”','Meaning → '+c]
+   ]}
  ];
- document.getElementById('workspace').innerHTML='<div class="card"><div class="title">Scripts built from the Sharper Brief</div><div class="sub">Plot first: human situation → tension → natural product entry → proof → human payoff.</div></div>'+routes.map(render).join('');
+ return routes;
+}
+function makeScripts(){
+ const routes=makeRoutes();
+ const selected=(state.basic.zones||[]).join(', ');
+ const durationNote=state.basic.duration<=20?'Built for compression: one device, one tension, one reveal, one payoff.':state.basic.duration<=30?'Built for a complete mini-story with room for escalation and reaction.':state.basic.duration<=40?'Built for a fuller setup, character beat, reveal and proof.':'Built for a richer narrative arc with room for behaviour, escalation, product demonstration and payoff.';
+ document.getElementById('workspace').innerHTML='<div class="card"><div class="title">Creative Brain — '+state.basic.duration+' sec</div><div class="sub">'+durationNote+' Creative zones: '+esc(selected||'Adaptive')+'</div></div>'+routes.map(render).join('');
 }
 function render(r){return '<article class="card"><div class="head"><div><div class="route">'+esc(r[0])+'</div><div class="meta">'+esc(r[1])+' · '+state.basic.duration+'s · plot-led</div></div><div class="actions"><button onclick="copyScript(this)">Copy Script</button><button onclick="toggleRefine(this)">Refine Script</button><button onclick="makeScripts()">Another Story</button><select onchange="mood(this)"><option>Change Mood</option><option>Witty</option><option>Emotional</option><option>Premium</option><option>Cinematic</option><option>Bold</option><option>Humorous</option><option>Smart</option><option>Storytelling</option><option>Surprise Me</option></select></div></div><div class="plot"><div class="k">THE PLOT</div><div class="v">'+esc(r[2])+'</div></div><div class="table"><div class="row"><div class="cell th">Shot</div><div class="cell th">Timing</div><div class="cell th">Visual</div><div class="cell th">Dialogue</div><div class="cell th">Super / note</div></div>'+r[3].map(a=>'<div class="row">'+a.map(v=>'<div class="cell">'+esc(v)+'</div>').join('')+'</div>').join('')+'</div><div class="refine"><textarea placeholder="Make the dialogue more natural / funnier / punchier without changing the plot"></textarea><button class="mini" onclick="applyRefine(this)">Apply to Script</button></div><div class="cta">END FRAME · '+esc(state.basic.cta)+'</div></article>'}
 function scriptText(article){const rows=[...article.querySelectorAll('.table .row')].slice(1);return article.querySelector('.route').innerText+'\n\nPLOT: '+article.querySelector('.plot .v').innerText+'\n\n'+rows.map(r=>{const x=r.querySelectorAll('.cell');return x[0].innerText+' | '+x[1].innerText+' | VISUAL: '+x[2].innerText+' | DIALOGUE: '+x[3].innerText+' | NOTE: '+x[4].innerText}).join('\n')+'\n\n'+article.querySelector('.cta').innerText}
