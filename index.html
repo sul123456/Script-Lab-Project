@@ -49,68 +49,141 @@ function benefitPhrase(u){
 function secondaryBenefits(u){
  return String(u||'').split(/[,;\n|]+/).map(x=>x.trim()).filter(Boolean).slice(1,4);
 }
+function referenceDNA(){
+ const b=state.basic,B=state.brief;
+ const s=(b.p+' '+b.u+' '+b.tg+' '+B.message+' '+B.story).toLowerCase();
+ const dna=[];
+ if(/credit card|card|alumni|college|premium|reward|voucher/.test(s)){
+  dna.push(
+   {name:'YOUNGER SELF APPROVAL',mechanism:'A younger version of the protagonist physically witnesses the present-day product choice and silently approves it.',beats:['recognisable personal object from the past','past self comes alive / reacts','present product appears','one benefit beat','approval/payoff'],dialogue:['Still keeping this?','Look at you.','This one is different.','Worth ₹'+(secondaryBenefits(b.u)[0]||'the reward')+'.','You earned it.']},
+   {name:'THE TIME-SHIFT REVEAL',mechanism:'One continuous visual transition connects an earlier achievement to the present-day product.',beats:['past milestone','time moves around protagonist','old object transforms into product/brand cue','one clean benefit','present-day payoff'],dialogue:['Remember this?','A lot changed after that.','And now… this.','Here is what you get back.','You have earned this.']},
+   {name:'THE BENEFIT IN REAL LIFE',mechanism:'The strongest benefit is not explained; it physically changes what the protagonist can do.',beats:['audience sees a real-life trigger','product appears','benefit becomes a visual action','second benefit resolves another need','product returns to hand'],dialogue:['Perfect timing.','This should help.','And this takes care of that.','That is actually useful.','Now that is a card.']}
+  );
+ } else if(/fcnr|deposit|usd|interest|repatri/.test(s)){
+  dna.push(
+   {name:'PITCHROOM Q&A',mechanism:'A pitch-show format turns each natural viewer question into the next benefit reveal.',beats:['bold proposition','viewer question','direct answer','next question','benefit stack / catch','deadline payoff'],dialogue:['Here is the opportunity.','Can I take my money back?','Principal and interest. Fully repatriable.','And tax?','Tax-free in India.','So what is the catch?']},
+   {name:'CURIOSITY DEADLINE',mechanism:'A normal conversation hides the product until the audience needs the answer.',beats:['ordinary plan','strange urgency','question','product reveal','benefit proof','deadline payoff'],dialogue:['Come on, let us go.','Not yet.','Why?','I am locking this in.','For what?','This.']}
+  );
+ } else if(/nri|remit|money transfer|home loan|account/.test(s)){
+  dna.push(
+   {name:'PRECISION PLANNING',mechanism:'A character over-engineers an everyday task until another character reveals that one product removes the entire itinerary.',beats:['character creates elaborate plan','rapid escalation of tasks','second character interrupts','one-product reveal','benefit stack','reaction'],dialogue:['Attention. We begin at nine.','Then branch. Then office. Then another counter.','Dad… why?','We can do this with one account.','All of it?','All of it.']},
+   {name:'RELATIONSHIP UPMANSHIP',mechanism:'Two people compete casually; the product becomes the unexpected one-up.',beats:['ordinary interaction','one character boasts','other character reveals capability','demonstrates it','first character reacts','brand payoff'],dialogue:['I got this sorted.','You still do that?','Not anymore.','Watch.','You can do that?','Apparently.']},
+   {name:'CHARACTER HABIT',mechanism:'A distinctive recurring behaviour becomes the entertainment device and the product resolves it.',beats:['character repeats a familiar habit','friend comments','product feature naturally enters','habit returns with a twist','reaction'],dialogue:['Again?','What?','You know there is an easier way.','Wait… you actually did it?','Why grow up?']}
+  );
+ } else {
+  dna.push(
+   {name:'THE VISUAL TRANSFORMATION',mechanism:'One physical visual metaphor makes the product benefit visible.',beats:['ordinary object/problem','visual device established','product changes the object','benefit demonstrated','payoff'],dialogue:['What if this were simpler?','Watch.','There.','That changes things.','Exactly.']},
+   {name:'THE HUMAN REVEAL',mechanism:'An everyday behaviour creates curiosity before the product becomes the answer.',beats:['recognisable behaviour','small escalation','curious question','product reveal','demonstration','human payoff'],dialogue:['You do this every time.','I know.','There has to be another way.','There is.','Show me.','Done.']},
+   {name:'THE CHARACTER ONE-UP',mechanism:'A relationship creates the tension; product capability creates the surprise.',beats:['relationship setup','first claim','counterclaim','product demonstration','reaction'],dialogue:['I have already sorted it.','Have you?','Watch this.','Okay… that is useful.','Exactly.']}
+  );
+ }
+ return dna;
+}
 function makeRoutes(){
- const b=state.basic,B=state.brief,p=b.p,u=b.u,c=b.cta,d=b.duration,who=b.tg,truth=B.truth,why=B.why,benefit=benefitPhrase(u),extras=secondaryBenefits(u);
- const extra=extras.length?extras.join(' · '):'the supporting benefits';
- const routes=[
-  {name:'THE ORDINARY MOMENT',type:'Observation → discovery',device:creativeDevice(b.zones,0),
-   plot:'Start with a small, recognisable moment from '+who+'. Let the audience recognise the behaviour before the product is named.',
-   rows:[
-    ['1','0–'+Math.round(d*.18)+'s','Open inside the human situation: '+why+'. No branding yet.','“'+(B.story==='Surprise me'?'Wait… what are we doing here?':'I thought this was going to be simple.')+'”','Human hook'],
-    ['2',Math.round(d*.18)+'–'+Math.round(d*.38)+'s','The friction becomes visible: '+truth+'.','“There has to be an easier way.”','Tension'],
-    ['3',Math.round(d*.38)+'–'+Math.round(d*.62)+'s','The character discovers '+p+' as a natural answer.','“Hang on — '+p+' can do that?”','Reveal'],
-    ['4',Math.round(d*.62)+'–'+Math.round(d*.82)+'s','Demonstrate the benefit in action: '+benefit+'.','“Oh. That actually makes life easier.”','Proof'],
-    ['5',Math.round(d*.82)+'–'+d+'s','Return to the original moment, now changed.','“Right. Back to life.”','Payoff → '+c]
-   ]},
-  {name:'THE ESCALATING PROBLEM',type:'Repetition → escalation → release',device:creativeDevice(b.zones,1),
-   plot:'Turn one everyday problem into a comic or dramatic escalation, then remove the problem with the product.',
-   rows:[
-    ['1','0–'+Math.round(d*.16)+'s','Character attempts '+why+'.','“Okay. One thing at a time.”','Setup'],
-    ['2',Math.round(d*.16)+'–'+Math.round(d*.34)+'s','A second task/problem appears: '+truth+'.','“And now this too?”','Escalation'],
-    ['3',Math.round(d*.34)+'–'+Math.round(d*.52)+'s','Another complication piles on. Use behaviour, not exposition.','“Seriously?”','Escalation'],
-    ['4',Math.round(d*.52)+'–'+Math.round(d*.72)+'s','A second character interrupts with the smarter route: '+p+'.','“Why are you still doing it that way?”','Turn'],
-    ['5',Math.round(d*.72)+'–'+Math.round(d*.88)+'s','Show '+benefit+' solving the accumulated problem.','“That’s… much simpler.”','Demonstration'],
-    ['6',Math.round(d*.88)+'–'+d+'s','Reaction lands the joke/relief, then CTA.','“Problem solved.”','Payoff → '+c]
-   ]},
-  {name:'THE CHARACTER UPTURN',type:'Relationship → upmanship → reveal',device:creativeDevice(b.zones,2),
-   plot:'Use two characters with a believable relationship. One character thinks they have the advantage; the other reveals the product as the quiet one-up.',
-   rows:[
-    ['1','0–'+Math.round(d*.18)+'s','Two characters in a familiar setting. Character A talks about something they have managed easily.','“Look at me — finally got that sorted.”','Relationship'],
-    ['2',Math.round(d*.18)+'–'+Math.round(d*.36)+'s','A new task exposes the gap: '+truth+'.','“Wait… you still have to do that?”','Contrast'],
-    ['3',Math.round(d*.36)+'–'+Math.round(d*.56)+'s','Character B casually reveals '+p+'.','“Actually, I can do it right here.”','Reveal'],
-    ['4',Math.round(d*.56)+'–'+Math.round(d*.76)+'s','B demonstrates '+benefit+'.','“You can do that too?”','Upmanship'],
-    ['5',Math.round(d*.76)+'–'+Math.round(d*.9)+'s','A reacts; keep the reaction human rather than explanatory.','“Okay… that’s impressive.”','Reaction'],
-    ['6',Math.round(d*.9)+'–'+d+'s','Brand/product lands after the relationship beat.','“Next time, I’m doing it your way.”','Payoff → '+c]
-   ]},
-  {name:'THE UNEXPECTED REVEAL',type:'Intrigue → reveal → payoff',device:creativeDevice(b.zones,3),
-   plot:'Open on an apparently unrelated action. Make the viewer ask a question before revealing what the character is actually doing.',
-   rows:[
-    ['1','0–'+Math.round(d*.2)+'s','Show a curious visual connected to the character but hide the reason.','“Wait… what are you doing?”','Intrigue'],
-    ['2',Math.round(d*.2)+'–'+Math.round(d*.4)+'s','Second character guesses incorrectly; character stays focused.','“You’ll see.”','Curiosity'],
-    ['3',Math.round(d*.4)+'–'+Math.round(d*.6)+'s','Reveal: it is about '+p+'.','“I’m sorting this before it becomes a problem.”','Reveal'],
-    ['4',Math.round(d*.6)+'–'+Math.round(d*.8)+'s','Benefit appears through action: '+benefit+'.','“That’s why.”','Proof'],
-    ['5',Math.round(d*.8)+'–'+d+'s','The opening visual gets a second meaning; finish with a memorable line.','“Sometimes the smart move is doing it before you need to.”','Payoff → '+c]
-   ]},
-  {name:'THE VISUAL DEVICE',type:'Visual metaphor → demonstration',device:'make the product benefit physically visible',
-   plot:'Build the film around one visual device so the audience understands the benefit by seeing it, not hearing a list.',
-   rows:[
-    ['1','0–'+Math.round(d*.18)+'s','Establish '+why+' with one strong visual metaphor.','“What if this could just… be easier?”','Visual hook'],
-    ['2',Math.round(d*.18)+'–'+Math.round(d*.38)+'s','The visual device reacts to the problem.','“There it is.”','Build'],
-    ['3',Math.round(d*.38)+'–'+Math.round(d*.58)+'s','Product enters and changes the visual world: '+p+'.','“Now watch this.”','Transformation'],
-    ['4',Math.round(d*.58)+'–'+Math.round(d*.78)+'s','Use the device to demonstrate '+benefit+'.','“One move. Done.”','Proof'],
-    ['5',Math.round(d*.78)+'–'+d+'s','Resolve the visual metaphor and let the brand/message breathe.','“That’s what I call simple.”','Payoff → '+c]
-   ]},
-  {name:'THE SMALL HUMAN TRUTH',type:'Insight → behaviour → meaning',device:creativeDevice(b.zones,4),
-   plot:'Find one behaviour that says something true about '+who+', then let the product solve the tension without preaching.',
-   rows:[
-    ['1','0–'+Math.round(d*.2)+'s','Observe a telling behaviour: '+why+'.','“We all do this.”','Human truth'],
-    ['2',Math.round(d*.2)+'–'+Math.round(d*.4)+'s','Push the behaviour one step further: '+truth+'.','“And then we wonder why it takes so long.”','Recognition'],
-    ['3',Math.round(d*.4)+'–'+Math.round(d*.6)+'s','Character notices a better route through '+p+'.','“What if I just did it this way?”','Discovery'],
-    ['4',Math.round(d*.6)+'–'+Math.round(d*.8)+'s','Show '+benefit+' rather than listing it.','“Oh. That changes it.”','Proof'],
-    ['5',Math.round(d*.8)+'–'+d+'s','Land the human thought before the CTA.','“Maybe it was never supposed to be that complicated.”','Meaning → '+c]
-   ]}
- ];
- return routes;
+ const b=state.basic,B=state.brief,p=b.p,u=b.u,c=b.cta,d=b.duration,who=b.tg;
+ const dna=referenceDNA();
+ const benefit=benefitPhrase(u);
+ const extras=secondaryBenefits(u);
+ const chosen=[];
+ for(let i=0;i<6;i++) chosen.push(dna[i%dna.length]);
+ return chosen.map((x,i)=>{
+  const beats=x.beats;
+  const lines=x.dialogue;
+  const timing=(n)=>{const starts=[0,.16,.34,.52,.70,.86];const ends=[.16,.34,.52,.70,.86,1];return Math.round(d*starts[n])+'–'+Math.round(d*ends[n])+'s'};
+  let rows=[];
+  if(x.name==='YOUNGER SELF APPROVAL'){
+   rows=[
+    ['1',timing(0),'Extreme close-up of a personal object from '+who+' years ago. Hold just long enough for recognition.','“'+lines[0]+'”','HOOK · establish identity without explaining it'],
+    ['2',timing(1),'The old photo/object subtly moves. Younger self notices the present-day protagonist and reacts.','“'+lines[1]+'”','VISUAL REVEAL · younger self approval'],
+    ['3',timing(2),'Present-day protagonist draws out '+p+'. Younger self leans in / reacts with curiosity.','“'+lines[2]+'”','BRAND · let the reveal breathe'],
+    ['4',timing(3),'One benefit appears as a simple real-world action: '+benefit+'.','“'+lines[3]+'”','BENEFIT · one clean beat, not a list'],
+    ['5',timing(4),'Present-day protagonist looks at younger self. Younger self gives a small, unmistakable approval gesture.','“'+lines[4]+'”','EMOTIONAL PAYOFF'],
+    ['6',timing(5),'Product/end frame. Keep mandatory fee/offer information here.','',c+' · END FRAME']
+   ];
+  } else if(x.name==='THE TIME-SHIFT REVEAL'){
+   rows=[
+    ['1',timing(0),'Open on a specific past milestone/object from the protagonist’s earlier life.','“'+lines[0]+'”','HOOK · specific memory'],
+    ['2',timing(1),'A continuous visual transition lets years pass around the protagonist while the original object remains in frame.','“'+lines[1]+'”','CREATIVE DEVICE · time moves, product does not'],
+    ['3',timing(2),'The old object transforms/refolds/reveals '+p+'. No explanatory VO during the actual reveal.','“'+lines[2]+'”','PRODUCT REVEAL · let visual do the work'],
+    ['4',timing(3),'One benefit lands simply: '+benefit+'.'+(extras[0]?' A second supporting benefit stays in supers.':'') ,'“'+lines[3]+'”','RATIONAL BEAT'],
+    ['5',timing(4),'Return to the protagonist in the present. A restrained smile/reaction connects past achievement to present recognition.','“'+lines[4]+'”','PAYOFF · meaning before CTA'],
+    ['6',timing(5),'End frame carries mandatory offer/fee/CTA information.','',c+' · END FRAME']
+   ];
+  } else if(x.name==='THE BENEFIT IN REAL LIFE'){
+   rows=[
+    ['1',timing(0),'Start with a real-life trigger that matters to '+who+'. Avoid product shots.','“'+lines[0]+'”','HUMAN SETUP'],
+    ['2',timing(1),'Protagonist uses '+p+'. The benefit changes the physical situation on screen.','“'+lines[1]+'”','PRODUCT ENTERS THROUGH ACTION'],
+    ['3',timing(2),'Make the strongest benefit visually literal: '+benefit+'.','“'+lines[2]+'”','BENEFIT AS DEVICE'],
+    ['4',timing(3),'A second real-life need appears and a supporting benefit resolves it.'+(extras[0]?' '+extras[0]+'.':'') ,'“'+lines[3]+'”','ESCALATION · second proof'],
+    ['5',timing(4),'Product returns to protagonist’s hand. The audience now understands why it matters.','“'+lines[4]+'”','PAYOFF'],
+    ['6',timing(5),'End frame with mandatory offer/fees/CTA.','',c+' · END FRAME']
+   ];
+  } else if(x.name==='PITCHROOM Q&A'){
+   rows=[
+    ['1',timing(0),'A presenter enters a recognisable pitch-show / judging setup. Judges are already sceptical.','“'+lines[0]+'”','FORMAT IS THE IDEA'],
+    ['2',timing(1),'Judge asks the first question the audience would naturally ask about '+p+'.','“'+lines[1]+'”','QUESTION → BENEFIT'],
+    ['3',timing(2),'Presenter answers directly with the strongest proof point: '+benefit+'.','“'+lines[2]+'”','DIRECT ANSWER'],
+    ['4',timing(3),'Second judge immediately asks the next rational question.','“'+lines[3]+'”','ESCALATE THROUGH QUESTIONS'],
+    ['5',timing(4),'Answer with the next key benefit, then let judges summarise what they have heard.','“'+lines[4]+'”','BENEFIT STACK'],
+    ['6',timing(5),'Judge asks for the catch. Presenter reveals the real urgency and CTA.','“'+lines[5]+'”','PAYOFF → '+c]
+   ];
+  } else if(x.name==='CURIOSITY DEADLINE'){
+   rows=[
+    ['1',timing(0),'Two friends are in the middle of an ordinary plan. One suddenly refuses to leave.','“'+lines[0]+'”','ORDINARY WORLD'],
+    ['2',timing(1),'The other notices the unusual urgency but does not understand it.','“'+lines[1]+'”','INTRIGUE'],
+    ['3',timing(2),'Question: why now? Hold the answer for another beat.','“'+lines[2]+'”','CURIOSITY'],
+    ['4',timing(3),'Reveal '+p+' as the reason. Show '+benefit+' rather than explaining a list.','“'+lines[3]+'”','REVEAL'],
+    ['5',timing(4),'Friend asks the natural follow-up. Product/offer answers it.','“'+lines[4]+'”','PROOF'],
+    ['6',timing(5),'Land the deadline/CTA only after the reason is understood.','“'+lines[5]+'”',c+' · PAYOFF']
+   ];
+  } else if(x.name==='PRECISION PLANNING'){
+   rows=[
+    ['1',timing(0),'A character treats a simple '+who+' task like a military operation: map, whistle, schedule, props.','“'+lines[0]+'”','CHARACTER COMEDY'],
+    ['2',timing(1),'Rapid-fire itinerary grows absurd: multiple places, counters, calls and waiting.','“'+lines[1]+'”','ESCALATION'],
+    ['3',timing(2),'Second character interrupts with one obvious question.','“'+lines[2]+'”','TURN'],
+    ['4',timing(3),'They reveal '+p+' and show that the jobs can happen in one place.','“'+lines[3]+'”','PRODUCT AS RELEASE'],
+    ['5',timing(4),'First character processes the simplification; benefits appear as supers, not dialogue dump.','“'+lines[4]+'”','REACTION'],
+    ['6',timing(5),'End on a simple search/CTA device.','“'+lines[5]+'”',c+' · END FRAME']
+   ];
+  } else if(x.name==='RELATIONSHIP UPMANSHIP'){
+   rows=[
+    ['1',timing(0),'Two people in a recognisable relationship are doing something ordinary.','“'+lines[0]+'”','RELATIONSHIP FIRST'],
+    ['2',timing(1),'Character A makes a confident claim about how they have solved something.','“'+lines[1]+'”','SETUP'],
+    ['3',timing(2),'Character B casually reveals '+p+' as a better way.','“'+lines[2]+'”','ONE-UP REVEAL'],
+    ['4',timing(3),'B demonstrates '+benefit+' while A watches.','“'+lines[3]+'”','PROOF THROUGH ACTION'],
+    ['5',timing(4),'A reacts with genuine surprise, amusement or reluctant respect.','“'+lines[4]+'”','REACTION IS THE PAYOFF'],
+    ['6',timing(5),'Brand/CTA arrives after the relationship beat.','',c+' · END FRAME']
+   ];
+  } else if(x.name==='CHARACTER HABIT'){
+   rows=[
+    ['1',timing(0),'Open on a distinctive recurring habit that immediately tells us who the character is.','“'+lines[0]+'”','CHARACTER HOOK'],
+    ['2',timing(1),'Friend/commentator calls out the behaviour.','“'+lines[1]+'”','PERSONALITY'],
+    ['3',timing(2),'Character gives a quick, in-character response before product enters.','“'+lines[2]+'”','SETUP'],
+    ['4',timing(3),'Product feature resolves the practical problem without changing the character’s personality.','“'+lines[3]+'”','PRODUCT DEMONSTRATION'],
+    ['5',timing(4),'The original habit returns with a twist that delivers the joke.','“'+lines[4]+'”','PAYOFF'],
+    ['6',timing(5),'CTA/end frame.','',c+' · END FRAME']
+   ];
+  } else if(x.name==='VISUAL TRANSFORMATION'){
+   rows=[
+    ['1',timing(0),'Establish one physical object representing the problem.','“'+lines[0]+'”','VISUAL HOOK'],
+    ['2',timing(1),'The object behaves unexpectedly as the problem grows.','“'+lines[1]+'”','BUILD'],
+    ['3',timing(2),p+' enters and physically changes the object/world.','“'+lines[2]+'”','TRANSFORMATION'],
+    ['4',timing(3),'The transformation demonstrates '+benefit+'.','“'+lines[3]+'”','PROOF'],
+    ['5',timing(4),'Return to the original object; now it has a new meaning.','“'+lines[4]+'”','PAYOFF'],
+    ['6',timing(5),'End frame.','',c+' · END FRAME']
+   ];
+  } else {
+   rows=[
+    ['1',timing(0),'Observe one specific behaviour from '+who+' that feels true, not invented for advertising.','“'+lines[0]+'”','HUMAN OBSERVATION'],
+    ['2',timing(1),'Push that behaviour one step further until it creates tension.','“'+lines[1]+'”','ESCALATION'],
+    ['3',timing(2),'A character asks the question the audience is now asking.','“'+lines[2]+'”','CURIOSITY'],
+    ['4',timing(3),p+' enters as the answer and demonstrates '+benefit+'.','“'+lines[3]+'”','REVEAL'],
+    ['5',timing(4),'Character reaction makes the benefit memorable.','“'+lines[4]+'”','REACTION'],
+    ['6',timing(5),'End frame.','',c+' · END FRAME']
+   ];
+  }
+  return {name:x.name,type:x.mechanism,device:x.mechanism,plot:'Built from the reference-script grammar: '+x.mechanism,rows:rows};
+ });
 }
 function wireMakeScripts(){const b=$('makeScriptsBtn');if(b){b.disabled=false}}
 function makeScripts(){
