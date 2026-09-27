@@ -112,7 +112,8 @@ function makeRoutes(){
  ];
  return routes;
 }
-function wireMakeScripts(){const b=$('makeScriptsBtn');if(b){b.onclick=function(e){e.preventDefault();makeScripts()};b.disabled=false}}\nfunction makeScripts(){
+function wireMakeScripts(){const b=$('makeScriptsBtn');if(b){b.onclick=function(e){e.preventDefault();makeScripts()};b.disabled=false}}
+function makeScripts(){
  const routes=makeRoutes();
  const selected=(state.basic.zones||[]).join(', ');
  const durationNote=state.basic.duration<=20?'Built for compression: one device, one tension, one reveal, one payoff.':state.basic.duration<=30?'Built for a complete mini-story with room for escalation and reaction.':state.basic.duration<=40?'Built for a fuller setup, character beat, reveal and proof.':'Built for a richer narrative arc with room for behaviour, escalation, product demonstration and payoff.';
