@@ -15,7 +15,7 @@
 <button class="generate" onclick="startLab()">Start Creative Brain →</button>
 </section><section id="workspace"><div class="card" style="text-align:center;padding:55px"><div style="font-size:30px">🧠</div><b>Your Creative Brain is waiting.</b><div class="hint">Enter the basics and I’ll ask only the questions that matter.</div></div></section></div></div>
 <script>
-const CREATIVE_LEARNINGS={contextualSituation:'Make the situation specific to the audience, occasion, place and behaviour; avoid generic advertising setups.',naturalCharacters:'Characters must naturally belong in that context, with their relationship and behaviour emerging from the situation rather than being inserted to deliver the brief.',insightHumour:'Use subtle humour only when it comes from a true observation about the people or situation; never force jokes or a comedic format.'};\nconst SCRIPT_SPECIFICITY_LEARNING={sceneSpecificity:'Build a fully observed, filmable situation before writing the script: specific people, place, occasion, activity, circumstance, relationship and behaviour. Specificity means circumstances, not decorative adjectives.',filmableVisuals:'Write what can actually be seen and heard on screen. Do not use the Visual column to explain strategy, intent, escalation or creative theory.',sceneOverStrategy:'Show the scene rather than describing what the scene is supposed to do. The creative team should be able to storyboard the moment directly from the visual description.',notesOnlyForExecution:'Use Super / Note only for genuine supers, product information, legal/mandatory information or concise execution notes; do not fill it with labels such as creative turn, context first or product as answer.'};
+const CREATIVE_LEARNINGS={contextualSituation:'Make the situation specific to the audience, occasion, place and behaviour; avoid generic advertising setups.',naturalCharacters:'Characters must naturally belong in that context, with their relationship and behaviour emerging from the situation rather than being inserted to deliver the brief.',insightHumour:'Use subtle humour only when it comes from a true observation about the people or situation; never force jokes or a comedic format.'};\nconst SCRIPT_SPECIFICITY_LEARNING={sceneSpecificity:'Build a fully observed, filmable situation before writing the script: specific people, place, occasion, activity, circumstance, relationship and behaviour. Specificity means circumstances, not decorative adjectives.',filmableVisuals:'Write what can actually be seen and heard on screen. Do not use the Visual column to explain strategy, intent, escalation or creative theory.',sceneOverStrategy:'Show the scene rather than describing what the scene is supposed to do. The creative team should be able to storyboard the moment directly from the visual description.',notesOnlyForExecution:'Use Super / Note only for genuine supers, product information, legal/mandatory information or concise execution notes; do not fill it with labels such as creative turn, context first or product as answer.'};\nconst SCRIPT_TIMING_LEARNING={productEntry:'Bring the product into the film within the first 33% of total duration. The product may first appear as a natural object, action, screen, mention or behaviour; do not delay product entry merely to create a long problem setup.',benefitAfterEntry:'After product entry, demonstrate the relevant benefit through the scene rather than switching to generic feature narration.'};
 const Z=['Witty','Emotional','Premium','Cinematic','Bold','Humorous','Smart','Insight-led','Storytelling','Scroll-stopper','Surprise Me'];document.getElementById('zones').innerHTML=Z.map((z,i)=>'<button class="zone '+([0,1,7].includes(i)?'on':'')+'" onclick="this.classList.toggle(\'on\')">'+z+'</button>').join('');
 function setDuration(v,b){$('duration').value=v;b.parentElement.querySelectorAll('.chip').forEach(x=>x.classList.remove('on'));b.classList.add('on')}
 const $=id=>document.getElementById(id),esc=s=>String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');let state={basic:{},answers:{},brief:null};
@@ -142,7 +142,7 @@ function makeRoutes(){
  const w=audienceWorld();
  const benefit=benefitPhrase(u), extras=secondaryBenefits(u);
  const concepts=w.routes;
- const timing=(n)=>{const starts=[0,.15,.32,.49,.66,.84];const ends=[.15,.32,.49,.66,.84,1];return Math.round(d*starts[n])+'–'+Math.round(d*ends[n])+'s'};
+ const timing=(n)=>{const starts=[0,.15,.30,.45,.62,.82];const ends=[.15,.30,.45,.62,.82,1];return Math.round(d*starts[n])+'–'+Math.round(d*ends[n])+'s'};
  return concepts.slice(0,6).map((x,i)=>{
   let rows;
   const b1=benefit, b2=extras[0]||'the additional benefit';
@@ -217,7 +217,7 @@ function makeRoutes(){
     ['1',timing(0),x.place+'. '+q,lines[0],''],
     ['2',timing(1),turn,lines[1],''],
     ['3',timing(2),dev,lines[2],''],
-    ['4',timing(3),'On screen, the protagonist uses '+p+' to make the transfer. Show the actual interface/action and demonstrate '+b1+'.',lines[3],b1],
+    ['3',timing(2),'The protagonist opens '+p+' while the real conversation continues. Show the actual phone action/interface as part of the scene, then demonstrate '+b1+'.',lines[2],b1],
     ['5',timing(4),x.payoff,lines[4],''],
     ['6',timing(5),'End frame: '+c+' and mandatory information.',lines[5],'CTA']
    ];
