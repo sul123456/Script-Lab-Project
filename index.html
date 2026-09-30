@@ -204,13 +204,22 @@ function makeRoutes(){
    }
   } else {
    const q=x.hook, turn=x.turn, dev=x.device;
+   const routeDialogue={
+    'THE HABIT THAT GIVES IT AWAY':['“Again? You really do this every time.”','“It works.”','“Does it really?”','“Try this instead.”','“Okay… that was easier.”',''],
+    'THE UNEXPECTED PERSON WHO NOTICES':['“Why are you doing that?”','“Doing what?”','“That.”','“There is a simpler way.”','“You could have told me that earlier.”',''],
+    'THE THING THEY ALWAYS DO':['“Here we go again.”','“What?”','“You know there is another way.”','“Show me.”','“Oh. That is actually simple.”',''],
+    'THE CALL BEFORE THE TRANSFER':['“Did you manage that payment?”','“I am doing it now.”','“From there?”','“Yes. Give me a minute.”','“That was quick.”',''],
+    'THE FAMILY GROUP HAS A DEADLINE':['“Who is taking care of this?”','“I will.”','“Today?”','“Yes, it is sorted.”','“Great. Now back to the actual plan.”',''],
+    'THE THING HE PROMISED TO SEND':['“You remember what you promised?”','“I remember.”','“So?”','“Consider it done.”','“Okay. Now you can actually join the call.”',''],
+   };
+   const lines=routeDialogue[x.name]||['“What are you doing?”','“Just sorting it.”','“There must be an easier way.”','“There is.”','“That was simple.”',''];
    rows=[
-    ['1',timing(0),x.place+'. '+q,'“This is exactly how you always do it.”','SPECIFIC SITUATION · context first'],
-    ['2',timing(1),'Escalate the behaviour before the product appears: '+turn,'', 'ESCALATION · no product yet'],
-    ['3',timing(2),'The creative device now turns the situation: '+dev,'', 'CREATIVE TURN'],
-    ['4',timing(3),'Introduce '+p+' only when the audience understands the tension. Demonstrate '+b1+'.','', 'PRODUCT AS ANSWER'],
-    ['5',timing(4),'Show the character reaction/payoff: '+x.payoff,'', 'HUMAN PAYOFF'],
-    ['6',timing(5),'End frame with '+c+' and mandatory information.','', 'CTA']
+    ['1',timing(0),x.place+'. '+q,lines[0],'SPECIFIC SITUATION · context first'],
+    ['2',timing(1),'Escalate the behaviour before the product appears: '+turn,lines[1],'ESCALATION · no product yet'],
+    ['3',timing(2),'The creative device now turns the situation: '+dev,lines[2],'CREATIVE TURN · dialogue belongs to this situation'],
+    ['4',timing(3),'Introduce '+p+' only when the audience understands the tension. Demonstrate '+b1+'.',lines[3],'PRODUCT AS ANSWER · demonstrate, do not lecture'],
+    ['5',timing(4),'Show the character reaction/payoff: '+x.payoff,lines[4],'HUMAN PAYOFF · character-specific reaction'],
+    ['6',timing(5),'End frame with '+c+' and mandatory information.',lines[5],'CTA']
    ];
   }
   return {name:x.name,type:'Original situation-led route',device:x.device||'Character + situation + creative turn',plot:x.hook+' → '+x.turn+' → '+x.payoff,rows};
