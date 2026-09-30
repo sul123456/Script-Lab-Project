@@ -37,6 +37,17 @@ const ADVANCED_CREATIVE_LEARNINGS={
  twoWayDialogue:'Treat dialogue as an interaction, not a sequence of isolated lines. When two or more characters are present, consider a genuine back-and-forth: question and response, observation and reaction, objection and answer, tease and comeback, interruption and continuation.',
  dialogueOwnership:'Every line should have a reason for that character to say it at that exact moment. Dialogue should reveal the relationship, situation or character while carrying information naturally; it should not become narration or a list of product claims.'
 };
+const CONVERSATION_CREATIVE_LEARNING={
+twoWay:'When multiple characters are present, dialogue should be a genuine exchange rather than alternating information lines. Let one line naturally cause the next.',
+contextualSpecificity:'Dialogue must be specific to the exact circumstance, relationship, place, action and moment. Avoid vague placeholder references when the situation can naturally be named.',
+naturalReference:'Specificity must come from the story itself, not from repeatedly inserting the same example or payment type. Derive the actual subject, task, person, object, deadline or consequence from the brief and scene.',
+humanDimension:'A conversation should create something beyond information exchange: fun, emotion, relatability, tension, curiosity, character or warmth, wherever the particular situation supports it.',
+nonTransactional:'Do not write dialogue as a disguised product FAQ. Avoid mechanical sequences of question, feature answer, feature answer, CTA.',
+characterVoice:'The way characters speak should reflect their relationship, personality and familiarity with each other. People do not normally explain everything they already know merely to educate the audience.',
+triggeredResponse:'Each line should respond to something that was just said, seen, felt or discovered, unless a deliberate interruption or tonal device makes another structure more natural.',
+productWithinHumanStory:'Product and feature communication should live inside the human interaction when that is natural. If a feature is better demonstrated through action, interface, visual consequence, super, VO or payoff, use that mechanism instead of forcing dialogue.',
+creativeVariation:'These are creative lenses, not a fixed conversation template. Different stories may use humour, emotion, tension, observation, silence, monologue or no dialogue at all when that is more truthful to the idea.'
+};
 
 const Z=['Witty','Emotional','Premium','Cinematic','Bold','Humorous','Smart','Insight-led','Storytelling','Scroll-stopper','Surprise Me'];document.getElementById('zones').innerHTML=Z.map((z,i)=>'<button class="zone '+([0,1,7].includes(i)?'on':'')+'" onclick="this.classList.toggle(\'on\')">'+z+'</button>').join('');
 function setDuration(v,b){$('duration').value=v;b.parentElement.querySelectorAll('.chip').forEach(x=>x.classList.remove('on'));b.classList.add('on')}
