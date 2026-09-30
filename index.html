@@ -16,6 +16,15 @@
 </section><section id="workspace"><div class="card" style="text-align:center;padding:55px"><div style="font-size:30px">🧠</div><b>Your Creative Brain is waiting.</b><div class="hint">Enter the basics and I’ll ask only the questions that matter.</div></div></section></div></div>
 <script>
 const CREATIVE_LEARNINGS={contextualSituation:'Make the situation specific to the audience, occasion, place and behaviour; avoid generic advertising setups.',naturalCharacters:'Characters must naturally belong in that context, with their relationship and behaviour emerging from the situation rather than being inserted to deliver the brief.',insightHumour:'Use subtle humour only when it comes from a true observation about the people or situation; never force jokes or a comedic format.'};\nconst SCRIPT_SPECIFICITY_LEARNING={sceneSpecificity:'Build a fully observed, filmable situation before writing the script: specific people, place, occasion, activity, circumstance, relationship and behaviour. Specificity means circumstances, not decorative adjectives.',filmableVisuals:'Write what can actually be seen and heard on screen. Do not use the Visual column to explain strategy, intent, escalation or creative theory.',sceneOverStrategy:'Show the scene rather than describing what the scene is supposed to do. The creative team should be able to storyboard the moment directly from the visual description.',notesOnlyForExecution:'Use Super / Note only for genuine supers, product information, legal/mandatory information or concise execution notes; do not fill it with labels such as creative turn, context first or product as answer.'};\nconst SCRIPT_TIMING_LEARNING={productEntry:'Bring the product into the film within the first 33% of total duration. The product may first appear as a natural object, action, screen, mention or behaviour; do not delay product entry merely to create a long problem setup.',benefitAfterEntry:'After product entry, demonstrate the relevant benefit through the scene rather than switching to generic feature narration.'};
+const SCRIPT_OUTPUT_LEARNING={
+actualFilm:'Write the film itself, not commentary about the film. Every Visual cell must describe something the camera can actually see or hear.',
+noStrategyLabels:'Never output planning labels or creative-analysis phrases such as situation, context first, escalation, creative turn, product as answer, human payoff, or similar labels in the script table.',
+dialogueFromScene:'Dialogue must belong to the exact people, relationship, place and circumstance on screen. Do not use generic bridge lines merely to move the script forward.',
+specificCircumstance:'Before writing each shot, mentally resolve who is present, where they are, what they are doing, what exact thing is happening and what changes in that moment.',
+productEarly:'Bring the product into the actual scene within the first 33% of the film, then demonstrate its relevant benefit through visible action.',
+fastExecution:'Do this internal scene-building quickly; do not expose the reasoning process in the output.',
+finalTest:'If a line sounds like instructions to a creative writer rather than something a viewer could see, hear or read on screen, rewrite it as the actual film.'
+};
 const Z=['Witty','Emotional','Premium','Cinematic','Bold','Humorous','Smart','Insight-led','Storytelling','Scroll-stopper','Surprise Me'];document.getElementById('zones').innerHTML=Z.map((z,i)=>'<button class="zone '+([0,1,7].includes(i)?'on':'')+'" onclick="this.classList.toggle(\'on\')">'+z+'</button>').join('');
 function setDuration(v,b){$('duration').value=v;b.parentElement.querySelectorAll('.chip').forEach(x=>x.classList.remove('on'));b.classList.add('on')}
 const $=id=>document.getElementById(id),esc=s=>String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');let state={basic:{},answers:{},brief:null};
@@ -226,6 +235,10 @@ function makeRoutes(){
  });
 }
 function wireMakeScripts(){const b=$('makeScriptsBtn');if(b){b.disabled=false}}
+function cleanScriptOutputText(v){
+  if(typeof v!=='string') return v;
+  return v.replace(/\b(SPECIFIC SITUATION|CONTEXT FIRST|ESCALATION|NO PRODUCT YET|CREATIVE TURN|PRODUCT AS ANSWER|DEMONSTRATE, DO NOT LECTURE|HUMAN PAYOFF|PRODUCT AS ANSWER)\b/gi,'').replace(/\s{2,}/g,' ').trim();
+}
 function makeScripts(){
  try{
   if(!state.basic||!state.brief) throw new Error('Brief data is missing. Please go back and rebuild the brief.');
