@@ -272,7 +272,7 @@ function makeRoutes(){
     'THE UNEXPECTED PERSON WHO NOTICES':['“Why are you checking the branch timings again?”','“Because I do not want to reach there and find it closed.”','“You are travelling forty minutes for one small task?”','“Apparently I was.”','“Not anymore.”',''],
     'THE THING THEY ALWAYS DO':['“Here we go. You have started the weekend errand list.”','“Someone has to remember everything.”','“Or we could stop making the list longer.”','“How?”','“Like this.”','']
    };
-   const lines=routeDialogue[x.name]||['“How are you doing that?”','“I am just sorting it.”','“From here?”','“Yes. Watch.”','“That was simple.”',''];
+   const lines=speakerize(x.name,routeDialogue[x.name]||['“How are you doing that?”','“I am just sorting it.”','“From here?”','“Yes. Watch.”','“That was simple.”','']);
    const routeVisuals={
     'THE FIVE-STOP ITINERARY':[
      'Parents’ living room. Dad has spread a printed India-trip schedule across the coffee table. Five stops are marked in different colours: bank, investment office, loan branch, service desk and another branch.',
@@ -359,7 +359,76 @@ function makeScripts(){
   $('workspace').innerHTML='<div class="card"><div class="title">Creative Brain could not generate the scripts</div><div class="hint">The brief is saved. Please try Make Scripts again.</div><div class="hint" style="margin-top:8px">'+esc(err&&err.message?err.message:String(err))+'</div><button type="button" class="primary" style="margin-top:14px" onclick="makeScripts()">Try Again →</button></div>';
  }
 }
-function render(r){return '<article class="card"><div class="head"><div><div class="route">'+esc(r.name)+'</div><div class="meta">'+esc(r.type)+' · '+state.basic.duration+'s · plot-led</div></div><div class="actions"><button onclick="copyScript(this)">Copy Script</button><button onclick="toggleRefine(this)">Refine Script</button><button onclick="makeScripts()">Another Story</button><select onchange="mood(this)"><option>Change Mood</option><option>Witty</option><option>Emotional</option><option>Premium</option><option>Cinematic</option><option>Bold</option><option>Humorous</option><option>Smart</option><option>Storytelling</option><option>Surprise Me</option></select></div></div><div class="plot"><div class="k">THE PLOT</div><div class="v">'+esc(r.plot)+'</div><div class="hint" style="margin-top:6px">Creative device: '+esc(r.device)+'</div></div><div class="table"><div class="row"><div class="cell th">Shot</div><div class="cell th">Timing</div><div class="cell th">Visual</div><div class="cell th">Dialogue</div><div class="cell th">Super / note</div></div>'+r.rows.map(a=>'<div class="row">'+a.map(v=>'<div class="cell">'+esc(v)+'</div>').join('')+'</div>').join('')+'</div><div class="refine"><textarea placeholder="Make the dialogue more natural / funnier / punchier without changing the plot"></textarea><button class="mini" onclick="applyRefine(this)">Apply to Script</button></div><div class="cta">END FRAME · '+esc(state.basic.cta)+'</div></article>'}
+function speakerize(name,lines){
+ const maps={
+  'THE FIVE-STOP ITINERARY':['SON','DAD','SON','DAD','SON',''],
+  'THE FRIEND WHO ALWAYS HAS ANOTHER TRICK':['NRI','FRIEND','NRI','FRIEND','NRI',''],
+  'THE CALL FROM HOME':['SON','MUM','SON','MUM','SON',''],
+  'THE CALL BEFORE THE TRANSFER':['FATHER','DAUGHTER','FATHER','DAUGHTER','FATHER',''],
+  'THE FAMILY GROUP HAS A DEADLINE':['COUSIN','SISTER','COUSIN','SISTER','COUSIN',''],
+  'THE THING HE PROMISED TO SEND':['MOTHER','SON','MOTHER','SON','MOTHER',''],
+  'THE HABIT THAT GIVES IT AWAY':['FRIEND','NRI','FRIEND','NRI','FRIEND',''],
+  'THE UNEXPECTED PERSON WHO NOTICES':['FRIEND','NRI','FRIEND','NRI','FRIEND',''],
+  'THE THING THEY ALWAYS DO':['PARTNER','NRI','PARTNER','NRI','PARTNER','']
+ };
+ const m=maps[name]||[];
+ return lines.map((x,j)=>{
+   if(!x)return '';
+   if(x.includes(' / ')){
+     const parts=x.split(' / ');
+     const a=m[j]||'CHARACTER', b=(m[j+1]&&m[j+1]!==a)?m[j+1]:'OTHER CHARACTER';
+     return a+': '+parts[0]+'\n'+b+': '+parts[1];
+   }
+   return (m[j]||'CHARACTER')+': '+x;
+ });
+}
+function styleDialogue(name,lines,style){
+ const out=[...lines];
+ const s=String(style||'').toLowerCase();
+ const variants={
+  'THE CALL BEFORE THE TRANSFER':{
+   witty:['FATHER: “The hostel wants the balance tonight.”','DAUGHTER: “How much?”','FATHER: “₹18,500. And your brother leaves Friday.”','DAUGHTER: “Give me a second. I’ll save you one more item on that list.”','FATHER: “Already?”',''],
+   emotional:['FATHER: “The hostel needs the balance tonight.”','DAUGHTER: “How much?”','FATHER: “₹18,500. He needs it before he leaves.”','DAUGHTER: “Okay. I’ll take care of it.”','FATHER: “That fast?”','']
+  },
+  'THE FIVE-STOP ITINERARY':{
+   witty:['SON: “Dad, why are there five stops for one trip?”','DAD: “Because I planned properly.”','SON: “You colour-coded the traffic too?”','DAD: “Laugh now. You’ll thank me later.”','SON: “Or I could lose one stop.”',''],
+   humorous:['SON: “Dad, why are there five stops for one trip?”','DAD: “Bank, investments, loan. I have timed everything.”','SON: “You timed the banks?”','DAD: “Someone has to.”','SON: “Good. Then someone can cancel three.”','']
+  },
+  'THE THING HE PROMISED TO SEND':{
+   witty:['MOTHER: “You did remember the contractor’s ₹32,000?”','SON: “I said I’d send it today.”','MOTHER: “Today has a time limit.”','SON: “Fine. I’m doing it now.”','MOTHER: “Wonderful. One less reminder for me.”','']
+  }
+ };
+ const v=variants[name]&&variants[name][s];
+ return v||lines;
+}
+function applyRefine(btn){
+ const input=btn.previousElementSibling,ins=input.value.trim();
+ if(!ins)return;
+ const article=btn.closest('article');
+ const name=article.querySelector('.route')?.textContent||'';
+ const rows=makeRoutes().find(x=>x.name===name)?.rows;
+ if(!rows)return;
+ let style='natural';
+ if(/funny|witty|humou?r|playful|banter/i.test(ins))style='witty';
+ else if(/emotional|warm|heart/i.test(ins))style='emotional';
+ else if(/punch|short|crisp|tight/i.test(ins))style='witty';
+ const fresh=styleDialogue(name,rows.map(x=>x[3]),style);
+ const cells=[...article.querySelectorAll('.table .row')].slice(1).map(r=>r.querySelectorAll('.cell')[3]);
+ fresh.forEach((x,i)=>{if(cells[i])cells[i].innerHTML=esc(x).replace(/\n/g,'<br>')});
+ input.value='';btn.textContent='Applied to Script';setTimeout(()=>btn.textContent='Apply to Script',1000);
+}
+function mood(s){
+ const article=s.closest('article'),name=article.querySelector('.route')?.textContent||'',style=s.value;
+ if(!style||style==='Change Mood'){return}
+ const route=makeRoutes().find(x=>x.name===name);
+ if(!route)return;
+ const base=route.rows.map(x=>x[3]);
+ const fresh=styleDialogue(name,base,style);
+ const cells=[...article.querySelectorAll('.table .row')].slice(1).map(r=>r.querySelectorAll('.cell')[3]);
+ fresh.forEach((x,i)=>{if(cells[i])cells[i].innerHTML=esc(x).replace(/\n/g,'<br>')});
+ s.selectedIndex=0;
+}
+function render(r){return '<article class="card"><div class="head"><div><div class="route">'+esc(r.name)+'</div><div class="meta">'+esc(r.type)+' · '+state.basic.duration+'s · plot-led</div></div><div class="actions"><button onclick="copyScript(this)">Copy Script</button><button onclick="toggleRefine(this)">Refine Script</button><button onclick="makeScripts()">Another Story</button><select onchange="mood(this)"><option>Change Mood</option><option>Witty</option><option>Emotional</option><option>Premium</option><option>Cinematic</option><option>Bold</option><option>Humorous</option><option>Smart</option><option>Storytelling</option><option>Surprise Me</option></select></div></div><div class="plot"><div class="k">THE PLOT</div><div class="v">'+esc(r.plot)+'</div><div class="hint" style="margin-top:6px">Creative device: '+esc(r.device)+'</div></div><div class="table"><div class="row"><div class="cell th">Shot</div><div class="cell th">Timing</div><div class="cell th">Visual</div><div class="cell th">Dialogue</div><div class="cell th">Super / note</div></div>'+r.rows.map(a=>'<div class="row">'+a.map(v=>'<div class="cell">'+esc(v).replace(/\\n/g,'<br>')+'</div>').join('')+'</div>').join('')+'</div><div class="refine"><textarea placeholder="Make the dialogue more natural / funnier / punchier without changing the plot"></textarea><button class="mini" onclick="applyRefine(this)">Apply to Script</button></div><div class="cta">END FRAME · '+esc(state.basic.cta)+'</div></article>'}
 function scriptText(article){const rows=[...article.querySelectorAll('.table .row')].slice(1);return article.querySelector('.route').innerText+'\n\nPLOT: '+article.querySelector('.plot .v').innerText+'\n\n'+rows.map(r=>{const x=r.querySelectorAll('.cell');return x[0].innerText+' | '+x[1].innerText+' | VISUAL: '+x[2].innerText+' | DIALOGUE: '+x[3].innerText+' | NOTE: '+x[4].innerText}).join('\n')+'\n\n'+article.querySelector('.cta').innerText}
 function copyScript(btn){const a=btn.closest('article');navigator.clipboard?.writeText(scriptText(a));btn.textContent='Copied';setTimeout(()=>btn.textContent='Copy Script',1000)}
 function toggleRefine(btn){const x=btn.closest('article').querySelector('.refine');x.style.display=x.style.display==='block'?'none':'block'}
