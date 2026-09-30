@@ -15,7 +15,7 @@
 <button class="generate" onclick="startLab()">Start Creative Brain →</button>
 </section><section id="workspace"><div class="card" style="text-align:center;padding:55px"><div style="font-size:30px">🧠</div><b>Your Creative Brain is waiting.</b><div class="hint">Enter the basics and I’ll ask only the questions that matter.</div></div></section></div></div>
 <script>
-const CREATIVE_LEARNINGS={contextualSituation:'Make the situation specific to the audience, occasion, place and behaviour; avoid generic advertising setups.',naturalCharacters:'Characters must naturally belong in that context, with their relationship and behaviour emerging from the situation rather than being inserted to deliver the brief.',insightHumour:'Use subtle humour only when it comes from a true observation about the people or situation; never force jokes or a comedic format.'};
+const CREATIVE_LEARNINGS={contextualSituation:'Make the situation specific to the audience, occasion, place and behaviour; avoid generic advertising setups.',naturalCharacters:'Characters must naturally belong in that context, with their relationship and behaviour emerging from the situation rather than being inserted to deliver the brief.',insightHumour:'Use subtle humour only when it comes from a true observation about the people or situation; never force jokes or a comedic format.'};\nconst SCRIPT_SPECIFICITY_LEARNING={sceneSpecificity:'Build a fully observed, filmable situation before writing the script: specific people, place, occasion, activity, circumstance, relationship and behaviour. Specificity means circumstances, not decorative adjectives.',filmableVisuals:'Write what can actually be seen and heard on screen. Do not use the Visual column to explain strategy, intent, escalation or creative theory.',sceneOverStrategy:'Show the scene rather than describing what the scene is supposed to do. The creative team should be able to storyboard the moment directly from the visual description.',notesOnlyForExecution:'Use Super / Note only for genuine supers, product information, legal/mandatory information or concise execution notes; do not fill it with labels such as creative turn, context first or product as answer.'};
 const Z=['Witty','Emotional','Premium','Cinematic','Bold','Humorous','Smart','Insight-led','Storytelling','Scroll-stopper','Surprise Me'];document.getElementById('zones').innerHTML=Z.map((z,i)=>'<button class="zone '+([0,1,7].includes(i)?'on':'')+'" onclick="this.classList.toggle(\'on\')">'+z+'</button>').join('');
 function setDuration(v,b){$('duration').value=v;b.parentElement.querySelectorAll('.chip').forEach(x=>x.classList.remove('on'));b.classList.add('on')}
 const $=id=>document.getElementById(id),esc=s=>String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');let state={basic:{},answers:{},brief:null};
@@ -113,7 +113,7 @@ function audienceWorld(){
   profile.person='An NRI who sends money to family in India as part of an ordinary family routine';
   profile.world='A specific family or everyday context where a real India need gives the transfer a reason to happen';
   profile.routes=[
-   {name:'THE CALL BEFORE THE TRANSFER',place:'An NRI finishing work while speaking to family in India',hook:'A routine family call turns into a specific India need.',turn:'The protagonist handles the transfer while the family conversation continues around the real reason the money is needed.',device:'The family conversation is the story; the transfer is simply what needs to happen inside it.',payoff:'The confirmation arrives and the family immediately returns to what they were actually talking about.'},
+   {name:'THE CALL BEFORE THE TRANSFER',place:'A specific evening video call between an NRI daughter in Toronto and her father in Pune, with her younger brother packing for a college trip in the background',hook:'Her father is holding up a handwritten list of the trip expenses: the train ticket is already booked, the hostel has asked for the remaining amount by tonight, and the brother is waiting for confirmation before leaving for the weekend.',turn:'She is still on the family call while her father checks the exact amount and asks which of them should take care of it. She opens Money2India without ending the conversation.',device:'The family call keeps moving around the real-life task; the transfer happens inside the conversation rather than becoming a banking scene.',payoff:'The confirmation lands while her father is still reading the list. He crosses out the amount and immediately goes back to arguing with her brother about what he has packed.'},
    {name:'THE FAMILY GROUP HAS A DEADLINE',place:'A family WhatsApp group on an ordinary weekday',hook:'Everyone is discussing an upcoming India expense. Nobody is talking about banking.',turn:'One message makes it clear the NRI needs to send money. The protagonist handles it while the group keeps talking about the occasion.',device:'The real family context creates the reason for the transfer.',payoff:'The money part is taken care of without becoming the main event.'},
    {name:'THE THING HE PROMISED TO SEND',place:'An NRI home abroad during a normal evening routine',hook:'A family member reminds him about something he promised to take care of in India.',turn:'The promise naturally becomes a money-transfer moment.',device:'The promise creates the story and the transfer resolves it.',payoff:'The family member gets confirmation and the conversation moves straight back to their relationship.'}
   ];
@@ -214,12 +214,12 @@ function makeRoutes(){
    };
    const lines=routeDialogue[x.name]||['“What are you doing?”','“Just sorting it.”','“There must be an easier way.”','“There is.”','“That was simple.”',''];
    rows=[
-    ['1',timing(0),x.place+'. '+q,lines[0],'SPECIFIC SITUATION · context first'],
-    ['2',timing(1),'Escalate the behaviour before the product appears: '+turn,lines[1],'ESCALATION · no product yet'],
-    ['3',timing(2),'The creative device now turns the situation: '+dev,lines[2],'CREATIVE TURN · dialogue belongs to this situation'],
-    ['4',timing(3),'Introduce '+p+' only when the audience understands the tension. Demonstrate '+b1+'.',lines[3],'PRODUCT AS ANSWER · demonstrate, do not lecture'],
-    ['5',timing(4),'Show the character reaction/payoff: '+x.payoff,lines[4],'HUMAN PAYOFF · character-specific reaction'],
-    ['6',timing(5),'End frame with '+c+' and mandatory information.',lines[5],'CTA']
+    ['1',timing(0),x.place+'. '+q,lines[0],''],
+    ['2',timing(1),turn,lines[1],''],
+    ['3',timing(2),dev,lines[2],''],
+    ['4',timing(3),'On screen, the protagonist uses '+p+' to make the transfer. Show the actual interface/action and demonstrate '+b1+'.',lines[3],b1],
+    ['5',timing(4),x.payoff,lines[4],''],
+    ['6',timing(5),'End frame: '+c+' and mandatory information.',lines[5],'CTA']
    ];
   }
   return {name:x.name,type:'Original situation-led route',device:x.device||'Character + situation + creative turn',plot:x.hook+' → '+x.turn+' → '+x.payoff,rows};
