@@ -261,15 +261,15 @@ function makeRoutes(){
   } else {
    const featureLines=naturalFeatureLines(b1,p);
    const routeDialogue={
-    'THE FIVE-STOP ITINERARY':['“Why have you marked five places?”','“Bank first. Then the investment office. Then the branch for the loan.”','“Dad, I can do this from here.”',featureLines[1],'“So I do not need the whole itinerary?”',''],
-    'THE FRIEND WHO ALWAYS HAS ANOTHER TRICK':['“You are still going to the bank for this?”','“I have to. I am in India for only a few days.”','“You can do it from your phone.”',featureLines[1],'“That saves me another trip.”',''],
-    'THE CALL FROM HOME':['“Mum, I am between two meetings.”','“I only need you to take care of this India payment.”','“Give me a minute.”',featureLines[1],'“Done. What else?”',''],
-    'THE CALL BEFORE THE TRANSFER':['“Did you manage that payment?”','“I am checking the exact amount now.”','“I can send it from here.”',featureLines[1],'“That was quick.”',''],
-    'THE FAMILY GROUP HAS A DEADLINE':['“Who is taking care of this?”','“I will. The amount is due tonight.”','“Give me a minute.”',featureLines[1],'“Yes. Now back to the plan.”',''],
-    'THE THING HE PROMISED TO SEND':['“You remember what you promised?”','“The payment? Yes.”','“Then I will sort it now.”',featureLines[1],'“Done.”',''],
-    'THE HABIT THAT GIVES IT AWAY':['“Again? You really do this every time.”','“It is just how I do it.”','“Try doing it this way.”',featureLines[1],'“Okay… that was easier.”',''],
-    'THE UNEXPECTED PERSON WHO NOTICES':['“Why are you doing that?”','“Doing what?”','“Going all the way there for this.”',featureLines[1],'“You could have told me that earlier.”',''],
-    'THE THING THEY ALWAYS DO':['“Here we go again.”','“It has to be done.”','“Not anymore.”',featureLines[1],'“Oh. That is actually simple.”','']
+    'THE FIVE-STOP ITINERARY':['“Dad, why are there five stops for one trip?”','“Bank first. Then investments. Then the loan branch. I have timed every one.”','“You timed them?”','“If I did not, you would spend the whole week in traffic.”','“Or I could lose one of the stops.”',''],
+    'THE FRIEND WHO ALWAYS HAS ANOTHER TRICK':['“You have three days here and this list is still getting longer?”','“I know. The bank is stop number seven.”','“Seven? You came to see us, not collect errands.”','“Then show me how you would do this one.”','“Gladly.”',''],
+    'THE CALL FROM HOME':['“Mum, I have a meeting in ten minutes.”','“And I have to pay the school fee before the portal closes.”','“How much?”','“₹28,400. And no, you are not calling me back after the meeting.”','“Give me a minute.”',''],
+    'THE CALL BEFORE THE TRANSFER':['“The hostel wants the balance tonight.”','“How much?”','“₹18,500. Your brother leaves Friday, so I need it sorted.”','“Give me a second. I can do it from here.”','“Already?”',''],
+    'THE FAMILY GROUP HAS A DEADLINE':['“Who is paying the photographer tonight?”','“Not me. I am still choosing which pictures I like.”','“You have two hours.”','“Fine. I will send it.”','“Good. Now stop changing the weekend plan.”',''],
+    'THE THING HE PROMISED TO SEND':['“You did remember the money for the contractor?”','“The ₹32,000? Yes. I said I would send it today.”','“Today means before he leaves the site.”','“Then I better do it now.”','“There. Now I can stop reminding you.”',''],
+    'THE HABIT THAT GIVES IT AWAY':['“You are making that list again?”','“It worked last time.”','“Last time you spent an hour looking for the branch.”','“Fair point.”','“Try the easier way this time.”',''],
+    'THE UNEXPECTED PERSON WHO NOTICES':['“Why are you checking the branch timings again?”','“Because I do not want to reach there and find it closed.”','“You are travelling forty minutes for one small task?”','“Apparently I was.”','“Not anymore.”',''],
+    'THE THING THEY ALWAYS DO':['“Here we go. You have started the weekend errand list.”','“Someone has to remember everything.”','“Or we could stop making the list longer.”','“How?”','“Like this.”','']
    };
    const lines=routeDialogue[x.name]||['“How are you doing that?”','“I am just sorting it.”','“From here?”','“Yes. Watch.”','“That was simple.”',''];
    const routeVisuals={
