@@ -45,6 +45,21 @@ function creativeDevice(zones,routeIndex){
  if(!pool.length) pool.push('recognisable human situation with a reveal');
  return pool[routeIndex%pool.length];
 }
+function naturalFeatureLines(u, product){
+ const raw=String(u||'').split(/[,;\\n|]+/).map(x=>x.trim()).filter(Boolean);
+ const all=raw.join(' ').toLowerCase();
+ if(/instant/.test(all)&&/safe|secure/.test(all)) return ['“And it is instant?”','“Instant — and safe to do online.”'];
+ if(/instant/.test(all)) return ['“That is instant?”','“Yes. It goes through instantly.”'];
+ if(/safe|secure/.test(all)) return ['“And I can do it safely from here?”','“Yes. It is secure.”'];
+ if(/repatriat/.test(all)) return ['“And I can take the money back when I need it?”','“Yes, it is fully repatriable.”'];
+ if(/tax[- ]?free|tax free/.test(all)) return ['“What about the tax?”','“Tax-free in India.”'];
+ if(/interest|rate|yield|return/.test(all)) return ['“What rate are we talking about?”','“The rate is '+(raw[0]||'the stated rate')+'.”'];
+ if(/reward|voucher|cashback/.test(all)) return ['“And what do I get with it?”','“You get '+(raw[0]||'the reward')+'.”'];
+ if(/upi/.test(all)) return ['“I can use UPI with it?”','“Yes, you can.”'];
+ if(/digital|online|app/.test(all)) return ['“So I can do this online?”','“Yes. You do not need to make the trip.”'];
+ if(raw[0]) return ['“And it gives me '+raw[0].toLowerCase()+'?”','“That is the benefit.”'];
+ return ['“And the main benefit?”','“That is what makes it useful here.”'];
+}
 function benefitPhrase(u){
  const s=String(u||'the key benefit').trim();
  const parts=s.split(/[,;\n|]+/).map(x=>x.trim()).filter(Boolean);
@@ -206,16 +221,17 @@ function makeRoutes(){
     ];
    }
   } else {
+   const featureLines=naturalFeatureLines(b1,p);
    const routeDialogue={
-    'THE FIVE-STOP ITINERARY':['“Why have you marked five places?”','“Bank first. Then the investment office. Then the branch for the loan.”','“Dad, I can do this from here.”','“With the NRI account?”','“So I do not need the whole itinerary?”',''],
-    'THE FRIEND WHO ALWAYS HAS ANOTHER TRICK':['“You are still going to the bank for this?”','“I have to. I am in India for only a few days.”','“You can do it from your phone.”','“With my international number?”','“That saves me another trip.”',''],
-    'THE CALL FROM HOME':['“Mum, I am between two meetings.”','“I only need you to take care of this India payment.”','“Give me a minute.”','“You are doing it now?”','“Done. What else?”',''],
-    'THE CALL BEFORE THE TRANSFER':['“Did you manage that payment?”','“I am checking the exact amount now.”','“I can send it from here.”','“You are doing it while we talk?”','“That was quick.”',''],
-    'THE FAMILY GROUP HAS A DEADLINE':['“Who is taking care of this?”','“I will. The amount is due tonight.”','“Give me a minute.”','“Sorted already?”','“Yes. Now back to the plan.”',''],
-    'THE THING HE PROMISED TO SEND':['“You remember what you promised?”','“The payment? Yes.”','“Then I will sort it now.”','“From there?”','“Done.”',''],
-    'THE HABIT THAT GIVES IT AWAY':['“Again? You really do this every time.”','“It is just how I do it.”','“Try doing it this way.”','“On the app?”','“Okay… that was easier.”',''],
-    'THE UNEXPECTED PERSON WHO NOTICES':['“Why are you doing that?”','“Doing what?”','“Going all the way there for this.”','“Watch.”','“You could have told me that earlier.”',''],
-    'THE THING THEY ALWAYS DO':['“Here we go again.”','“It has to be done.”','“Not anymore.”','“Show me.”','“Oh. That is actually simple.”','']
+    'THE FIVE-STOP ITINERARY':['“Why have you marked five places?”','“Bank first. Then the investment office. Then the branch for the loan.”','“Dad, I can do this from here.”',featureLines[1],'“So I do not need the whole itinerary?”',''],
+    'THE FRIEND WHO ALWAYS HAS ANOTHER TRICK':['“You are still going to the bank for this?”','“I have to. I am in India for only a few days.”','“You can do it from your phone.”',featureLines[1],'“That saves me another trip.”',''],
+    'THE CALL FROM HOME':['“Mum, I am between two meetings.”','“I only need you to take care of this India payment.”','“Give me a minute.”',featureLines[1],'“Done. What else?”',''],
+    'THE CALL BEFORE THE TRANSFER':['“Did you manage that payment?”','“I am checking the exact amount now.”','“I can send it from here.”',featureLines[1],'“That was quick.”',''],
+    'THE FAMILY GROUP HAS A DEADLINE':['“Who is taking care of this?”','“I will. The amount is due tonight.”','“Give me a minute.”',featureLines[1],'“Yes. Now back to the plan.”',''],
+    'THE THING HE PROMISED TO SEND':['“You remember what you promised?”','“The payment? Yes.”','“Then I will sort it now.”',featureLines[1],'“Done.”',''],
+    'THE HABIT THAT GIVES IT AWAY':['“Again? You really do this every time.”','“It is just how I do it.”','“Try doing it this way.”',featureLines[1],'“Okay… that was easier.”',''],
+    'THE UNEXPECTED PERSON WHO NOTICES':['“Why are you doing that?”','“Doing what?”','“Going all the way there for this.”',featureLines[1],'“You could have told me that earlier.”',''],
+    'THE THING THEY ALWAYS DO':['“Here we go again.”','“It has to be done.”','“Not anymore.”',featureLines[1],'“Oh. That is actually simple.”','']
    };
    const lines=routeDialogue[x.name]||['“How are you doing that?”','“I am just sorting it.”','“From here?”','“Yes. Watch.”','“That was simple.”',''];
    const routeVisuals={
