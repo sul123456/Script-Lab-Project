@@ -406,16 +406,48 @@ function applyRefine(btn){
  if(!ins)return;
  const article=btn.closest('article');
  const name=article.querySelector('.route')?.textContent||'';
- const rows=makeRoutes().find(x=>x.name===name)?.rows;
- if(!rows)return;
- let style='natural';
- if(/funny|witty|humou?r|playful|banter/i.test(ins))style='witty';
- else if(/emotional|warm|heart/i.test(ins))style='emotional';
- else if(/punch|short|crisp|tight/i.test(ins))style='witty';
- const fresh=styleDialogue(name,rows.map(x=>x[3]),style);
- const cells=[...article.querySelectorAll('.table .row')].slice(1).map(r=>r.querySelectorAll('.cell')[3]);
- fresh.forEach((x,i)=>{if(cells[i])cells[i].innerHTML=esc(x).replace(/\n/g,'<br>')});
- input.value='';btn.textContent='Applied to Script';setTimeout(()=>btn.textContent='Apply to Script',1000);
+ const route=makeRoutes().find(x=>x.name===name);
+ if(!route)return;
+ const current=[...article.querySelectorAll('.table .row')].slice(1).map(r=>{
+   const cells=r.querySelectorAll('.cell');
+   return {visual:cells[2]?.textContent||'',dialogue:cells[3]?.textContent||'',note:cells[4]?.textContent||''};
+ });
+ const instruction=ins.toLowerCase();
+ const dialogueOnly=/dialogue|dialog|conversation|says|line|father|mother|dad|mum|son|daughter|brother|sister|friend|colleague|character/i.test(instruction);
+ const visualOnly=/visual|shot|scene|camera|show|opening|setting/i.test(instruction);
+ const noteOnly=/super|note|cta|mandatory|supers/i.test(instruction);
+ let changed=false;
+ current.forEach((row,i)=>{
+   let next=row.dialogue;
+   if(dialogueOnly||(!visualOnly&&!noteOnly)){
+     if(/father|dad/i.test(instruction)&&/father|dad/i.test(row.dialogue)) next=row.dialogue;
+   }
+ });
+ // Apply directional dialogue refinements without replacing the story or inventing a new route.
+ const cells=[...article.querySelectorAll('.table .row')].slice(1).map(r=>r.querySelectorAll('.cell'));
+ if(dialogueOnly){
+   const targetWords=instruction.match(/father|dad|mother|mum|son|daughter|brother|sister|friend|colleague|wife|husband|protagonist/gi)||[];
+   const target=targetWords[0]?.toUpperCase();
+   const style=/funny|witty|humou?r|playful|banter/i.test(instruction)?'witty':/emotional|warm|heart|touching/i.test(instruction)?'emotional':/punch|short|crisp|tight/i.test(instruction)?'witty':'natural';
+   const fresh=styleDialogue(name,route.rows.map(x=>x[3]),style);
+   fresh.forEach((x,j)=>{
+     if(cells[j]?.[3] && (!target || x.toUpperCase().includes(target) || current[j].dialogue.toUpperCase().includes(target))) {
+       cells[j][3].innerHTML=esc(x).replace(/\n/g,'<br>'); changed=true;
+     }
+   });
+ } else if(visualOnly){
+   // Keep the existing story/dialogue and make the request visible as a directional note rather than overwriting unrelated content.
+   const notes=cells.map(x=>x[4]);
+   if(notes.length){notes[0].textContent=ins;changed=true;}
+ } else if(noteOnly){
+   if(cells[0]?.[4]){cells[0][4].textContent=ins;changed=true;}
+ } else {
+   // General natural-language refinement: preserve the current route and apply an appropriate conversational direction.
+   const style=/funny|witty|humou?r|playful|banter/i.test(instruction)?'witty':/emotional|warm|heart|touching/i.test(instruction)?'emotional':/punch|short|crisp|tight/i.test(instruction)?'witty':'natural';
+   const fresh=styleDialogue(name,route.rows.map(x=>x[3]),style);
+   fresh.forEach((x,j)=>{if(cells[j]?.[3]){cells[j][3].innerHTML=esc(x).replace(/\n/g,'<br>');changed=true;}});
+ }
+ if(changed){input.value='';btn.textContent='Applied to Script';setTimeout(()=>btn.textContent='Refine Script',1000);}
 }
 function mood(s){
  const article=s.closest('article'),name=article.querySelector('.route')?.textContent||'',style=s.value;
@@ -428,7 +460,7 @@ function mood(s){
  fresh.forEach((x,i)=>{if(cells[i])cells[i].innerHTML=esc(x).replace(/\n/g,'<br>')});
  s.selectedIndex=0;
 }
-function render(r){return '<article class="card"><div class="head"><div><div class="route">'+esc(r.name)+'</div><div class="meta">'+esc(r.type)+' · '+state.basic.duration+'s · plot-led</div></div><div class="actions"><button onclick="copyScript(this)">Copy Script</button><button onclick="toggleRefine(this)">Refine Script</button><button onclick="makeScripts()">Another Story</button><select onchange="mood(this)"><option>Change Mood</option><option>Witty</option><option>Emotional</option><option>Premium</option><option>Cinematic</option><option>Bold</option><option>Humorous</option><option>Smart</option><option>Storytelling</option><option>Surprise Me</option></select></div></div><div class="plot"><div class="k">THE PLOT</div><div class="v">'+esc(r.plot)+'</div><div class="hint" style="margin-top:6px">Creative device: '+esc(r.device)+'</div></div><div class="table"><div class="row"><div class="cell th">Shot</div><div class="cell th">Timing</div><div class="cell th">Visual</div><div class="cell th">Dialogue</div><div class="cell th">Super / note</div></div>'+r.rows.map(a=>'<div class="row">'+a.map(v=>'<div class="cell">'+esc(v).replace(/\\n/g,'<br>')+'</div>').join('')+'</div>').join('')+'</div><div class="refine"><textarea placeholder="Make the dialogue more natural / funnier / punchier without changing the plot"></textarea><button class="mini" onclick="applyRefine(this)">Apply to Script</button></div><div class="cta">END FRAME · '+esc(state.basic.cta)+'</div></article>'}
+function render(r){return '<article class="card"><div class="head"><div><div class="route">'+esc(r.name)+'</div><div class="meta">'+esc(r.type)+' · '+state.basic.duration+'s · plot-led</div></div><div class="actions"><button onclick="copyScript(this)">Copy Script</button><button onclick="toggleRefine(this)">Refine Script</button><button onclick="makeScripts()">Another Story</button><select onchange="mood(this)"><option>Change Mood</option><option>Witty</option><option>Emotional</option><option>Premium</option><option>Cinematic</option><option>Bold</option><option>Humorous</option><option>Smart</option><option>Storytelling</option><option>Surprise Me</option></select></div></div><div class="plot"><div class="k">THE PLOT</div><div class="v">'+esc(r.plot)+'</div><div class="hint" style="margin-top:6px">Creative device: '+esc(r.device)+'</div></div><div class="table"><div class="row"><div class="cell th">Shot</div><div class="cell th">Timing</div><div class="cell th">Visual</div><div class="cell th">Dialogue</div><div class="cell th">Super / note</div></div>'+r.rows.map(a=>'<div class="row">'+a.map(v=>'<div class="cell">'+esc(v).replace(/\\n/g,'<br>')+'</div>').join('')+'</div>').join('')+'</div><div class="refine"><textarea placeholder="Tell Creative Brain what you want changed… e.g. “Make the father's dialogue warmer and more teasing, without changing the story.”"></textarea><button class="mini" onclick="applyRefine(this)">Refine This Script</button></div><div class="cta">END FRAME · '+esc(state.basic.cta)+'</div></article>'}
 function scriptText(article){const rows=[...article.querySelectorAll('.table .row')].slice(1);return article.querySelector('.route').innerText+'\n\nPLOT: '+article.querySelector('.plot .v').innerText+'\n\n'+rows.map(r=>{const x=r.querySelectorAll('.cell');return x[0].innerText+' | '+x[1].innerText+' | VISUAL: '+x[2].innerText+' | DIALOGUE: '+x[3].innerText+' | NOTE: '+x[4].innerText}).join('\n')+'\n\n'+article.querySelector('.cta').innerText}
 function copyScript(btn){const a=btn.closest('article');navigator.clipboard?.writeText(scriptText(a));btn.textContent='Copied';setTimeout(()=>btn.textContent='Copy Script',1000)}
 function toggleRefine(btn){const x=btn.closest('article').querySelector('.refine');x.style.display=x.style.display==='block'?'none':'block'}
