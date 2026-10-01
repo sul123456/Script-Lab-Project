@@ -221,170 +221,195 @@ function makeRoutes(){
  const b=state.basic,B=state.brief,p=b.p,u=b.u,c=b.cta,d=b.duration;
  const w=audienceWorld();
  const benefit=benefitPhrase(u), extras=secondaryBenefits(u);
- const concepts=w.routes;
- const timing=(n)=>{const starts=[0,.15,.30,.45,.62,.82];const ends=[.15,.30,.45,.62,.82,1];return Math.round(d*starts[n])+'–'+Math.round(d*ends[n])+'s'};
- return concepts.slice(0,6).map((x,i)=>{
-  let rows;
-  const b1=benefit, b2=extras[0]||'the additional benefit';
-  if(w.kind==='alumni_card'){
-   if(x.name==='THE OFFER HE DIDN’T HAVE TO HUNT FOR'){
-    rows=[
-     ['1',timing(0),x.place+'. '+x.hook,'“Still hunting for a better deal?”','CHARACTER SETUP · deal hunter'],
-     ['2',timing(1),'Close on four offer-comparison tabs. He flips between rates, rewards and fees while his board deck waits behind them.','“I just like knowing I got the better one.”','HUMAN TRUTH · specific behaviour'],
-     ['3',timing(2),'His alumni WhatsApp group pings. He opens a message showing an offer unlocked specifically for alumni. The browser tabs remain visible behind it.','“Wait… this one came to me?”','REVEAL · the hunt reverses'],
-     ['4',timing(3),'He reads the offer: '+b1+'. No generic benefit monologue; the offer itself is the proof of recognition.','“Okay. That changes the comparison.”','BENEFIT · one clean proof'],
-     ['5',timing(4),'He closes all four comparison tabs, one by one. His colleague watches, surprised.','“You are not comparing?” / “Not this one.”','PAYOFF · behaviour changes'],
-     ['6',timing(5),'Card + mandatory fee/offer supers + CTA.','',c+' · END FRAME']
-    ];
-   } else if(x.name==='THE ALUMNI GROUP HAS ONE MORE BENEFIT'){
-    rows=[
-     ['1',timing(0),x.place+'. '+x.hook,'“Look at us. Twenty years later and the group is still noisy.”','HUMAN SETUP'],
-     ['2',timing(1),'Messages fly: reunion photos, old nicknames, one person boasting about a new upgrade. Then one message stops the scroll: “One more thing for alumni.”','“One more thing?”','CURIOSITY · message becomes device'],
-     ['3',timing(2),'The protagonist opens the alumni-specific card offer. His expression changes from nostalgic to genuinely interested.','“Now that is a benefit of staying connected.”','REVEAL'],
-     ['4',timing(3),'Show the strongest offer: '+b1+'. Keep secondary benefits as visual supers.','“And it is actually useful.”','PRODUCT PROOF'],
-     ['5',timing(4),'The group chat fills with reactions. He types, pauses, deletes a long comparison message, and simply sends: “I am in.”','“Okay. This one is worth looking at.”','PAYOFF · understated privilege'],
-     ['6',timing(5),'Product/end frame with mandatory fees and CTA.','',c+' · END FRAME']
-    ];
-   } else if(x.name==='THE BOARDROOM NEGOTIATOR'){
-    rows=[
-     ['1',timing(0),x.place+'. '+x.hook,'“You negotiated the vendor down again?”','CHARACTER HOOK'],
-     ['2',timing(1),'Colleague lists his habits: flight upgrade, hotel rate, vendor discount. He proudly opens another comparison screen.','“Why pay more when you can get better?”','CHARACTER DEFINITION'],
-     ['3',timing(2),'During the break, his phone shows an alumni-only card offer. He reads it twice.','“This came because I am an alumnus?”','REVEAL'],
-     ['4',timing(3),'He sees '+b1+'. For once, there is no negotiation screen, no coupon search, no comparison.','“This one came pre-negotiated.”','BENEFIT AS CHARACTER PAYOFF'],
-     ['5',timing(4),'Colleague looks at him waiting for the usual bargaining. He simply applies / taps through.','“No negotiation?” / “None needed.”','PAYOFF'],
-     ['6',timing(5),'Card + mandatory fee/offer/CTA.','',c+' · END FRAME']
-    ];
-   } else if(x.name==='THE REUNION BILL'){
-    rows=[
-     ['1',timing(0),x.place+'. '+x.hook,'“Twenty years and you still check every offer?”','HUMAN SETUP'],
-     ['2',timing(1),'Bill arrives. Friends predict he will compare cards before paying. He reaches for his phone instead.','“Of course I will check.”','SETUP'],
-     ['3',timing(2),'An alumni-specific card offer is already on his screen. Friends lean in.','“Actually… you guys gave me the better one.”','REVEAL'],
-     ['4',timing(3),'Show '+b1+' through the payment/offer visual.','“That is not a bad reunion gift.”','BENEFIT'],
-     ['5',timing(4),'Friends laugh because the lifelong deal-hunter has finally stopped searching.','“You finally found one?” / “No. It found me.”','PAYOFF'],
-     ['6',timing(5),'Card + mandatory end-frame information.','',c+' · END FRAME']
-    ];
-   } else if(x.name==='THE JUNIOR KNOWS HIS WEAKNESS'){
-    rows=[
-     ['1',timing(0),x.place+'. '+x.hook,'“Sir, you actually compare all this?”','RELATIONSHIP SETUP'],
-     ['2',timing(1),'The junior watches him compare three offers and assumes this is just another obsession.','“Better offer is better offer.”','CHARACTER BEHAVIOUR'],
-     ['3',timing(2),'He opens the alumni-specific offer and hands the phone to the junior.','“This one is for our alumni.”','REVEAL'],
-     ['4',timing(3),'Junior sees '+b1+' and the fee waiver/other mandatory offer details.','“Okay… that is actually special.”','PROOF'],
-     ['5',timing(4),'The senior closes the other tabs. Junior looks genuinely impressed.','“Now you get it.”','PAYOFF'],
-     ['6',timing(5),'Card + CTA/end frame.','',c+' · END FRAME']
-    ];
-   } else {
-    rows=[
-     ['1',timing(0),x.place+'. '+x.hook,'“Why do you still keep that?”','EMOTIONAL SETUP'],
-     ['2',timing(1),'He explains what the college meant to him. His phone lights up with the alumni-specific card offer.','“Because some things stay with you.”','BRIDGE'],
-     ['3',timing(2),'He looks from the old college object to the new card offer.','“And apparently… some things come back.”','REVEAL'],
-     ['4',timing(3),'Show '+b1+'. Keep the alumni connection as the emotional reason for attention.','“That is a nice surprise.”','BENEFIT'],
-     ['5',timing(4),'He puts the old object back carefully and keeps the phone in hand.','“Looks like college still has surprises.”','PAYOFF'],
-     ['6',timing(5),'Card + mandatory fee/CTA.','',c+' · END FRAME']
-    ];
-   }
-  } else {
-   const situation=B.why||B.truth||B.story||'an ordinary moment in the customer’s life';
-   const problem=B.truth||'a small but recognisable friction';
-   const change=B.change||B.message||u;
-   const story=B.story||'everyday life';
-   const audience=b.tg||'the target customer';
-   const product=p||'the product';
-   const feature=benefit;
-   const raw=(audience+' '+situation+' '+problem+' '+change+' '+story+' '+u).toLowerCase();
-   const paymentLike=/payment|transfer|send money|pay|fee|bill|purchase|card|upi|account|bank|money/.test(raw);
-   const contextHints=story!=='Everyday life'?story:'the customer’s everyday routine';
-   const people=[
-    {a:'FRIEND',b:'CUSTOMER'},
-    {a:'PARTNER',b:'CUSTOMER'},
-    {a:'COLLEAGUE',b:'CUSTOMER'},
-    {a:'PARENT',b:'CUSTOMER'},
-    {a:'SIBLING',b:'CUSTOMER'},
-    {a:'CUSTOMER',b:'SELF'}
-   ];
-   const devices=[
-    {name:'THE MOMENT SOMEONE NOTICES',kind:'observation'},
-    {name:'THE ROUTINE THAT GOES TOO FAR',kind:'escalation'},
-    {name:'THE CONVERSATION THAT CHANGES COURSE',kind:'relationship'},
-    {name:'THE SMALL PROBLEM IN THE MIDDLE OF LIFE',kind:'interruption'},
-    {name:'THE THING THEY HAVE ALWAYS DONE',kind:'habit'},
-    {name:'THE UNEXPECTEDLY EASY MOMENT',kind:'contrast'}
-   ];
-   const concreteSubject=(B.message||u||problem).trim();
-   const specificSituation=situation.trim();
-   const specificProblem=problem.trim();
-   const makeDialogue=(i)=>{
-     const q=people[i];
-     const openings=[
-      q.a+': “You are still dealing with '+specificProblem.toLowerCase()+'?”',
-      q.a+': “Is this really how you usually handle '+concreteSubject.toLowerCase()+'?”',
-      q.a+': “Wait. You are actually going to do it that way?”',
-      q.a+': “What is taking so long?”',
-      q.a+': “You have been doing this every time?”',
-      q.a+': “So this is the part you normally have to sort out?”'
-     ];
-     const responses=[
-      q.b+': “It is what I have always done.”',
-      q.b+': “I thought that was the only way.”',
-      q.b+': “I just wanted to get it right.”',
-      q.b+': “I was trying to sort it before I forgot.”',
-      q.b+': “Apparently, yes.”',
-      q.b+': “I did not realise there was another way.”'
-     ];
-     const turns=[
-      q.a+': “Then why are you making it harder than it needs to be?”',
-      q.a+': “But you can do that differently now.”',
-      q.a+': “You know you do not have to do all that anymore?”',
-      q.a+': “Hang on. Have you tried '+product+'?”',
-      q.a+': “There has to be an easier way.”',
-      q.a+': “Show me what happens if you try it this way.”'
-     ];
-     const answers=[
-      q.b+': “Let me see.”',
-      q.b+': “Wait… I can do that?”',
-      q.b+': “Okay. That changes things.”',
-      q.b+': “I did not know I could do it from here.”',
-      q.b+': “Fine. Show me.”',
-      q.b+': “That would save me the whole detour.”'
-     ];
-     const payoffs=[
-      q.a+': “Well, that saved you some time.”',
-      q.a+': “And you were about to do all that?”',
-      q.a+': “So we can get on with the rest of the day.”',
-      q.a+': “There. Problem solved.”',
-      q.a+': “I am never letting you make that list again.”',
-      q.a+': “Okay. I did not expect that.”'
-     ];
-     return [openings[i],responses[i],turns[i],answers[i],payoffs[i],''];
-   };
-   const makeVisuals=(i)=>{
-     const q=people[i];
-     const contexts=[
-      specificSituation+'. Establish '+audience+' in a concrete, filmable place with '+q.a.toLowerCase()+' present. Show the exact behaviour before '+product+' appears.',
-      'Continue the same real-world moment. Show the specific action, object or task creating the friction; let the behaviour reveal the problem rather than explaining it.',
-      q.a+' notices the problem and the conversation changes direction. '+product+' enters through an actual object, screen, action or choice while the relationship continues.',
-      q.b+' uses '+product+' to handle the specific task. Show the relevant interface/action and make '+feature+' visible through what happens, not through explanatory narration.',
-      'The task is resolved and the characters immediately return to what they were doing. Capture a small human reaction that fits their relationship.',
-      'End frame: '+c+' and mandatory information.'
-     ];
-     return contexts;
-   };
-   const xname=devices[i].name;
-   const dialogues=makeDialogue(i);
-   const visuals=makeVisuals(i);
-   rows=[
-    ['1',timing(0),visuals[0],dialogues[0],''],
-    ['2',timing(1),visuals[1],dialogues[1],''],
-    ['3',timing(2),visuals[2],dialogues[2],product],
-    ['4',timing(3),visuals[3],dialogues[3],feature],
-    ['5',timing(4),visuals[4],dialogues[4],''],
-    ['6',timing(5),visuals[5],dialogues[5],'CTA']
-   ];
-   x={...x,name:xname,place:specificSituation,hook:specificSituation,turn:specificProblem,device:devices[i].kind,payoff:change};
-  }
-  }
-  return {name:x.name,type:'Original situation-led route',device:x.device||'Character + situation + creative turn',plot:x.hook+' → '+x.turn+' → '+x.payoff,rows};
- });
+ const timing=(n)=>{const starts=[0,.15,.30,.45,.62,.82],ends=[.15,.30,.45,.62,.82,1];return Math.round(d*starts[n])+'–'+Math.round(d*ends[n])+'s'};
+ const ctx=buildCreativeContext(b,B,benefit,extras,w);
+ const concepts=buildCreativeConcepts(ctx);
+ return concepts.slice(0,6).map((concept,i)=>buildGeneratedRoute(concept,ctx,i,timing));
 }
+function buildCreativeContext(b,B,benefit,extras,w){
+ const raw=[b.tg,b.p,b.u,B.why,B.truth,B.change,B.story,B.emotion,B.avoid,B.takeaway,B.mandatories,B.tone].filter(Boolean).join(' ');
+ const lower=raw.toLowerCase();
+ const target=b.tg||'the customer';
+ const product=b.p||'the product';
+ const featureList=(b.u||'').split(/[,;\n]+/).map(x=>x.trim()).filter(Boolean);
+ const nouns=extractConcretePhrases(raw);
+ const relationships=deriveRelationships(lower,target);
+ const settings=deriveSettings(raw,B.story);
+ const frictions=deriveFrictions(B);
+ const stakes=deriveStakes(B);
+ const behaviours=deriveBehaviours(B,lower);
+ const tones=deriveTones(b,B);
+ return {
+  raw,target,product,featureList,benefit,extras,nouns,relationships,settings,frictions,stakes,behaviours,tones,
+  situation:B.why||B.story||'an ordinary moment in the customer’s life',
+  truth:B.truth||'there is a small human friction worth observing',
+  change:B.change||B.message||'the customer finds a more useful way forward',
+  story:B.story||'everyday life',
+  emotion:B.emotion||'recognition',
+  avoid:B.avoid||'generic advertising language',
+  takeaway:B.takeaway||benefit,
+  mandatories:B.mandatories||c.cta||''
+ };
+}
+function extractConcretePhrases(text){
+ return text.split(/[,.;:\n]+/).map(x=>x.trim()).filter(x=>x&&x.length>3&&!/^(the|a|an|and|or|because|with|from|this|that)\b/i.test(x)).slice(0,18);
+}
+function deriveRelationships(lower,target){
+ const out=[];
+ if(/father|dad|mother|mum|mom|parent/.test(lower)) out.push(['PARENT',target]);
+ if(/son|daughter|child|kid/.test(lower)) out.push(['CHILD',target]);
+ if(/friend|buddy|colleague|coworker/.test(lower)) out.push(['FRIEND',target]);
+ if(/partner|spouse|husband|wife/.test(lower)) out.push(['PARTNER',target]);
+ if(!out.length) out.push(['FRIEND',target],['COLLEAGUE',target]);
+ return out.slice(0,3);
+}
+function deriveSettings(raw,story){
+ const pool=[];
+ [story,raw].filter(Boolean).forEach(t=>t.split(/[.;\n]+/).forEach(x=>{
+  if(/home|office|shop|store|school|college|airport|restaurant|cafe|car|kitchen|living room|street|market|station|work|travel|trip|phone call|video call|whatsapp/i.test(x)) pool.push(x.trim());
+ }));
+ return pool.slice(0,5);
+}
+function deriveFrictions(B){
+ return [B.truth,B.why,B.change].filter(Boolean).map(x=>x.trim()).filter(x=>x.length>4).slice(0,4);
+}
+function deriveStakes(B){
+ const all=[B.why,B.truth,B.change,B.story].filter(Boolean).join(' ');
+ const found=all.match(/(?:today|tonight|tomorrow|before|deadline|due|leaves|arrives|₹|rs\.?\s?\d|\$\s?\d|minutes?|hours?)/ig);
+ return found?found.slice(0,6):['time','attention'];
+}
+function deriveBehaviours(B,lower){
+ const out=[];
+ if(/compare|research|check|refresh|scroll|list|remind|forget|delay|avoid|plan|pack|call|message|track|repeat|hunt|search/.test(lower)) out.push('the customer repeats a recognisable habit');
+ if(/busy|meeting|travel|traffic|queue|wait/.test(lower)) out.push('the customer tries to solve it while life keeps moving');
+ if(/family|friend|colleague|partner/.test(lower)) out.push('another person notices or reacts to the behaviour');
+ out.push('the customer is already doing something concrete when the problem appears');
+ return [...new Set(out)].slice(0,4);
+}
+function deriveTones(b,B){
+ return [B.tone,b.tone,B.emotion].filter(Boolean).join(' ').toLowerCase();
+}
+function buildCreativeConcepts(ctx){
+ const lens=[];
+ const supported=(pattern,kind)=>pattern.test(ctx.raw.toLowerCase());
+ if(supported(/humou?r|witty|funny|awkward|absurd|playful/,'humour')) lens.push('behavioural-comedy');
+ if(supported(/emotional|family|homecoming|memory|relationship/,'emotion')) lens.push('relationship-emotion');
+ if(supported(/premium|luxury|exclusive|senior/,'premium')) lens.push('quiet-privilege');
+ if(supported(/cinematic|visual|film/,'cinematic')) lens.push('visual-contrast');
+ if(supported(/surprise|unexpected|twist/,'surprise')) lens.push('misdirection');
+ if(!lens.length) lens.push('observational');
+ const combos=[
+  ['OBSERVED BEHAVIOUR','behavioural-comedy'],['RELATIONSHIP INTERRUPTS','relationship-emotion'],
+  ['SMALL PROBLEM, DIFFERENT WAY','observational'],['THE THING THEY ALWAYS DO','visual-contrast'],
+  ['AN UNEXPECTED RESPONSE','misdirection'],['LIFE KEEPS MOVING','cinematic']
+ ];
+ return combos.map((x,i)=>({title:x[0],lens:lens[i%lens.length],index:i}));
+}
+function chooseSetting(ctx,i){
+ return ctx.settings[i%Math.max(1,ctx.settings.length)]||ctx.situation;
+}
+function chooseRelationship(ctx,i){
+ return ctx.relationships[i%ctx.relationships.length];
+}
+function chooseBehaviour(ctx,i){
+ return ctx.behaviours[i%ctx.behaviours.length];
+}
+function chooseDetail(ctx,i){
+ return ctx.nouns[i%Math.max(1,ctx.nouns.length)]||ctx.product;
+}
+function naturalProductEntry(ctx,i){
+ const modes=['object','screen','action','mention','behaviour'];
+ return modes[i%5];
+}
+function generateDialogue(ctx,concept,rel,behaviour,detail,i){
+ const A=rel[0],B=rel[1],p=ctx.product;
+ const starts=[
+  A+': “You are still '+behaviour.replace(/^the customer /i,'')+'?”',
+  A+': “Wait, why are you doing '+detail.toLowerCase()+' like that?”',
+  A+': “You always make this harder than it needs to be.”',
+  A+': “What happened? You were supposed to be done by now.”',
+  A+': “You actually planned all this for '+detail.toLowerCase()+'?”',
+  A+': “Is this your usual way of dealing with it?”'
+ ];
+ const replies=[
+  B+': “I know. It is just how I do it.”',
+  B+': “Because I do not want to get it wrong.”',
+  B+': “I thought this was the sensible way.”',
+  B+': “I was trying to sort it before the day got away.”',
+  B+': “Apparently I did.”',
+  B+': “I did not think there was another option.”'
+ ];
+ const turns=[
+  A+': “Then try '+p+'.”',
+  A+': “Have you seen what '+p+' can do here?”',
+  A+': “You can actually handle that with '+p+'.”',
+  A+': “Hang on. Why are you doing all that? '+p+' can take care of it.”',
+  A+': “Show me. I want to see how '+p+' changes this.”',
+  A+': “You know '+p+' lets you do this without all that?”'
+ ];
+ const answers=[
+  B+': “Wait… really?”',
+  B+': “I can do that from here?”',
+  B+': “That is new to me.”',
+  B+': “Okay, show me.”',
+  B+': “That would save me the whole detour.”',
+  B+': “Why did nobody tell me that?”'
+ ];
+ const payoffs=[
+  A+': “There. Now get back to what you were doing.”',
+  A+': “And you were about to spend the whole afternoon on that.”',
+  A+': “Good. Problem solved. Coffee?”',
+  A+': “So that is one less thing on your list.”',
+  A+': “I am not hearing you complain about it now.”',
+  A+': “Okay. That was actually easier.”'
+ ];
+ return [starts[i%6],replies[i%6],turns[i%6],answers[i%6],payoffs[i%6],''];
+}
+function generateVisuals(ctx,concept,rel,behaviour,detail,i){
+ const p=ctx.product,feature=ctx.benefit;
+ const setting=chooseSetting(ctx,i);
+ const entry=naturalProductEntry(ctx,i);
+ return [
+  setting+'. '+ctx.target+' is already in the middle of '+behaviour+'. '+rel[0]+' is present. Film the physical details that make the situation recognisable.',
+  'Stay in the same moment. Show the exact object, movement, screen, list, call or task causing the friction: '+detail+'. Do not explain the strategy.',
+  rel[0]+' notices the behaviour. The conversation shifts naturally and '+p+' enters as a '+entry+'.',
+  ctx.target+' uses '+p+' for the task. Demonstrate '+feature+' through the action/result; use a super only if the feature cannot be understood visually.',
+  'The immediate problem is resolved. Let the characters return to their original activity and capture a reaction that belongs to their relationship.',
+  'End frame: '+ctx.mandatories+' '+(ctx.mandatories? '':'')+'CTA.'
+ ];
+}
+function validateGeneratedRoute(rows,ctx){
+ const text=rows.flat().join(' ');
+ const banned=/context first|human truth|creative turn|product as answer|human payoff|strategy|show the strategy|creates the tension|recognisable everyday setting|social\/work setting|specific routine|character reacts to the product/i;
+ const badSpeaker=/^(NRI|PROTAGONIST|THE CUSTOMER):/i;
+ const issues=[];
+ if(banned.test(text)) issues.push('strategy-language');
+ if(badSpeaker.test(text)) issues.push('generic-speaker');
+ if(!rows[2][4]||!rows[3][4]) issues.push('product-too-late');
+ if(!rows[0][2]||!rows[1][2]) issues.push('missing-scene');
+ if(rows.slice(0,5).every(r=>!r[3])) issues.push('missing-dialogue');
+ return issues;
+}
+function buildGeneratedRoute(concept,ctx,i,timing){
+ const rel=chooseRelationship(ctx,i),behaviour=chooseBehaviour(ctx,i),detail=chooseDetail(ctx,i);
+ let rows;
+ for(let attempt=0;attempt<3;attempt++){
+  const j=(i+attempt)%6;
+  const dialogue=generateDialogue(ctx,concept,rel,behaviour,detail,j);
+  const visuals=generateVisuals(ctx,concept,rel,behaviour,detail,j);
+  rows=[
+   ['1',timing(0),visuals[0],dialogue[0],''],
+   ['2',timing(1),visuals[1],dialogue[1],''],
+   ['3',timing(2),visuals[2],dialogue[2],ctx.product],
+   ['4',timing(3),visuals[3],dialogue[3],ctx.benefit],
+   ['5',timing(4),visuals[4],dialogue[4],''],
+   ['6',timing(5),visuals[5],dialogue[5],'CTA']
+  ];
+  if(!validateGeneratedRoute(rows,ctx).length) break;
+ }
+ return {name:concept.title,type:'Brief-driven original route',device:concept.lens,plot:ctx.situation+' → '+ctx.truth+' → '+ctx.change,rows};
+}
+
 function wireMakeScripts(){const b=$('makeScriptsBtn');if(b){b.disabled=false}}
 function makeScripts(){
  try{
