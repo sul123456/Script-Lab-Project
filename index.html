@@ -218,207 +218,24 @@ function audienceWorld(){
  return profile;
 }
 function makeRoutes(){
- const b=state.basic,B=state.brief,p=b.p,u=b.u,c=b.cta,d=b.duration;
- const w=audienceWorld();
- const benefit=benefitPhrase(u), extras=secondaryBenefits(u);
- const ctx=creativeBrainContext(b,B,w,benefit,extras);
- const timing=(n)=>{const starts=[0,.15,.30,.45,.62,.82],ends=[.15,.30,.45,.62,.82,1];return Math.round(d*starts[n])+'–'+Math.round(d*ends[n])+'s'};
- return Array.from({length:6},(_,i)=>generateCreativeRoute(ctx,i,timing));
-}
-function creativeBrainContext(b,B,w,benefit,extras){
- const raw=[b.tg,b.p,b.u,B.why,B.truth,B.change,B.story,B.emotion,B.avoid,B.takeaway,B.mandatories,B.tone].filter(Boolean).join(' ').replace(/\s+/g,' ').trim();
- const low=raw.toLowerCase();
- const target=b.tg||'the customer';
+ const b=state.basic, B=state.brief;
  const product=b.p||'the product';
- const features=(b.u||'').split(/[,;\n]+/).map(x=>x.trim()).filter(Boolean);
- const details=uniqueWordsAndPhrases(raw);
- const amounts=(raw.match(/(?:₹|rs\.?|\$|€|£)\s?[\d,.]+(?:\s?\w+)?/ig)||[]);
- const deadlines=(raw.match(/(?:today|tonight|tomorrow|this week|before|by|deadline|due|leaves|arrives|in \d+ (?:minutes?|hours?|days?))/ig)||[]);
- const people=inferPeople(low,target);
- const places=inferPlaces(raw,B.story);
- const objects=inferObjects(raw);
- const actions=inferActions(low);
- const friction=B.truth||B.why||'a small everyday friction';
- const situation=B.why||B.story||'an ordinary moment in the customer’s life';
- const desired=B.change||B.message||B.takeaway||benefit;
- const tone=(B.tone||b.tone||B.emotion||'natural').toLowerCase();
- const lenses=[];
- if(/witty|humou?r|funny|playful|awkward|absurd/.test(tone)) lenses.push('behavioural humour');
- if(/emotional|warm|family|nostalgic|human/.test(tone)) lenses.push('relationship emotion');
- if(/premium|exclusive|luxury|aspirational/.test(tone)) lenses.push('status contrast');
- if(/cinematic|visual/.test(tone)) lenses.push('visual storytelling');
- if(/bold|surprise|unexpected/.test(tone)) lenses.push('misdirection');
- if(!lenses.length) lenses.push('observation','contrast','relationship','reversal','escalation','understatement');
- return {raw,low,target,product,features,details,amounts,deadlines,people,places,objects,actions,friction,situation,desired,tone,lenses,benefit,extras,cta:c||B.mandatories||''};
-}
-function uniqueWordsAndPhrases(text){
- const stop=/^(the|a|an|and|or|but|with|from|for|this|that|they|their|there|into|about|have|has|will|would|could|should|customer|target)$/i;
- return [...new Set(text.split(/[,.;:\n]+/).map(x=>x.trim()).filter(x=>x.length>2&&!stop.test(x)))].slice(0,24);
-}
-function inferPeople(low,target){
- const out=[];
- if(/father|dad|mother|mum|mom|parent/.test(low)) out.push(['DAD','SON']);
- if(/son|daughter|child|kid/.test(low)) out.push(['PARENT','CHILD']);
- if(/friend|buddy/.test(low)) out.push(['FRIEND',target]);
- if(/colleague|coworker|office/.test(low)) out.push(['COLLEAGUE',target]);
- if(/partner|husband|wife|spouse/.test(low)) out.push(['PARTNER',target]);
- if(!out.length) out.push(['FRIEND',target],['COLLEAGUE',target],['PARTNER',target]);
- return out;
-}
-function inferPlaces(raw,story){
- const all=[story,raw].filter(Boolean).join(' ');
- const found=[];
- const rx=/[^.;\n]*(?:home|office|store|shop|college|school|airport|restaurant|cafe|kitchen|living room|car|street|market|station|hotel|gym|bank|workplace|video call|phone call|whatsapp)[^.;\n]*/ig;
- let m; while((m=rx.exec(all))&&found.length<8) found.push(m[0].trim());
- return [...new Set(found)];
-}
-function inferObjects(raw){
- const found=[];
- const rx=/\b(?:phone|laptop|bag|bill|list|ticket|card|screen|receipt|keys|headphones|suitcase|message|photo|document|calendar|wallet|coffee|gift|box|invoice|form|offer|voucher|payment)\b/ig;
- let m; while((m=rx.exec(raw))&&found.length<12) found.push(m[0].toLowerCase());
- return [...new Set(found)];
-}
-function inferActions(low){
- const out=[];
- if(/compare|research|check|refresh|search|scroll|hunt/.test(low)) out.push('comparing');
- if(/pack|travel|trip|leave|airport/.test(low)) out.push('packing');
- if(/call|message|whatsapp|remind/.test(low)) out.push('talking');
- if(/pay|payment|transfer|send|bill|fee/.test(low)) out.push('sorting a payment');
- if(/plan|list|schedule|deadline|due/.test(low)) out.push('organising');
- if(/buy|shop|purchase|order/.test(low)) out.push('shopping');
- if(!out.length) out.push('handling an ordinary task');
- return [...new Set(out)];
-}
-function creativeSeed(ctx,i){
- const pools=[
-  ['misdirection','Start with an apparently unrelated human action; let its meaning change.'],
-  ['behaviour','Make a recognisable behaviour reveal the tension.'],
-  ['relationship','Let another person’s reaction expose what the protagonist is doing.'],
-  ['contrast','Put the old way and the new possibility physically beside each other.'],
-  ['reversal','Make the person who normally asks the question become the one surprised.'],
-  ['escalation','Repeat or intensify one small behaviour until the product changes its meaning.']
- ];
- const p=pools[i%pools.length];
- return {lens:p[0],instruction:p[1]};
-}
-function sceneIngredients(ctx,i){
- const rel=ctx.people[i%ctx.people.length];
- const place=ctx.places.length?ctx.places[i%ctx.places.length]:ctx.situation;
- const action=ctx.actions[i%ctx.actions.length];
- const object=ctx.objects.length?ctx.objects[i%ctx.objects.length]:ctx.product;
- const stake=ctx.deadlines.length?ctx.deadlines[i%ctx.deadlines.length]:(ctx.amounts.length?ctx.amounts[i%ctx.amounts.length]:'the thing that needs sorting');
- const seed=creativeSeed(ctx,i);
- return {rel,place,action,object,stake,seed};
-}
-function inventScene(ctx,i){
- const x=sceneIngredients(ctx,i), A=x.rel[0], P=x.rel[1];
- const variants=[
-  {title:'THE DETAIL THEY NOTICE',setup:A+' notices one very specific thing '+P+' is doing with '+x.object+'.',turn:'The observation reveals why '+P+' is dealing with '+x.stake+' the usual way.',device:'observation'},
-  {title:'THE NORMAL THING THAT ISN’T',setup:P+' is calmly '+x.action+' in '+x.place+'; A assumes it is routine.',turn:'One small detail makes the routine suddenly look unnecessarily complicated.',device:'contrast'},
-  {title:'THE INTERRUPTION',setup:P+' is in the middle of '+x.action+' when A interrupts with a practical question about '+x.stake+'.',turn:'The answer creates an opening for a completely different way of handling it.',device:'interruption'},
-  {title:'THE WRONG QUESTION',setup:A+' asks a question that sounds ordinary, but P’s answer reveals the real problem.',turn:'A reframes the situation without turning the conversation into a product pitch.',device:'misdirection'},
-  {title:'THE SMALL ESCALATION',setup:P+' repeats a tiny behaviour around '+x.object+' while trying to deal with '+x.stake+'.',turn:'A finally reacts; the repetition becomes the reason the product enters.',device:'escalation'},
-  {title:'THE MOMENT AFTER',setup:P+' has already decided to handle '+x.stake+' the old way.',turn:'A shows a simpler possibility before P commits to the old routine.',device:'reversal'}
- ];
- return {...variants[i%variants.length],...x};
-}
-function sceneDialogue(ctx,scene,i){
- const A=scene.rel[0],P=scene.rel[1],p=ctx.product;
- const detail=scene.object||ctx.product;
- const stake=scene.stake;
- const openings=[
-  A+': “Why are you '+scene.action+' that like that?”',
-  A+': “You are really doing all that for '+stake+'?”',
-  A+': “Hang on. Is that how you normally sort this?”',
-  A+': “What are you checking this time?”',
-  A+': “You have made a whole process out of '+detail+'.”',
-  A+': “You were actually going to do it that way?”'
- ];
- const replies=[
-  P+': “I just want to get it right.”',
-  P+': “It is the way I usually do it.”',
-  P+': “I thought I had to.”',
-  P+': “I am trying not to make a mess of it.”',
-  P+': “What? It makes sense to me.”',
-  P+': “I was almost done.”'
- ];
- const bridges=[
-  A+': “Then look at '+p+'.”',
-  A+': “Why not use '+p+' for this?”',
-  A+': “You know '+p+' can handle that?”',
-  A+': “Wait. '+p+' does this differently.”',
-  A+': “Show me the screen for a second.”',
-  A+': “You do not need the whole routine anymore.”'
- ];
- const reactions=[
-  P+': “Wait. It can do that?”',
-  P+': “I can do that from here?”',
-  P+': “That is actually useful.”',
-  P+': “I did not know that was possible.”',
-  P+': “Okay. That changes it.”',
-  P+': “Why have I been doing it the long way?”'
- ];
- const payoffs=[
-  A+': “Good. Now carry on.”',
-  A+': “There. You can stop making a project out of it.”',
-  A+': “Right. Back to the thing we were actually doing.”',
-  A+': “That took less time than the explanation.”',
-  A+': “I knew there had to be a shorter version.”',
-  A+': “Now that makes sense.”'
- ];
- const j=(i*2)%6;
- return [openings[j],replies[(j+1)%6],bridges[(j+2)%6],reactions[(j+3)%6],payoffs[(j+4)%6],''];
-}
-function sceneVisuals(ctx,scene){
- const A=scene.rel[0],P=scene.rel[1],p=ctx.product;
- const feature=ctx.benefit;
- return [
-  scene.place+'. Film '+P+' already '+scene.action+'; establish the exact physical detail that makes the moment recognisable. '+A+' is nearby.',
-  'Stay in the same moment. Let '+scene.object+' / the relevant task show the friction. The characters continue behaving naturally; no strategy explanation.',
-  A+' notices the detail and changes the conversation. '+p+' enters through the most natural physical or digital action in this scene.',
-  P+' uses '+p+' to handle '+scene.stake+'. Demonstrate '+feature+' through the action/result; use a super only where the feature needs explicit wording.',
-  'The original task resumes. Show a small reaction that belongs to the relationship rather than a “product reaction”.',
-  'End frame: '+ctx.cta+' and mandatory information.'
- ];
-}
-function critiqueScene(rows,ctx,scene){
- const text=rows.flat().join(' ');
- const issues=[];
- if(/NRI|PROTAGONIST|THE CUSTOMER/.test(text)&&!/NRI|nri/.test(ctx.target+' '+ctx.raw)) issues.push('wrong-audience-label');
- if(/human truth|creative turn|product as answer|human payoff|context first|strategy|creates the tension|character reacts to the product/i.test(text)) issues.push('strategy-language');
- if(/recognisable everyday setting|social\/work setting|specific routine|ordinary setting/i.test(text)) issues.push('generic-setting');
- if(!rows[2][4]||!rows[3][4]) issues.push('product-not-early');
- if(!rows[0][3]||!rows[1][3]||!rows[2][3]||!rows[3][3]) issues.push('weak-conversation');
- if(ctx.features.length>1&&ctx.features.every(f=>!text.toLowerCase().includes(f.toLowerCase().slice(0,8)))) issues.push('features-not-used');
- return issues;
-}
-function rewriteScene(rows,ctx,scene,issues,i){
- if(issues.includes('strategy-language')) rows.forEach(r=>{r[4]=String(r[4]||'').replace(/.*?(context first|human truth|creative turn|product as answer|human payoff|strategy|creates the tension).*?(?=\.|$)/ig,'').trim()});
- if(issues.includes('generic-setting')) rows[0][2]=scene.place+'. '+ctx.target+' is visibly '+scene.action+' with '+scene.object+' in hand / on screen. '+scene.rel[0]+' is close enough to notice.';
- if(issues.includes('wrong-audience-label')) rows.forEach(r=>{r[2]=r[2].replace(/\bNRI\b|\bPROTAGONIST\b|\bTHE CUSTOMER\b/gi,ctx.target)});
- if(issues.includes('weak-conversation')) rows[1][3]=scene.rel[1]+': “I was trying to sort '+scene.stake+' before it became another thing on my list.”';
- if(issues.includes('product-not-early')) rows[2][4]=ctx.product;
- return rows;
-}
-function generateCreativeRoute(ctx,i,timing){
- const scene=inventScene(ctx,i);
- let rows=null,issues=[];
- for(let pass=0;pass<2;pass++){
-  const dialogue=sceneDialogue(ctx,scene,i);
-  const visuals=sceneVisuals(ctx,scene);
-  rows=[
-   ['1',timing(0),visuals[0],dialogue[0],''],
-   ['2',timing(1),visuals[1],dialogue[1],''],
-   ['3',timing(2),visuals[2],dialogue[2],ctx.product],
-   ['4',timing(3),visuals[3],dialogue[3],ctx.benefit],
-   ['5',timing(4),visuals[4],dialogue[4],''],
-   ['6',timing(5),visuals[5],dialogue[5],'CTA']
-  ];
-  issues=critiqueScene(rows,ctx,scene);
-  if(!issues.length) break;
-  rows=rewriteScene(rows,ctx,scene,issues,i);
- }
- return {name:scene.title,type:'Creative Brain · generated from brief',device:scene.device,plot:scene.setup+' → '+scene.turn+' → '+ctx.desired,rows};
+ const usps=b.u||'';
+ const cta=b.cta||B.mandatories||'';
+ const duration=b.duration||state.basic.duration||20;
+ const raw=[b.tg,product,usps,B.why,B.truth,B.change,B.story,B.emotion,B.avoid,B.takeaway,B.mandatories,B.tone].filter(Boolean).join(' ').replace(/\\s+/g,' ').trim();
+ const target=b.tg||'the customer';
+ const features=usps.split(/[,;\\n]+/).map(x=>x.trim()).filter(Boolean);
+ const benefit=benefitPhrase(usps), extras=secondaryBenefits(usps);
+ const ctx={raw,low:raw.toLowerCase(),target,product,features,benefit,extras,cta,
+   situation:B.why||B.story||'an ordinary moment',friction:B.truth||B.why||'a small everyday friction',
+   desired:B.change||B.takeaway||benefit,tone:B.tone||B.emotion||'natural',
+   people:inferPeople(raw.toLowerCase(),target),places:inferPlaces(raw,B.story),
+   objects:inferObjects(raw),actions:inferActions(raw.toLowerCase()),
+   amounts:(raw.match(/(?:₹|rs\\.?|\\$|€|£)\\s?[\\d,.]+(?:\\s?\\w+)?/ig)||[]),
+   deadlines:(raw.match(/(?:today|tonight|tomorrow|this week|before|by|deadline|due|leaves|arrives)/ig)||[])};
+ const timing=(n)=>{const starts=[0,.15,.30,.45,.62,.82],ends=[.15,.30,.45,.62,.82,1];return Math.round(duration*starts[n])+'–'+Math.round(duration*ends[n])+'s';};
+ return Array.from({length:6},(_,i)=>generateCreativeRoute(ctx,i,timing));
 }
 
 function wireMakeScripts(){const b=$('makeScriptsBtn');if(b){b.disabled=false}}
