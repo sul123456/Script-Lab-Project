@@ -161,11 +161,11 @@ function audienceWorld(){
  const b=state.basic,B=state.brief;
  const raw=(b.tg+' '+b.p+' '+b.u+' '+B.why+' '+B.truth+' '+B.change+' '+B.message+' '+B.story+' '+B.tone).trim();
  const creativeLenses={systemMismatch:/qr|upi|payment|merchant|checkout|card|wallet|app|platform|accepts|accepted|scan|transfer|pay|payment method/i.test(raw), observationalHumour:/humou?r|funny|witty|absurd|awkward|ironic|everyday/i.test(raw)};
- // Optional lens only: it can influence route thinking when the current brief naturally supports it, but never overrides the established creative hierarchy.
- profile.creativeLenses=Object.keys(creativeLenses).filter(k=>creativeLenses[k]);
  const low=raw.toLowerCase();
  const age=(raw.match(/\\b(\\d{2})\\s*(?:year|yr)/i)||[])[1]||'';
  const profile={age,product:b.p,usp:b.u,tg:b.tg,truth:B.truth,change:B.change,message:B.message,story:B.story,tone:B.tone};
+ // Optional creative lenses only: they influence route thinking when the current brief naturally supports them.
+ profile.creativeLenses=Object.keys(creativeLenses).filter(k=>creativeLenses[k]);
  if(/alumni|college|iit|iim|top college|premier college/.test(low)&&/credit card|card/.test(low)){
   profile.kind='alumni_card';
   profile.person='A 45-year-old senior MNC professional from a top-college alumni network';
