@@ -67,6 +67,17 @@ noForcedDialogue:'If a product benefit does not naturally belong in conversation
 outputBar:'The target is not merely grammatical or specific dialogue. The target is dialogue that feels observed, contextual, characterful, conversational and filmable—at the level of a real scene rather than a product script.'
 };
 
+const SYSTEM_MISMATCH_CREATIVE_LEARNING={
+ everydayMismatch:'When the brief contains a real-world mismatch between what someone wants to do and what the surrounding payment or service system accepts, notice it as a possible source of creative tension.',
+ exactFriction:'Look for the precise point where a person, object, payment method, platform or expectation meets a system constraint. Specific mismatch is more useful than generic “friction”.',
+ absurdityFromTruth:'If the mismatch creates an everyday absurdity that people genuinely recognise, explore whether that observation can carry humour or intrigue. Do not manufacture absurdity.',
+ productAsBridge:'When the product genuinely resolves the mismatch, let the product mechanism become the natural bridge in the story rather than adding a feature lecture.',
+ physicalProof:'Where possible, make the mismatch and its resolution visible through the actual object, interface, gesture, failed action or successful action.',
+ reactionAsProof:'Consider letting another character experience or react to the resolved mismatch instead of having someone announce the benefit.',
+ repeatedBehaviour:'A real repeated behaviour can sometimes become a creative device through rhythm or escalation. Use repetition only when it belongs to the current situation.',
+ creativeChoice:'This is an optional creative lens, not a prescribed story structure. Use it only when it makes the current brief more specific, human or surprising.'
+};
+
 const Z=['Witty','Emotional','Premium','Cinematic','Bold','Humorous','Smart','Insight-led','Storytelling','Scroll-stopper','Surprise Me'];document.getElementById('zones').innerHTML=Z.map((z,i)=>'<button class="zone '+([0,1,7].includes(i)?'on':'')+'" onclick="this.classList.toggle(\'on\')">'+z+'</button>').join('');
 function setDuration(v,b){$('duration').value=v;b.parentElement.querySelectorAll('.chip').forEach(x=>x.classList.remove('on'));b.classList.add('on')}
 const $=id=>document.getElementById(id),esc=s=>String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');let state={basic:{},answers:{},brief:null};
@@ -149,6 +160,9 @@ function referenceDNA(){
 function audienceWorld(){
  const b=state.basic,B=state.brief;
  const raw=(b.tg+' '+b.p+' '+b.u+' '+B.why+' '+B.truth+' '+B.change+' '+B.message+' '+B.story+' '+B.tone).trim();
+ const creativeLenses={systemMismatch:/qr|upi|payment|merchant|checkout|card|wallet|app|platform|accepts|accepted|scan|transfer|pay|payment method/i.test(raw), observationalHumour:/humou?r|funny|witty|absurd|awkward|ironic|everyday/i.test(raw)};
+ // Optional lens only: it can influence route thinking when the current brief naturally supports it, but never overrides the established creative hierarchy.
+ profile.creativeLenses=Object.keys(creativeLenses).filter(k=>creativeLenses[k]);
  const low=raw.toLowerCase();
  const age=(raw.match(/\\b(\\d{2})\\s*(?:year|yr)/i)||[])[1]||'';
  const profile={age,product:b.p,usp:b.u,tg:b.tg,truth:B.truth,change:B.change,message:B.message,story:B.story,tone:B.tone};
