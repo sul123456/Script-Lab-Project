@@ -283,93 +283,104 @@ function makeRoutes(){
     ];
    }
   } else {
-   const featureLines=naturalFeatureLines(b1,p);
-   const routeDialogue={
-    'THE FIVE-STOP ITINERARY':['“Dad, why are there five stops for one trip?”','“Bank first. Then investments. Then the loan branch. I have timed every one.”','“You timed them?”','“If I did not, you would spend the whole week in traffic.”','“Or I could lose one of the stops.”',''],
-    'THE FRIEND WHO ALWAYS HAS ANOTHER TRICK':['“You have three days here and this list is still getting longer?”','“I know. The bank is stop number seven.”','“Seven? You came to see us, not collect errands.”','“Then show me how you would do this one.”','“Gladly.”',''],
-    'THE CALL FROM HOME':['“Mum, I have a meeting in ten minutes.”','“And I have to pay the school fee before the portal closes.”','“How much?”','“₹28,400. And no, you are not calling me back after the meeting.”','“Give me a minute.”',''],
-    'THE CALL BEFORE THE TRANSFER':['“The hostel wants the balance tonight.”','“How much?”','“₹18,500. Your brother leaves Friday, so I need it sorted.”','“Give me a second. I can do it from here.”','“Already?”',''],
-    'THE FAMILY GROUP HAS A DEADLINE':['“Who is paying the photographer tonight?”','“Not me. I am still choosing which pictures I like.”','“You have two hours.”','“Fine. I will send it.”','“Good. Now stop changing the weekend plan.”',''],
-    'THE THING HE PROMISED TO SEND':['“You did remember the money for the contractor?”','“The ₹32,000? Yes. I said I would send it today.”','“Today means before he leaves the site.”','“Then I better do it now.”','“There. Now I can stop reminding you.”',''],
-    'THE HABIT THAT GIVES IT AWAY':['“You are comparing those headphones again?”','“I want the better deal.”','“You have six tabs open for two headphones.”','“That is research.”','“Or use the ₹2,500 electronics voucher on the card.”',''],
-    'THE UNEXPECTED PERSON WHO NOTICES':['“Why are you checking the branch timings again?”','“Because I do not want to reach there and find it closed.”','“You are travelling forty minutes for one small task?”','“Apparently I was.”','“Not anymore.”',''],
-    'THE THING THEY ALWAYS DO':['“Here we go. You have started the weekend errand list.”','“Someone has to remember everything.”','“Or we could stop making the list longer.”','“How?”','“Like this.”','']
-   };
-   const lines=speakerize(x.name,routeDialogue[x.name]||['“How are you doing that?”','“I am just sorting it.”','“From here?”','“Yes. Watch.”','“That was simple.”','']);
-   const routeVisuals={
-    'THE FIVE-STOP ITINERARY':[
-     'Parents’ living room. Dad has spread a printed India-trip schedule across the coffee table. Five stops are marked in different colours: bank, investment office, loan branch, service desk and another branch.',
-     'Dad adds another time slot to the sheet while the NRI son, still holding his suitcase, looks from the schedule to the clock. The son circles the five locations on his phone map.',
-     'The son sits on the edge of the sofa and opens '+p+' on his phone. Dad leans over to see what he is doing.',
-     'On the phone, the son completes the relevant transaction and the confirmation appears. Show '+b1+' through the actual interface/action.',
-     'Dad looks at the untouched itinerary, folds the five-stop sheet in half and puts it aside. The son picks up his suitcase.',
-     'End frame: '+c+' and mandatory information.'
-    ],
-    'THE FRIEND WHO ALWAYS HAS ANOTHER TRICK':[
-     'Two old friends stand outside a kachori shop in Jaipur. The NRI has a few days in India and is checking a list of errands on his phone.',
-     'His friend points at the list and laughs when he sees another banking task. The NRI looks at the traffic outside and checks the time.',
-     'The friend takes out his own phone and shows how the NRI can use '+p+' without making another bank visit.',
-     'The NRI opens '+p+' on his phone and completes the transaction. Show '+b1+' through the actual action.',
-     'He puts his phone away and looks at the long errand list. One banking item is crossed out.',
-     'End frame: '+c+' and mandatory information.'
-    ],
-    'THE CALL FROM HOME':[
-     'An NRI man is at his desk abroad, laptop open and a meeting reminder counting down. His mother calls while he is between two meetings.',
-     'She reads out the exact India payment she needs him to handle. He glances at the meeting reminder, then reaches for his phone.',
-     'He opens '+p+' without leaving his desk while his mother stays on the call.',
-     'He completes the payment on screen. Show '+b1+' through the actual action and confirmation.',
-     'The confirmation reaches his mother. He closes the call just as his meeting notification appears.',
-     'End frame: '+c+' and mandatory information.'
-    ],
-    'THE CALL BEFORE THE TRANSFER':[
-     'Late evening in Toronto. An NRI daughter is on a video call with her father in Pune. Her younger brother is packing a college-trip bag behind him.',
-     'Her father holds up a handwritten list with one amount circled and explains that the payment is due that night.',
-     'She opens '+p+' on her phone while staying on the video call.',
-     'She completes the transfer and the confirmation appears. Show '+b1+' through the actual action.',
-     'Her father crosses the amount off the list and immediately turns to the brother’s half-packed bag.',
-     'End frame: '+c+' and mandatory information.'
-    ],
-    'THE FAMILY GROUP HAS A DEADLINE':[
-     'An India family WhatsApp group is active during an ordinary evening. Messages about the weekend plan are flying in when one member posts the exact amount that needs to be paid tonight.',
-     'The NRI reads the message while sitting at home abroad. Another family member immediately asks who will take care of it.',
-     'The NRI opens '+p+' on the phone without leaving the group conversation.',
-     'The transfer is completed on screen. Show '+b1+' through the actual action and confirmation.',
-     'The family group moves straight back to discussing the weekend plan after the payment confirmation appears.',
-     'End frame: '+c+' and mandatory information.'
-    ],
-    'THE THING HE PROMISED TO SEND':[
-     'An NRI man is on a family video call from his kitchen while his mother is preparing dinner in India. She reminds him about the payment he promised to take care of.',
-     'She reads out the exact amount. He puts down the coffee mug he is holding and reaches for his phone.',
-     'He opens '+p+' while continuing the conversation.',
-     'He completes the transfer and the confirmation appears. Show '+b1+' through the actual action.',
-     'His mother checks her phone, smiles and goes straight back to what she was doing.',
-     'End frame: '+c+' and mandatory information.'
-    ],
-    'THE HABIT THAT GIVES IT AWAY':[
-     'Saturday afternoon in an electronics store. The protagonist, a 35-year-old corporate professional, is holding two pairs of headphones while his friend watches him compare the same two models on his phone for the third time.',
-     'He opens another comparison tab, checks the price, then puts the headphones back. His friend looks at the growing list of tabs.',
-     'The friend notices the credit-card offer on his phone, including activation vouchers worth Rs 2,500 at an electronics store.',
-     'The NRI opens the offer and activates the card. The voucher benefit appears on screen beside the headphones he has been comparing.',
-     'He closes the comparison tabs and finally picks up the headphones. His friend looks at him, surprised that the hunt is over.',
-     'End frame: '+c+' and mandatory information.'
-    ]
-   };
-   const visuals=routeVisuals[x.name]||[
-    x.place+'. Show the specific people, physical surroundings and the exact activity that is already happening when the problem arises.',
-    x.turn+'. Show the behaviour changing on screen rather than describing the escalation.',
-    'The protagonist brings '+p+' into the scene through an actual action while the conversation or activity continues.',
-    'Show the protagonist completing the relevant action with '+p+' and demonstrate '+b1+' through the interface or physical result.',
-    x.payoff+'. Show the visible consequence and the character reaction.',
-    'End frame: '+c+' and mandatory information.'
+   const situation=B.why||B.truth||B.story||'an ordinary moment in the customer’s life';
+   const problem=B.truth||'a small but recognisable friction';
+   const change=B.change||B.message||u;
+   const story=B.story||'everyday life';
+   const audience=b.tg||'the target customer';
+   const product=p||'the product';
+   const feature=benefit;
+   const raw=(audience+' '+situation+' '+problem+' '+change+' '+story+' '+u).toLowerCase();
+   const paymentLike=/payment|transfer|send money|pay|fee|bill|purchase|card|upi|account|bank|money/.test(raw);
+   const contextHints=story!=='Everyday life'?story:'the customer’s everyday routine';
+   const people=[
+    {a:'FRIEND',b:'CUSTOMER'},
+    {a:'PARTNER',b:'CUSTOMER'},
+    {a:'COLLEAGUE',b:'CUSTOMER'},
+    {a:'PARENT',b:'CUSTOMER'},
+    {a:'SIBLING',b:'CUSTOMER'},
+    {a:'CUSTOMER',b:'SELF'}
    ];
+   const devices=[
+    {name:'THE MOMENT SOMEONE NOTICES',kind:'observation'},
+    {name:'THE ROUTINE THAT GOES TOO FAR',kind:'escalation'},
+    {name:'THE CONVERSATION THAT CHANGES COURSE',kind:'relationship'},
+    {name:'THE SMALL PROBLEM IN THE MIDDLE OF LIFE',kind:'interruption'},
+    {name:'THE THING THEY HAVE ALWAYS DONE',kind:'habit'},
+    {name:'THE UNEXPECTEDLY EASY MOMENT',kind:'contrast'}
+   ];
+   const concreteSubject=(B.message||u||problem).trim();
+   const specificSituation=situation.trim();
+   const specificProblem=problem.trim();
+   const makeDialogue=(i)=>{
+     const q=people[i];
+     const openings=[
+      q.a+': “You are still dealing with '+specificProblem.toLowerCase()+'?”',
+      q.a+': “Is this really how you usually handle '+concreteSubject.toLowerCase()+'?”',
+      q.a+': “Wait. You are actually going to do it that way?”',
+      q.a+': “What is taking so long?”',
+      q.a+': “You have been doing this every time?”',
+      q.a+': “So this is the part you normally have to sort out?”'
+     ];
+     const responses=[
+      q.b+': “It is what I have always done.”',
+      q.b+': “I thought that was the only way.”',
+      q.b+': “I just wanted to get it right.”',
+      q.b+': “I was trying to sort it before I forgot.”',
+      q.b+': “Apparently, yes.”',
+      q.b+': “I did not realise there was another way.”'
+     ];
+     const turns=[
+      q.a+': “Then why are you making it harder than it needs to be?”',
+      q.a+': “But you can do that differently now.”',
+      q.a+': “You know you do not have to do all that anymore?”',
+      q.a+': “Hang on. Have you tried '+product+'?”',
+      q.a+': “There has to be an easier way.”',
+      q.a+': “Show me what happens if you try it this way.”'
+     ];
+     const answers=[
+      q.b+': “Let me see.”',
+      q.b+': “Wait… I can do that?”',
+      q.b+': “Okay. That changes things.”',
+      q.b+': “I did not know I could do it from here.”',
+      q.b+': “Fine. Show me.”',
+      q.b+': “That would save me the whole detour.”'
+     ];
+     const payoffs=[
+      q.a+': “Well, that saved you some time.”',
+      q.a+': “And you were about to do all that?”',
+      q.a+': “So we can get on with the rest of the day.”',
+      q.a+': “There. Problem solved.”',
+      q.a+': “I am never letting you make that list again.”',
+      q.a+': “Okay. I did not expect that.”'
+     ];
+     return [openings[i],responses[i],turns[i],answers[i],payoffs[i],''];
+   };
+   const makeVisuals=(i)=>{
+     const q=people[i];
+     const contexts=[
+      specificSituation+'. Establish '+audience+' in a concrete, filmable place with '+q.a.toLowerCase()+' present. Show the exact behaviour before '+product+' appears.',
+      'Continue the same real-world moment. Show the specific action, object or task creating the friction; let the behaviour reveal the problem rather than explaining it.',
+      q.a+' notices the problem and the conversation changes direction. '+product+' enters through an actual object, screen, action or choice while the relationship continues.',
+      q.b+' uses '+product+' to handle the specific task. Show the relevant interface/action and make '+feature+' visible through what happens, not through explanatory narration.',
+      'The task is resolved and the characters immediately return to what they were doing. Capture a small human reaction that fits their relationship.',
+      'End frame: '+c+' and mandatory information.'
+     ];
+     return contexts;
+   };
+   const xname=devices[i].name;
+   const dialogues=makeDialogue(i);
+   const visuals=makeVisuals(i);
    rows=[
-    ['1',timing(0),visuals[0],lines[0],''],
-    ['2',timing(1),visuals[1],lines[1],''],
-    ['3',timing(2),visuals[2],lines[2],p],
-    ['4',timing(3),visuals[3],lines[3],b1],
-    ['5',timing(4),visuals[4],lines[4],''],
-    ['6',timing(5),visuals[5],lines[5],'CTA']
+    ['1',timing(0),visuals[0],dialogues[0],''],
+    ['2',timing(1),visuals[1],dialogues[1],''],
+    ['3',timing(2),visuals[2],dialogues[2],product],
+    ['4',timing(3),visuals[3],dialogues[3],feature],
+    ['5',timing(4),visuals[4],dialogues[4],''],
+    ['6',timing(5),visuals[5],dialogues[5],'CTA']
    ];
+   x={...x,name:xname,place:specificSituation,hook:specificSituation,turn:specificProblem,device:devices[i].kind,payoff:change};
+  }
   }
   return {name:x.name,type:'Original situation-led route',device:x.device||'Character + situation + creative turn',plot:x.hook+' → '+x.turn+' → '+x.payoff,rows};
  });
