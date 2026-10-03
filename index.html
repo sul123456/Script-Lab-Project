@@ -186,7 +186,7 @@ function audienceWorld(){
  const raw=(b.tg+' '+b.p+' '+b.u+' '+B.why+' '+B.truth+' '+B.change+' '+B.message+' '+B.story+' '+B.tone).trim();
  const creativeLenses={systemMismatch:/qr|upi|payment|merchant|checkout|card|wallet|app|platform|accepts|accepted|scan|transfer|pay|payment method/i.test(raw), observationalHumour:/humou?r|funny|witty|absurd|awkward|ironic|everyday/i.test(raw)};
  const low=raw.toLowerCase();
- const age=(raw.match(/\\b(\\d{2})\\s*(?:year|yr)/i)||[])[1]||'';
+ const age=(raw.match(/\b(\d{2})\s*(?:year|yr)/i)||[])[1]||'';
  const profile={age,product:b.p,usp:b.u,tg:b.tg,truth:B.truth,change:B.change,message:B.message,story:B.story,tone:B.tone};
  // Optional creative lenses only: they influence route thinking when the current brief naturally supports them.
  profile.creativeLenses=Object.keys(creativeLenses).filter(k=>creativeLenses[k]);
@@ -356,7 +356,7 @@ function m2Scene(ctx,i){
 function m2Validate(rows,ctx){
  const text=rows.flat().join(' ');
  const issues=[];
- if(/recognisable everyday setting|social\\/work setting|a specific routine|the protagonist reacts|creates the tension|human truth|creative turn|product as answer|human payoff|strategy|creative opportunity/i.test(text)) issues.push('commentary');
+ if(/recognisable everyday setting|social\/work setting|a specific routine|the protagonist reacts|creates the tension|human truth|creative turn|product as answer|human payoff|strategy|creative opportunity/i.test(text)) issues.push('commentary');
  if(/\bNRI\b/i.test(text)&&!\bnri\b/i.test(ctx.raw)) issues.push('wrong-context');
  if(!rows[2][4]&&!rows[2][3]) issues.push('late-product');
  if(rows.some(r=>/undefined|null/.test(r.join(' ')))) issues.push('broken');
@@ -386,9 +386,9 @@ function makeRoutes(){
  const usps=b.u||'';
  const cta=b.cta||B.mandatories||'';
  const duration=b.duration||state.basic.duration||20;
- const raw=[b.tg,product,usps,B.why,B.truth,B.change,B.story,B.emotion,B.avoid,B.takeaway,B.mandatories,B.tone].filter(Boolean).join(' ').replace(/\\s+/g,' ').trim();
+ const raw=[b.tg,product,usps,B.why,B.truth,B.change,B.story,B.emotion,B.avoid,B.takeaway,B.mandatories,B.tone].filter(Boolean).join(' ') .replace(/\s+/g,' ').trim();
  const target=b.tg||'the customer';
- const features=usps.split(/[,;\\n]+/).map(x=>x.trim()).filter(Boolean);
+ const features=usps .split(/[,;\n]+/).map(x=>x.trim()).filter(Boolean);
  const benefit=benefitPhrase(usps), extras=secondaryBenefits(usps);
  const ctx={raw,low:raw.toLowerCase(),target,product,features,benefit,extras,cta,
    situation:B.why||B.story||'an ordinary moment',friction:B.truth||B.why||'a small everyday friction',
@@ -554,7 +554,7 @@ function mood(s){
  s.selectedIndex=0;
 }
 function cleanNote(v){const s=String(v||'');if(/^(CHARACTER SETUP|HUMAN TRUTH|REVEAL|BENEFIT|BENEFIT AS CHARACTER PAYOFF|BENEFIT ·|PRODUCT PROOF|PAYOFF|PAYOFF ·|HUMAN SETUP|CURIOSITY|RELATIONSHIP SETUP|CHARACTER DEFINITION|CHARACTER BEHAVIOUR|BRIDGE|PROOF|EMOTIONAL SETUP|SETUP|END FRAME)/.test(s))return '';return s;}
-function render(r){return '<article class="card"><div class="head"><div><div class="route">'+esc(r.name)+'</div><div class="meta">'+esc(r.type)+' · '+state.basic.duration+'s · plot-led</div></div><div class="actions"><button onclick="copyScript(this)">Copy Script</button><button onclick="toggleRefine(this)">Refine Script</button><button onclick="makeScripts()">Another Story</button><select onchange="mood(this)"><option>Change Mood</option><option>Witty</option><option>Emotional</option><option>Premium</option><option>Cinematic</option><option>Bold</option><option>Humorous</option><option>Smart</option><option>Storytelling</option><option>Surprise Me</option></select></div></div><div class="plot"><div class="k">THE PLOT</div><div class="v">'+esc(r.plot)+'</div><div class="hint" style="margin-top:6px">Creative device: '+esc(r.device)+'</div></div><div class="table"><div class="row"><div class="cell th">Shot</div><div class="cell th">Timing</div><div class="cell th">Visual</div><div class="cell th">Dialogue</div><div class="cell th">Super / note</div></div>'+r.rows.map(a=>'<div class="row">'+a.map((v,j)=>'<div class="cell">'+esc(j===4?cleanNote(v):v).replace(/\\n/g,'<br>')+'</div>').join('')+'</div>').join('')+'</div><div class="refine"><textarea placeholder="Tell Creative Brain what you want changed… e.g. “Make the father’s dialogue warmer and more teasing, without changing the story.”"></textarea><button class="mini" onclick="applyRefine(this)">Refine This Script</button></div><div class="cta">END FRAME · '+esc(state.basic.cta)+'</div></article>'}
+function render(r){return '<article class="card"><div class="head"><div><div class="route">'+esc(r.name)+'</div><div class="meta">'+esc(r.type)+' · '+state.basic.duration+'s · plot-led</div></div><div class="actions"><button onclick="copyScript(this)">Copy Script</button><button onclick="toggleRefine(this)">Refine Script</button><button onclick="makeScripts()">Another Story</button><select onchange="mood(this)"><option>Change Mood</option><option>Witty</option><option>Emotional</option><option>Premium</option><option>Cinematic</option><option>Bold</option><option>Humorous</option><option>Smart</option><option>Storytelling</option><option>Surprise Me</option></select></div></div><div class="plot"><div class="k">THE PLOT</div><div class="v">'+esc(r.plot)+'</div><div class="hint" style="margin-top:6px">Creative device: '+esc(r.device)+'</div></div><div class="table"><div class="row"><div class="cell th">Shot</div><div class="cell th">Timing</div><div class="cell th">Visual</div><div class="cell th">Dialogue</div><div class="cell th">Super / note</div></div>'+r.rows.map(a=>'<div class="row">'+a.map((v,j)=>'<div class="cell">'+esc(j===4?cleanNote(v):v) .replace(/\n/g,'<br>')+'</div>').join('')+'</div>').join('')+'</div><div class="refine"><textarea placeholder="Tell Creative Brain what you want changed… e.g. “Make the father’s dialogue warmer and more teasing, without changing the story.”"></textarea><button class="mini" onclick="applyRefine(this)">Refine This Script</button></div><div class="cta">END FRAME · '+esc(state.basic.cta)+'</div></article>'}
 function scriptText(article){const rows=[...article.querySelectorAll('.table .row')].slice(1);return article.querySelector('.route').innerText+'\n\nPLOT: '+article.querySelector('.plot .v').innerText+'\n\n'+rows.map(r=>{const x=r.querySelectorAll('.cell');return x[0].innerText+' | '+x[1].innerText+' | VISUAL: '+x[2].innerText+' | DIALOGUE: '+x[3].innerText+' | NOTE: '+x[4].innerText}).join('\n')+'\n\n'+article.querySelector('.cta').innerText}
 function copyScript(btn){const a=btn.closest('article');navigator.clipboard?.writeText(scriptText(a));btn.textContent='Copied';setTimeout(()=>btn.textContent='Copy Script',1000)}
 function toggleRefine(btn){const x=btn.closest('article').querySelector('.refine');x.style.display=x.style.display==='block'?'none':'block'}
