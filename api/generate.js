@@ -24,6 +24,17 @@ QUALITY BENCHMARK:
 The finished output must feel production-ready, like a real agency film script. Visuals must describe things a director can actually film. Dialogue must sound spoken, specific and contextual. Every beat must earn its time. Product should become relevant early when appropriate, without awkwardly forcing the product into the opening. Supers should carry factual/product communication cleanly. Dialogue and visual should add to each other rather than repeat each other. The ending should resolve the human moment and then CTA.
 
 CREATIVE LEARNINGS:
+APPROVED-SCRIPT LEARNING — ADDITIVE ONLY:
+- Some approved ads use extremely simple product-led dialogue: the product itself can behave like a character or conversational partner when that device is genuinely suited to the brief.
+- Repetition can be the creative device: a short, unexpected response can establish a playful rule, then successive questions can reveal additional benefits without lengthy exposition.
+- Benefit revelation can be staged one benefit at a time, with the human reaction carrying the entertainment.
+- A strong script can use very minimal visual action when the dialogue/device itself is the idea; do not add unnecessary scenes merely to make it look cinematic.
+- Specific eligibility, spend thresholds, fee conditions, offer mechanics and disclaimers must remain exactly tied to the approved brief/script source. Treat them as factual source material, not as creative assumptions.
+- Supers can carry precise qualification/benefit information while dialogue stays natural and short.
+- A recurring response or visual behaviour is useful only when it is motivated by the idea; never turn it into a universal formula.
+- Learn the underlying creative principle from approved work, never copy its card-as-character device, question sequence, wording, timing or structure into unrelated briefs.
+
+
 - Situation before explanation.
 - Specificity means circumstances, behaviour, objects, stakes and relationships — not adjectives.
 - Write the scene, never describe the strategy behind the scene.
