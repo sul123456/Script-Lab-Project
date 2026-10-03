@@ -217,6 +217,145 @@ function audienceWorld(){
  }
  return profile;
 }
+/* M2 CREATIVE EXECUTION ENGINE
+   Benchmark: finished-film quality, not reference-story imitation.
+   The benchmark teaches: visual specificity, early relevance, economical dialogue,
+   purposeful timing, clean product communication, and a resolved human payoff.
+*/
+const CREATIVE_EXECUTION_BENCHMARK={
+ visualFirst:true,
+ finishedFilm:true,
+ exactCircumstance:true,
+ conciseDialogue:true,
+ purposefulBeat:true,
+ earlyProductRelevance:true,
+ featurePlacement:'choose dialogue, visual, super, VO or payoff by fit',
+ factualSupers:true,
+ cleanPayoff:true,
+ noStrategyCommentary:true,
+ noGenericPlaceholders:true,
+ noForcedUSPDialogue:true,
+ noFixedStoryTemplate:true
+};
+
+function m2Pick(a,i,fallback){
+ const arr=(a||[]).filter(Boolean);
+ return arr.length?arr[i%arr.length]:fallback;
+}
+function m2Clean(s){
+ return String(s||'').replace(/\\s+/g,' ').replace(/\\.{2,}/g,'.').trim();
+}
+function m2Feature(ctx,i){
+ const fs=(ctx.features||[]).filter(Boolean);
+ return fs.length?m2Clean(fs[i%fs.length]):m2Clean(ctx.benefit||'the key benefit');
+}
+function m2HumanDetail(ctx,i){
+ const source=[...(ctx.objects||[]),...(ctx.actions||[]),...(ctx.amounts||[]),...(ctx.deadlines||[])].filter(Boolean);
+ return m2Pick(source,i,'the task in front of them');
+}
+function m2Relationship(ctx,i){
+ const pair=m2Pick(ctx.people,i,['FRIEND',ctx.target]);
+ return Array.isArray(pair)?pair:[pair,ctx.target];
+}
+function m2Setting(ctx,i){
+ return m2Pick(ctx.places,i,ctx.situation||'the moment the customer is dealing with the task');
+}
+function m2Dialogue(ctx,scene,i){
+ const [A,P]=scene.rel;
+ const p=ctx.product;
+ const feature=scene.feature;
+ const detail=scene.detail;
+ const sets=[
+  [
+   A+': “You are still doing '+detail+' that way?”',
+   P+': “It was the only way I knew.”',
+   A+': “Then look at '+p+'. It does '+feature+'.”',
+   P+': “Wait — so I can do that here?”',
+   A+': “Yes. Without turning it into a whole project.”',''
+  ],
+  [
+   A+': “How long is this going to take?”',
+   P+': “Longer than I want to admit.”',
+   A+': “Try '+p+'. It has '+feature+'.”',
+   P+': “That is… much simpler.”',
+   A+': “Exactly. Now we can get on with the actual plan.”',''
+  ],
+  [
+   A+': “What are you checking?”',
+   P+': “Just making sure I do not miss anything.”',
+   A+': “You do not have to. '+p+' gives you '+feature+'.”',
+   P+': “So that part is already taken care of?”',
+   A+': “That part is.”',''
+  ]
+ ];
+ return sets[i%sets.length];
+}
+function m2Visuals(ctx,scene,i){
+ const p=ctx.product;
+ return [
+  scene.setting+'. '+scene.protagonist+' is already in the middle of '+scene.action+'. Show the exact object/screen/action that makes the moment instantly recognisable.',
+  'Stay close to the same physical moment. '+scene.rel[0]+' notices the specific detail; do not explain the strategy or the insight.',
+  p+' enters naturally through '+(i%2?'the phone/screen':'the object already in use')+'. Show the relevant interaction rather than describing the product.',
+  'Show the feature in action: '+scene.feature+'. The audience should understand the utility from what happens, with a factual super only where needed.',
+  'The original task continues, but the friction has disappeared. Capture a small, believable human reaction between the characters.',
+  'Clean end frame: '+ctx.product+(ctx.cta?' · '+ctx.cta:'')+'. Keep mandatory information factual and uncluttered.'
+ ];
+}
+function m2Scene(ctx,i){
+ const rel=m2Relationship(ctx,i);
+ const setting=m2Setting(ctx,i);
+ const detail=m2HumanDetail(ctx,i);
+ const feature=m2Feature(ctx,i);
+ const protagonist=ctx.target||rel[1];
+ const devices=[
+  ['THE QUESTION THAT CHANGES THE MOMENT','A familiar behaviour is noticed by someone who knows the protagonist.','observation'],
+  ['THE SHORTER WAY','A small everyday task has become unnecessarily elaborate.','contrast'],
+  ['THE INTERRUPTION','A normal task is interrupted by a practical question.','interruption'],
+  ['THE DETAIL ON SCREEN','One visible detail reveals what the protagonist is trying to solve.','visual reveal'],
+  ['THE THING THEY KEEP DOING','A repeated behaviour becomes the setup for the product.','repetition'],
+  ['THE UNEXPECTEDLY EASY ANSWER','The protagonist is prepared for effort; the solution changes the expectation.','reversal']
+ ];
+ const d=devices[i%devices.length];
+ return {
+   name:d[0],
+   device:d[2],
+   setup:d[1],
+   rel,
+   setting,
+   detail,
+   feature,
+   protagonist,
+   action:m2Pick(ctx.actions,i,'handling the task'),
+   plot:m2Clean(d[1]+' '+setting+' → '+ctx.product+' becomes relevant through the human moment → '+(ctx.desired||feature))
+ };
+}
+function m2Validate(rows,ctx){
+ const text=rows.flat().join(' ');
+ const issues=[];
+ if(/recognisable everyday setting|social\\/work setting|a specific routine|the protagonist reacts|creates the tension|human truth|creative turn|product as answer|human payoff|strategy|creative opportunity/i.test(text)) issues.push('commentary');
+ if(/\\bNRI\\b/i.test(text)&&!/\\bnri\\b/i.test(ctx.raw)) issues.push('wrong-context');
+ if(!rows[2][4]&&!rows[2][3]) issues.push('late-product');
+ if(rows.some(r=>/undefined|null/.test(r.join(' ')))) issues.push('broken');
+ if(rows.filter(r=>r[3]).length<4) issues.push('thin-dialogue');
+ return issues;
+}
+function generateCreativeRoute(ctx,i,timing){
+ const scene=m2Scene(ctx,i);
+ let rows=[
+  ['1',timing(0),m2Visuals(ctx,scene,i)[0],m2Dialogue(ctx,scene,i)[0],''],
+  ['2',timing(1),m2Visuals(ctx,scene,i)[1],m2Dialogue(ctx,scene,i)[1],''],
+  ['3',timing(2),m2Visuals(ctx,scene,i)[2],m2Dialogue(ctx,scene,i)[2],ctx.product],
+  ['4',timing(3),m2Visuals(ctx,scene,i)[3],m2Dialogue(ctx,scene,i)[3],scene.feature],
+  ['5',timing(4),m2Visuals(ctx,scene,i)[4],m2Dialogue(ctx,scene,i)[4],''],
+  ['6',timing(5),m2Visuals(ctx,scene,i)[5],m2Dialogue(ctx,scene,i)[5],'']
+ ];
+ const issues=m2Validate(rows,ctx);
+ if(issues.includes('commentary')){
+   rows=rows.map(r=>r.map(v=>m2Clean(v).replace(/context first|human truth|creative turn|product as answer|human payoff|strategy/ig,'')));
+ }
+ return {name:scene.name,type:'Creative Brain · original route',device:scene.device,plot:scene.plot,rows};
+}
+
 function makeRoutes(){
  const b=state.basic, B=state.brief;
  const product=b.p||'the product';
