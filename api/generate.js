@@ -51,8 +51,7 @@ OUTPUT:
 Return valid JSON only, matching the requested schema. No markdown, no commentary.`},
           {role:'user',content:prompt}
         ],
-        temperature:0.9,
-        max_tokens:12000,
+        max_completion_tokens:12000,
         response_format:{
           type:'json_schema',
           json_schema:{
