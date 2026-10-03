@@ -12,8 +12,32 @@
 <div class="field"><div class="label">CTA</div><input id="cta" placeholder="e.g. Explore now"></div>
 <div class="field"><div class="label">Film Duration</div><div class="chips" id="durations"><button type="button" class="chip on" onclick="setDuration(20,this)">20 sec</button><button type="button" class="chip" onclick="setDuration(30,this)">30 sec</button><button type="button" class="chip" onclick="setDuration(40,this)">40 sec</button><button type="button" class="chip" onclick="setDuration(60,this)">60 sec</button></div><input id="duration" type="hidden" value="20"></div></div>
 <div class="card"><div class="label">Creative Zones</div><div class="zones" id="zones"></div><div class="hint">Creative lenses — the story still comes first.</div></div>
-<button class="generate" onclick="startLab()">Start Creative Brain →</button>
+<button type="button" id="startCreativeBrainBtn" class="generate">Start Creative Brain →</button>
 </section><section id="workspace"><div class="card" style="text-align:center;padding:55px"><div style="font-size:30px">🧠</div><b>Your Creative Brain is waiting.</b><div class="hint">Enter the basics and I’ll ask only the questions that matter.</div></div></section></div></div>
+<script>
+/* Fail-safe Start Creative Brain wiring */
+(function(){
+  function bootStartCreativeBrain(){
+    const b=document.getElementById('startCreativeBrainBtn');
+    if(!b || b.dataset.wired==='1') return;
+    b.dataset.wired='1';
+    b.addEventListener('click',function(ev){
+      ev.preventDefault();
+      try{
+        if(typeof window.startLab!=='function') throw new Error('Start Creative Brain is not ready yet.');
+        window.startLab();
+      }catch(err){
+        console.error('Start Creative Brain error:',err);
+        const w=document.getElementById('workspace');
+        if(w) w.innerHTML='<div class="card"><div class="title">Creative Brain could not start</div><div class="hint">'+(window.esc?esc(err.message||String(err)):String(err.message||err))+'</div><button type="button" class="primary" style="margin-top:14px" onclick="location.reload()">Reload Creative Brain</button></div>';
+      }
+    });
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',bootStartCreativeBrain);
+  else bootStartCreativeBrain();
+  setTimeout(bootStartCreativeBrain,300);
+})();
+</script>
 <script>
 /* Fail-safe Creative Zones renderer: kept independent so the zones remain visible even if a later creative-brain script changes. */
 (function(){
