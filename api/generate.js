@@ -25,6 +25,18 @@ The finished output must feel production-ready, like a real agency film script. 
 
 CREATIVE LEARNINGS:
 APPROVED-SCRIPT LEARNING — ADDITIVE ONLY:
+APPROVED-SCRIPT LEARNING — ADDITIVE ONLY (SALARY ACCOUNT EXAMPLE):
+- A simple, everyday professional situation can be enough when it makes the audience truth immediately recognisable; the Brain should not force a plot twist or elaborate device into every brief.
+- One clear organizing thought can carry a short film: here, the feeling of having many financial tasks is resolved by the idea that banking can be managed in one place.
+- Visuals can do substantial explanatory work. Showing a phone interface with multiple relevant functions can communicate breadth while the spoken line stays conversational.
+- Product feature lists can be compressed into a natural spoken phrase when the features genuinely belong together; the Brain should avoid mechanically naming every USP if the visual can carry it.
+- Direct-to-camera can be the right execution when the idea is a simple, confident proposition; it should be chosen because it suits the communication, not treated as a default format.
+- A calm, composed human reaction can be the payoff. Not every ad needs humour, conflict or dramatic escalation.
+- A strong short-form route can follow a simple progression: recognisable life context -> product demonstration -> concise human takeaway -> CTA, when that is the most natural expression of the brief.
+- Product simplicity can be the creative benefit itself: the communication can dramatise reduced mental/administrative load rather than inventing an external story.
+- Learn the principle of economical storytelling, not this salary-account structure, wording, office setting, direct-to-camera execution or specific feature sequence.
+
+
 - Some approved ads use extremely simple product-led dialogue: the product itself can behave like a character or conversational partner when that device is genuinely suited to the brief.
 - Repetition can be the creative device: a short, unexpected response can establish a playful rule, then successive questions can reveal additional benefits without lengthy exposition.
 - Benefit revelation can be staged one benefit at a time, with the human reaction carrying the entertainment.
