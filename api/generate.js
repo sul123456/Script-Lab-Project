@@ -26,6 +26,17 @@ The finished output must feel production-ready, like a real agency film script. 
 CREATIVE LEARNINGS:
 APPROVED-SCRIPT LEARNING — ADDITIVE ONLY:
 APPROVED-SCRIPT LEARNING — ADDITIVE ONLY (SALARY ACCOUNT EXAMPLE):
+APPROVED-SCRIPT LEARNING — ADDITIVE ONLY (LOCK/LOCKESH EXAMPLE):
+- A product benefit can be made memorable by finding a pre-existing human trait or behaviour in the character and carrying that trait through time.
+- A repeated behaviour can become a narrative motif: childhood -> teenage years -> adulthood -> present day, so the final product reveal feels like the natural culmination of who the person already is.
+- A montage can compress a long character history quickly when the repeated behaviour itself is the story; it does not need a separate plot at every age.
+- The transition from human truth to product truth can be a playful semantic or behavioural connection, but the connection should be understandable and earned.
+- The product can resolve or amplify an established character trait rather than being introduced as an unrelated sales message.
+- A short film can use a character nickname/name or recurring verbal motif as a memory device when it strengthens the central idea.
+- This is a useful example of longitudinal characterisation: build one recognisable trait, then reveal the product through that trait.
+- Learn the underlying principle of turning a human behaviour into a product-relevant narrative motif, not the locking theme, montage sequence, character name, wording, or SmartLock execution.
+
+
 - A simple, everyday professional situation can be enough when it makes the audience truth immediately recognisable; the Brain should not force a plot twist or elaborate device into every brief.
 - One clear organizing thought can carry a short film: here, the feeling of having many financial tasks is resolved by the idea that banking can be managed in one place.
 - Visuals can do substantial explanatory work. Showing a phone interface with multiple relevant functions can communicate breadth while the spoken line stays conversational.
