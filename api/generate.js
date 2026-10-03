@@ -1,18 +1,18 @@
 export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({error:'Method not allowed'});
   try {
-    const key = process.env.AI_GATEWAY_API_KEY;
-    if (!key) return res.status(500).json({error:'Creative Brain AI is not configured yet. Add AI_GATEWAY_API_KEY in Vercel.'});
+    const key = process.env.OPENAI_API_KEY;
+    if (!key) return res.status(500).json({error:'Creative Brain AI is not configured yet. Add OPENAI_API_KEY in Vercel Environment Variables.'});
 
     const body = req.body || {};
     const prompt = body.prompt;
     if (!prompt) return res.status(400).json({error:'Missing creative brief'});
 
-    const response = await fetch('https://ai-gateway.vercel.sh/v1/chat/completions', {
+    const response = await fetch('https://api.openai.com/v1/chat/completions', {
       method:'POST',
       headers:{'Authorization':`Bearer ${key}`,'Content-Type':'application/json'},
       body:JSON.stringify({
-        model:'openai/gpt-5.6-sol',
+        model:'gpt-5.6-sol',
         reasoning_effort:'high',
         messages:[
           {role:'system',content:`You are Script Lab Creative Brain, a senior advertising creative director and scriptwriter.
