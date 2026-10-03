@@ -378,21 +378,56 @@ function makeRoutes(){
 }
 
 function wireMakeScripts(){const b=$('makeScriptsBtn');if(b){b.disabled=false}}
-function makeScripts(){
+async function makeScripts(){
+ const btn=$('makeScriptsBtn');
  try{
   if(!state.basic||!state.brief) throw new Error('Brief data is missing. Please go back and rebuild the brief.');
-  const routes=makeRoutes();
-  if(!Array.isArray(routes)||!routes.length) throw new Error('No creative routes were generated.');
+  if(btn){btn.disabled=true;btn.textContent='Creative Brain is thinking…';}
+  $('workspace').innerHTML='<div class="card"><div class="title">Creative Brain is thinking…</div><div class="sub">Finding the human idea, building the film, then critiquing and rewriting it.</div></div>';
+  const payload={
+   basic:state.basic,
+   brief:state.brief,
+   answers:state.answers||{},
+   zones:state.basic.zones||[],
+   learning:{
+    milestone1:'Situation-first, specific human behaviour, contextual characters, creative device, escalation/reveal, natural product integration, benefit, human payoff.',
+    conversation:'Two-way, specific, contextual dialogue with relationship energy, triggered responses, speaker clarity and no forced product pitch.',
+    product:'Features enter through the mechanism most natural to the idea — dialogue, behaviour, visual, super, VO or payoff. Product should become relevant within the first 33% where appropriate.',
+    benchmark:'Finished-film agency standard: filmable visuals, deliberate timing, clean supers, economical but expressive dialogue, every beat earns its time, resolved human payoff and CTA.',
+    references:'Use reference scripts only for transferable creative principles. Never copy their plots, characters, lines, structures or phrase banks.'
+   }
+  };
+  const res=await fetch('/api/generate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
+    prompt:'Create 5 original advertising film routes from this brief. Think deeply before writing. Do not reveal your internal reasoning. Return only the requested JSON schema.\\n\\n'+JSON.stringify(payload)
+  })});
+  const data=await res.json();
+  if(!res.ok) throw new Error(data.error||'Creative Brain AI generation failed');
+  if(!Array.isArray(data.routes)||data.routes.length<5) throw new Error('Creative Brain returned fewer than 5 complete routes.');
+  const routes=data.routes.map((r,i)=>({
+   name:r.name||('CREATIVE ROUTE '+(i+1)),
+   type:r.type||'Creative Brain · AI generated',
+   device:r.device||'Original creative device',
+   plot:r.plot||'',
+   rows:Array.isArray(r.rows)?r.rows.slice(0,6).map((row,j)=>[
+     String(j+1),
+     row[1]||timing(j,state.basic.duration),
+     row[2]||'',
+     row[3]||'',
+     row[4]||''
+   ]):[]
+  })).filter(r=>r.rows.length===6);
+  if(routes.length<5) throw new Error('Creative Brain could not complete all five film routes.');
   const selected=(state.basic.zones||[]).join(', ');
-  const durationNote=state.basic.duration<=20?'Built for compression: one device, one tension, one reveal, one payoff.':state.basic.duration<=30?'Built for a complete mini-story with room for escalation and reaction.':state.basic.duration<=40?'Built for a fuller setup, character beat, reveal and proof.':'Built for a richer narrative arc with room for behaviour, escalation, product demonstration and payoff.';
-  const cards=routes.map(x=>render(x)).join('');
-  $('workspace').innerHTML='<div class="card"><div class="title">Creative Brain — '+state.basic.duration+' sec</div><div class="sub">'+esc(durationNote)+' Creative zones: '+esc(selected||'Adaptive')+'</div></div>'+cards;
+  $('workspace').innerHTML='<div class="card"><div class="title">Creative Brain — '+state.basic.duration+' sec</div><div class="sub">5 original routes · AI creative reasoning · Creative zones: '+esc(selected||'Adaptive')+'</div></div>'+routes.map(x=>render(x)).join('');
   $('workspace').scrollIntoView({behavior:'smooth',block:'start'});
  }catch(err){
   console.error('Script Lab makeScripts error:',err);
-  $('workspace').innerHTML='<div class="card"><div class="title">Creative Brain could not generate the scripts · M2</div><div class="hint">The brief is saved. Please try Make Scripts again.</div><div class="hint" style="margin-top:8px">'+esc(err&&err.message?err.message:String(err))+'</div><button type="button" class="primary" style="margin-top:14px" onclick="makeScripts()">Try Again →</button></div>';
+  $('workspace').innerHTML='<div class="card"><div class="title">Creative Brain could not generate the scripts</div><div class="hint">The brief is saved. Please try Make Scripts again.</div><div class="hint" style="margin-top:8px">'+esc(err&&err.message?err.message:String(err))+'</div><button type="button" class="primary" style="margin-top:14px" onclick="makeScripts()">Try Again →</button></div>';
+ }finally{
+  const b=$('makeScriptsBtn'); if(b){b.disabled=false;b.textContent='Make Scripts →';}
  }
 }
+
 function speakerize(name,lines){
  const maps={
   'THE FIVE-STOP ITINERARY':['SON','DAD','SON','DAD','SON',''],
