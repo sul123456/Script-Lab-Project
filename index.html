@@ -243,7 +243,7 @@ function m2Pick(a,i,fallback){
  return arr.length?arr[i%arr.length]:fallback;
 }
 function m2Clean(s){
- return String(s||'').replace(/\\s+/g,' ').replace(/\\.{2,}/g,'.').trim();
+ return String(s||'').replace(/\s+/g,' ').replace(/\.{2,}/g,'.').trim();
 }
 function m2Feature(ctx,i){
  const fs=(ctx.features||[]).filter(Boolean);
@@ -333,7 +333,7 @@ function m2Validate(rows,ctx){
  const text=rows.flat().join(' ');
  const issues=[];
  if(/recognisable everyday setting|social\\/work setting|a specific routine|the protagonist reacts|creates the tension|human truth|creative turn|product as answer|human payoff|strategy|creative opportunity/i.test(text)) issues.push('commentary');
- if(/\\bNRI\\b/i.test(text)&&!/\\bnri\\b/i.test(ctx.raw)) issues.push('wrong-context');
+ if(/\bNRI\b/i.test(text)&&!\bnri\b/i.test(ctx.raw)) issues.push('wrong-context');
  if(!rows[2][4]&&!rows[2][3]) issues.push('late-product');
  if(rows.some(r=>/undefined|null/.test(r.join(' ')))) issues.push('broken');
  if(rows.filter(r=>r[3]).length<4) issues.push('thin-dialogue');
