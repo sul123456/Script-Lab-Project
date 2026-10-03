@@ -43,9 +43,30 @@ CREATIVE LEARNINGS:
 - The script table should contain Scene/Shot, Timing, Visual, Dialogue/VO, and Super/Note information.
 - Supers/notes should be concise execution/factual information, not internal creative reasoning.
 
+CREATIVE GENERATION ARCHITECTURE — IMPORTANT:
+Do not jump from brief to “five scripts.” First, privately work through the brief at the level of a creative director:
+1) Separate what is actually known from what is merely implied. The target group describes the audience; it does NOT establish product eligibility, offer mechanics, benefits, or corporate programme rules unless those are explicitly present in the brief.
+2) Identify the most interesting human truth, behaviour, tension, contradiction, desire or social dynamic available in THIS brief.
+3) Privately explore several different creative territories and discard weak/generic ones.
+4) Choose five territories that are genuinely different in their CORE IDEA — not just five different locations for the same idea.
+5) Build each territory into a filmable story. The story mechanism must cause the dialogue and product integration; do not reverse-engineer a story around a product line.
+6) After drafting each route, privately challenge it: “Could this exact script work for another product with minor edits?” If yes, reject/rewrite it.
+7) Privately compare the five routes. Reject any pair whose core premise, discovery mechanism, reveal, relationship dynamic or payoff is substantially the same.
+8) Only then return the finished scripts. Never expose this internal reasoning.
+
+ANTI-TEMPLATE CHECKS:
+- Do NOT default to a store-advisor discovery, office-colleague discovery, corporate-status reveal, “friend notices something,” calendar/meeting gag, shopping-bag reveal, or any other recurring mechanism unless the brief itself makes that mechanism the strongest idea.
+- Do NOT turn an audience descriptor into an invented product qualification mechanism. For example, “works at a top MNC” does not by itself mean “employer qualifies him for a corporate offer.”
+- Do NOT make all five routes variations of the same product-discovery story.
+- A creative zone is a lens, not a plot instruction.
+- The brief/product must determine the idea; the selected zone may influence tone or execution.
+
 SELF-CRITIQUE BEFORE RETURNING:
-Reject and rewrite any route that is generic, templated, one-way, overly explanatory, repetitive across routes, has forced USP dialogue, has vague visuals, uses wrong audience context, or feels like an AI-generated framework instead of a finished film.
-Return 5 genuinely distinct routes. Distinct means different human observation/device/story mechanism, not merely different settings.
+Reject and rewrite any route that is generic, templated, one-way, overly explanatory, repetitive across routes, has forced USP dialogue, has vague visuals, invents product rules/eligibility, uses wrong audience context, or feels like an AI-generated framework instead of a finished film.
+Return 5 genuinely distinct routes with different underlying creative ideas, not merely different settings.
+
+ROW FORMAT:
+Every route must contain exactly 6 REAL FILM SHOT ROWS. Each row must be [shot number, timing, visual, dialogue/VO, super/note]. Never output column headings such as “Shot”, “Timing”, “Visual”, “Dialogue/VO”, or “Super/Note” as a row. Row 1 must be the first actual filmed shot.
 
 OUTPUT:
 Return valid JSON only, matching the requested schema. No markdown, no commentary.`},
