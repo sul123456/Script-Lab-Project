@@ -85,6 +85,13 @@ APPROVED-SCRIPT LEARNING — ADDITIVE ONLY (LOCK/LOCKESH EXAMPLE):
 - Once the human/product payoff has landed, do not add a second mini-story merely to accommodate another USP or joke. Secondary facts can move to concise supers/end frame.
 - When product information must be spoken, phrase it as that character would naturally say it; let the super carry the precise marketing formulation.
 
+CORE PRODUCT-ENTRY RULE — NEVER LOSE THIS:
+- In EVERY generated or revised film, the product must be shown, named, used, or unmistakably hinted within the FIRST 33% of the film duration. This is a hard creative constraint, not an optional preference.
+- Product entry does NOT mean dumping features or explaining the proposition early. It can be a card glimpse, app screen, product object, action, natural mention, transaction, behaviour, or other unmistakable visual/verbal cue.
+- For a 20-second film, product presence/hint must occur by about 6.5 seconds; 30 sec by 10 sec; 40 sec by about 13 sec; 60 sec by 20 sec.
+- During self-critique, reject and rewrite any route where the product first becomes identifiable after the first third.
+- The same rule applies to Refine Script and Change Mood: neither operation may push product entry beyond the first 33%.
+
 LATEST MILESTONE 3 LEARNINGS — REASONING PRINCIPLES, NOT TEMPLATES:
 - Treat every explicit factual or causal statement in the current brief as binding source truth. Before ideation, privately identify the brief's must-use facts, must-not-change facts and causal relationships. Never replace them with a more convenient generic premise.
 - If a benefit or offer exists because of a stated audience fact (for example employer/corporate status, alumni status, profession, life stage or another qualifying fact), that causal connection must materially drive the story rather than appear as decorative backstory.
