@@ -558,22 +558,59 @@ function render(r){return '<article class="card"><div class="head"><div><div cla
 function scriptText(article){const rows=[...article.querySelectorAll('.table .row')].slice(1);return article.querySelector('.route').innerText+'\n\nPLOT: '+article.querySelector('.plot .v').innerText+'\n\n'+rows.map(r=>{const x=r.querySelectorAll('.cell');return x[0].innerText+' | '+x[1].innerText+' | VISUAL: '+x[2].innerText+' | DIALOGUE: '+x[3].innerText+' | NOTE: '+x[4].innerText}).join('\n')+'\n\n'+article.querySelector('.cta').innerText}
 function copyScript(btn){const a=btn.closest('article');navigator.clipboard?.writeText(scriptText(a));btn.textContent='Copied';setTimeout(()=>btn.textContent='Copy Script',1000)}
 function toggleRefine(btn){const x=btn.closest('article').querySelector('.refine');x.style.display=x.style.display==='block'?'none':'block'}
-function applyRefine(btn){const input=btn.previousElementSibling,ins=input.value.trim().toLowerCase(),cells=[...btn.closest('article').querySelectorAll('.table .row')].slice(1).map(r=>r.querySelectorAll('.cell')[3]);if(!ins)return;cells.forEach((x,i)=>{if(/funny|witty|humou?r/.test(ins))x.textContent=['“Of course this happens now.”','“Apparently simple was too much to ask.”','“Okay… unexpectedly easy.”','“Well, that solves that.”','“Right. Back to life.”'][i];else if(/punch|short|crisp|tight/.test(ins))x.textContent=['“Wait — really?”','“That’s the problem.”','“This changes it.”','“Much easier.”','“Done. That was surprisingly straightforward.”'][i];else if(/natural|human|conversational/.test(ins))x.textContent=['“Hang on — what?”','“No, that’s the annoying part.”','“Oh. I can do that?”','“Okay, that makes sense.”','“Done. That was surprisingly straightforward.”'][i]});input.value='';btn.textContent='Applied to Script';setTimeout(()=>btn.textContent='Apply to Script',1000)}
-function mood(s){
- const cells=[...s.closest("article").querySelectorAll(".table .row")].slice(1).map(r=>r.querySelectorAll(".cell")[3]);
- const m={
-  Witty:["Wait. We are still doing this the hard way?","Apparently.","Okay, that was clever.","Well, that was easier.","Right. Moving on."],
-  Emotional:["I just wanted one thing to feel easy.","I know.","Maybe this is the answer.","That helps more than you think.","Okay. I have got this."],
-  Premium:["Let us do this properly.","Agreed.","This feels considered.","Exactly what I wanted.","Done."],
-  Cinematic:["Sometimes the answer is right there.","But we keep looking elsewhere.","Not this time.","That changes everything.","And suddenly, it is simple."],
-  Bold:["Enough. Let us do it differently.","Why not?","This is the move.","That is the difference.","Done."],
-  Humorous:["Because apparently I enjoy making life difficult.","You do.","Try this.","Oh. That is annoyingly easy.","Fine. I am sold."],
-  Smart:["What is the smarter way?","Start with the real problem.","Now that makes sense.","One decision. One result.","Done."],
-  Storytelling:["It started with a very ordinary problem.","Then one small thing changed.","That was the turning point.","And suddenly, the problem felt smaller.","That is the bit I will remember."],
-  "Surprise Me":["Okay. I did not see that coming.","Neither did I.","But it works.","That changes the story.","And that is the point."]
+
+function currentRouteFromArticle(article){
+ const cells=[...article.querySelectorAll('.table .row')].slice(1);
+ return {
+  name:article.querySelector('.route')?.innerText||'Current route',
+  type:article.querySelector('.meta')?.innerText||'',
+  device:(article.querySelector('.plot .hint')?.innerText||'').replace(/^Creative device:\\s*/,''),
+  plot:article.querySelector('.plot .v')?.innerText||'',
+  rows:cells.map(r=>[...r.querySelectorAll('.cell')].map(x=>x.innerText))
  };
- (m[s.value]||[]).forEach((x,i)=>{if(cells[i])cells[i].textContent=x;});
- s.selectedIndex=0;
+}
+function replaceRouteArticle(article,route){
+ const wrap=document.createElement('div');
+ wrap.innerHTML=render(route);
+ article.replaceWith(wrap.firstElementChild);
+}
+async function reviseRoute(article,instruction,button){
+ const current=currentRouteFromArticle(article);
+ const payload={
+  basic:state.basic,brief:state.brief,answers:state.answers||{},zones:state.basic.zones||[],
+  currentRoute:current,
+  revisionInstruction:instruction
+ };
+ if(button){button.disabled=true;button.textContent='Creative Brain is refining…';}
+ try{
+  const res=await fetch('/api/generate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
+   mode:'revise',
+   prompt:'Revise ONLY the supplied current route according to the maker instruction. Preserve the core idea, brief facts, causality, message clarity and quality unless the instruction explicitly asks to change them. Re-think the full route rather than swapping generic dialogue. Keep supers ultra-short. Keep dialogue staccato, natural and easy to comprehend. Return one complete revised route.\\n\\n'+JSON.stringify(payload)
+  })});
+  const data=await res.json();
+  if(!res.ok)throw new Error(data.error||'Creative Brain refinement failed');
+  const rr=data.route||data.routes?.[0];
+  if(!rr||!Array.isArray(rr.rows)||rr.rows.length!==6)throw new Error('Creative Brain returned an incomplete refinement.');
+  replaceRouteArticle(article,{name:rr.name||current.name,type:rr.type||current.type,device:rr.device||current.device,plot:rr.plot||current.plot,rows:rr.rows});
+ }catch(err){
+  console.error('Script Lab refine error:',err);
+  alert(err?.message||'Could not refine this script. Please try again.');
+  if(button){button.disabled=false;button.textContent='Refine This Script';}
+ }
+}
+async function applyRefine(btn){
+ const input=btn.previousElementSibling,ins=input.value.trim();
+ if(!ins)return;
+ await reviseRoute(btn.closest('article'),ins,btn);
+}
+async function mood(s){
+ const style=s.value;
+ if(!style||style==='Change Mood')return;
+ const article=s.closest('article');
+ s.disabled=true;
+ try{
+  await reviseRoute(article,'Change the mood to '+style+'. Keep the SAME core idea, story logic, brief facts, product proposition, causal links and message comprehension. Rework dialogue, performance, visual tone and pacing only where needed so the new mood feels native to the existing idea. Do not replace the route with a generic '+style+' script. Maintain or improve the current creative quality.',null);
+ }finally{s.disabled=false;s.selectedIndex=0;}
 }
 function copyBrief(){navigator.clipboard?.writeText(JSON.stringify(state.brief,null,2))}function downloadBrief(){let a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(state.brief,null,2)],{type:'application/json'}));a.download='script-lab-sharper-brief.json';a.click()}
 </script></body></html>
