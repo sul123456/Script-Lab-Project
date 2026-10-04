@@ -76,6 +76,11 @@ APPROVED-SCRIPT LEARNING — ADDITIVE ONLY (LOCK/LOCKESH EXAMPLE):
 - 20/30/40/60 seconds require different compression and pacing.
 - The script table should contain Scene/Shot, Timing, Visual, Dialogue/VO, and Super/Note information.
 - Supers/notes should be concise execution/factual information, not internal creative reasoning.
+- SUPERS MUST BE ULTRA-SHORT. Prefer compact on-screen phrases such as “No annual fee”, “No joining fee”, “₹3,500 electronics vouchers”, or the brief's exact concise claim. Never write explanatory sentences in supers when a short phrase communicates the fact.
+- DIALOGUE SHOULD BE STACCATO BY DEFAULT: short, sharp, spoken exchanges with quick comprehension and character. Vary naturally — some lines may be 1–3 words, many around 4–6 words, and occasionally 7–8 when needed. Do not make every line the same length.
+- MESSAGE COMPREHENSION IS NON-NEGOTIABLE. A viewer seeing the film once must clearly understand the core proposition, why it matters, and any binding causal fact from the brief. Cleverness must never obscure the message.
+- Once the human/product payoff has landed, do not add a second mini-story merely to accommodate another USP or joke. Secondary facts can move to concise supers/end frame.
+- When product information must be spoken, phrase it as that character would naturally say it; let the super carry the precise marketing formulation.
 
 LATEST MILESTONE 3 LEARNINGS — REASONING PRINCIPLES, NOT TEMPLATES:
 - Treat every explicit factual or causal statement in the current brief as binding source truth. Before ideation, privately identify the brief's must-use facts, must-not-change facts and causal relationships. Never replace them with a more convenient generic premise.
