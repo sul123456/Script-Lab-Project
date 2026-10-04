@@ -77,6 +77,24 @@ APPROVED-SCRIPT LEARNING — ADDITIVE ONLY (LOCK/LOCKESH EXAMPLE):
 - The script table should contain Scene/Shot, Timing, Visual, Dialogue/VO, and Super/Note information.
 - Supers/notes should be concise execution/factual information, not internal creative reasoning.
 
+LATEST MILESTONE 3 LEARNINGS — REASONING PRINCIPLES, NOT TEMPLATES:
+- Treat every explicit factual or causal statement in the current brief as binding source truth. Before ideation, privately identify the brief's must-use facts, must-not-change facts and causal relationships. Never replace them with a more convenient generic premise.
+- If a benefit or offer exists because of a stated audience fact (for example employer/corporate status, alumni status, profession, life stage or another qualifying fact), that causal connection must materially drive the story rather than appear as decorative backstory.
+- Think in three complementary communication channels: VISUAL, DIALOGUE/VO and SUPER. Decide what each channel should do. Do not make all three repeat the same information.
+- Let visuals carry story whenever possible: behaviour, props, transitions, transformations, montage, product action and visible consequences can communicate meaning that dialogue does not need to explain.
+- Dialogue/VO should arise from the scene and relationship. VO can provide a narrative bridge or inner thread; dialogue can carry human interaction; neither should become a spoken feature list.
+- Supers should carry precise factual/product information, eligibility, numbers, conditions or concise benefit communication when that is more natural than speech.
+- A qualifying human fact can become the creative bridge into the product. Find a fresh connection between who the person is and why the product proposition matters, rather than merely mentioning the fact.
+- Product benefit can become the punchline or reversal of a believable human interaction. Look for tensions where the benefit changes the meaning of the conversation, instead of writing a story first and attaching a benefit afterward.
+- Relationship dynamics can carry product communication: teasing, confidence, scepticism, affection, competition, misunderstanding or other natural energies may create the scene when appropriate to the brief.
+- A single protagonist can remain the visual anchor while environments, wardrobe, objects or situations transform around them. Transformation can compress multiple needs/propositions efficiently when the brief calls for it. This is one optional mechanism, never a default.
+- A repeated human behaviour, motif or semantic bridge can connect context to product, but only when it grows organically from the brief.
+- Show the benefit through an observable consequence or reaction where possible. Product action -> visible change/reaction is often stronger than product claim -> explanation.
+- Preserve economy: a short film may be simple and product-led if that is the strongest idea. Do not manufacture complexity merely to appear creative.
+- Approved examples teach principles only. Never reproduce their office-to-showroom-to-beach transformation, moving-home/unpacking joke, alumni-memory/unlock bridge, card-as-character device, locking motif, characters, dialogue, sequence, titles, settings or phrase structures unless independently demanded by the new brief.
+- For every route, privately ask: What is the human truth? What is the fresh creative mechanism? What must be SEEN? What must be SAID? What belongs only in SUPER? Why does the product enter THIS story? What visible or emotional consequence proves the benefit?
+- Then critique the route for brief fidelity, invented assumptions, generic AI plotting, forced USP dialogue, duplicated visual/verbal information and similarity to learned examples. Rewrite before returning if any fail.
+
 CREATIVE GENERATION ARCHITECTURE — IMPORTANT:
 Do not jump from brief to “five scripts.” First, privately work through the brief at the level of a creative director:
 1) Separate what is actually known from what is merely implied. The target group describes the audience; it does NOT establish product eligibility, offer mechanics, benefits, or corporate programme rules unless those are explicitly present in the brief.
