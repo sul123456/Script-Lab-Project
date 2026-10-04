@@ -6,6 +6,7 @@ export default async function handler(req, res) {
 
     const body = req.body || {};
     const prompt = body.prompt;
+    const mode = body.mode || 'generate';
     if (!prompt) return res.status(400).json({error:'Missing creative brief'});
 
     const response = await fetch('https://api.openai.com/v1/chat/completions', {
@@ -133,40 +134,31 @@ Return valid JSON only, matching the requested schema. No markdown, no commentar
         response_format:{
           type:'json_schema',
           json_schema:{
-            name:'creative_brain_output',
+            name: mode==='revise' ? 'creative_brain_revision' : 'creative_brain_output',
             strict:true,
-            schema:{
-              type:'object',
-              additionalProperties:false,
-              properties:{
-                routes:{
-                  type:'array',
-                  minItems:5,
-                  maxItems:5,
-                  items:{
-                    type:'object',
-                    additionalProperties:false,
-                    properties:{
-                      name:{type:'string'},
-                      type:{type:'string'},
-                      device:{type:'string'},
-                      plot:{type:'string'},
-                      rows:{
-                        type:'array',
-                        minItems:6,
-                        maxItems:6,
-                        items:{
-                          type:'array',
-                          minItems:5,
-                          maxItems:5,
-                          items:{type:'string'}
-                        }
-                      }
-                    },
-                    required:['name','type','device','plot','rows']
-                  }
+            schema: mode==='revise' ? {
+              type:'object',additionalProperties:false,
+              properties:{route:{
+                type:'object',additionalProperties:false,
+                properties:{
+                  name:{type:'string'},type:{type:'string'},device:{type:'string'},plot:{type:'string'},
+                  rows:{type:'array',minItems:6,maxItems:6,items:{type:'array',minItems:5,maxItems:5,items:{type:'string'}}}
+                },
+                required:['name','type','device','plot','rows']
+              }},
+              required:['route']
+            } : {
+              type:'object',additionalProperties:false,
+              properties:{routes:{
+                type:'array',minItems:5,maxItems:5,
+                items:{type:'object',additionalProperties:false,
+                  properties:{
+                    name:{type:'string'},type:{type:'string'},device:{type:'string'},plot:{type:'string'},
+                    rows:{type:'array',minItems:6,maxItems:6,items:{type:'array',minItems:5,maxItems:5,items:{type:'string'}}}
+                  },
+                  required:['name','type','device','plot','rows']
                 }
-              },
+              }},
               required:['routes']
             }
           }
