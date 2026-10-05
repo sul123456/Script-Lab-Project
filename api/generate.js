@@ -85,6 +85,28 @@ APPROVED-SCRIPT LEARNING — ADDITIVE ONLY (LOCK/LOCKESH EXAMPLE):
 - Once the human/product payoff has landed, do not add a second mini-story merely to accommodate another USP or joke. Secondary facts can move to concise supers/end frame.
 - When product information must be spoken, phrase it as that character would naturally say it; let the super carry the precise marketing formulation.
 
+CHANGE MOOD — CREATIVE RE-DIRECTION, NOT WORD-SWAPPING:
+- When mode is a mood revision, treat the selected mood as a NEW CREATIVE LENS on the existing route, not as a request to synonym-swap dialogue or add mood adjectives.
+- Preserve the route's strategic spine: binding brief facts, core proposition, causal logic, product benefit, key human truth, message comprehension, and first-33% product entry.
+- Everything else may be intelligently re-authored if the mood needs it: scene behaviour, relationship dynamic, visual device, performance, rhythm, reveal, dialogue, VO, supers, pacing and payoff.
+- The changed mood must be perceptible even with the sound off where appropriate: mood can live in behaviour, visual staging, edit rhythm, reactions and the creative device — not dialogue alone.
+- Re-think the route from the chosen mood's psychology. Ask privately: “If a strong creative director had originally conceived this SAME strategic idea in this mood, how would the film behave?”
+- Do NOT preserve weak lines merely because they existed in the source. Preserve the idea, not every executional sentence.
+- Do NOT fall back to generic mood clichés, stock phrases, sentimental lines, punchline banks or interchangeable dialogue.
+- The revised script must be at least as specific, filmable and strategically clear as the source route. If the mood version loses comprehension, product causality or originality, rewrite it before returning.
+- Keep ultra-short supers and staccato dialogue. Do not use supers to explain the mood.
+- Mood-specific creative lenses:
+  • WITTY: intelligence, observation, misdirection, verbal/visual wit, restrained payoff. Never random jokes.
+  • EMOTIONAL: believable human stakes, relationship truth, restraint, earned feeling. Never generic sentimentality.
+  • PREMIUM: confidence, economy, taste, visual control, fewer but stronger words/actions. Never merely “luxury” adjectives.
+  • CINEMATIC: visual storytelling, tension/reveal, composition, transitions, sound/edit possibilities. Never vague dramatic VO.
+  • BOLD: decisive behaviour, sharp point of view, confident visual/action choice. Never shouting or empty swagger.
+  • HUMOROUS: situation-led comedy, character behaviour, misunderstanding, timing or reversal. Product must remain integral to the joke.
+  • SMART: insight, elegant logic, satisfying connection, economical reveal. Never explanatory jargon.
+  • STORYTELLING: a clear mini-narrative with setup, progression and earned payoff within duration. Never slow exposition.
+  • SURPRISE ME: invent a fresh tonal treatment suited to this exact brief and route; avoid simply choosing one of the other moods mechanically.
+- Before returning a mood revision, privately compare it with the source and verify: same strategic idea, genuinely different tonal execution, no quality drop, product by first 33%, absolute comprehension.
+
 CORE PRODUCT-ENTRY RULE — NEVER LOSE THIS:
 - In EVERY generated or revised film, the product must be shown, named, used, or unmistakably hinted within the FIRST 33% of the film duration. This is a hard creative constraint, not an optional preference.
 - Product entry does NOT mean dumping features or explaining the proposition early. It can be a card glimpse, app screen, product object, action, natural mention, transaction, behaviour, or other unmistakable visual/verbal cue.
