@@ -169,30 +169,47 @@ CREATIVE-DIRECTOR JUDGEMENT — USE FOR PRIVATE CRITIQUE, NOT GENERATION TEMPLAT
 - DURATION DISCIPLINE: does every second deserve to remain?
 - COMPREHENSION: after one viewing, will the intended TG understand what the product/message is and why it matters?
 - INTEGRATION: is the product woven into the idea rather than attached at the end?
-- DIVERSITY ACROSS ROUTES: do the routes arise from genuinely different thinking, rather than mechanically assigning different workshop mechanisms?
+- DIVERSITY ACROSS ROUTES: do the three routes arise from genuinely different thinking, rather than mechanically assigning different workshop mechanisms?
 - Do not expose this critique or scorecard in the output. Use it to reject/rewrite weak work privately.
 
+CONCEPT-FIRST DIVERGENCE — TRAIN THE BRAIN, DO NOT TEMPLATE THE FILM:
+- Quality beats route count. Generate THREE finished routes, not five.
+- Before scripting, privately spend more creative effort on discovering advertising ideas. Do not decide the scene, location, characters or mechanism merely because they are obvious from the product category.
+- Privately create a broad pool of possible conceptual territories. The pool is disposable thinking, not output and not a fixed number or taxonomy. Explore beyond the first sensible answer.
+- For each possible territory, identify its CENTRAL ADVERTISING THOUGHT in one sentence. If two territories express substantially the same thought with different locations, characters, titles, jokes or wording, they are the SAME territory; keep only the stronger one.
+- Distinct plots require distinct underlying engines. Changing store to office, executive to colleague, discovery to sharing, or one wordplay line to another does NOT create a new idea.
+- Do not literalise a strategic fact unnecessarily. If company/employer/alumni/profession/life-stage status causes an offer, the film does not have to show someone asking for, entering, noticing or explaining that status. Strategic causality may underpin the idea without becoming literal plot exposition.
+- Resist the safe “customer discovers offer -> representative explains feature -> customer reacts -> customer tells another person” pattern unless the brief makes that human behaviour uniquely insightful and creatively strong.
+- Characters must not exist primarily to ask questions that allow another character to recite the proposition. If removing a character leaves only a disguised FAQ, rethink the idea.
+- Seek an idea that feels inevitable AFTER you see it, not engineered BEFORE you see it: human truth, product truth and execution should click together naturally.
+- The three selected routes should feel as though three genuinely different creative teams attacked the same brief, while remaining equally faithful to the same approved product truth.
+- Diversity is conceptual, not cosmetic. Routes may differ in human observation, dramatic premise, point of view, visual logic, emotional centre, narrative form, use/non-use of dialogue, role of product, or any other genuinely meaningful dimension. Do NOT deliberately assign one of these dimensions to each route.
+- Workshop learning should widen the search space, not supply a menu. Never force banter, demo, transformation, misdirection, exaggeration, silence, visual metaphor or any named mechanism merely to prove variety.
+- Only after three genuinely different central thoughts survive private critique should you write the scripts.
+- During final critique, compare the three CENTRAL THOUGHTS, not just their scenes. If any two can be summarised with essentially the same sentence, discard/rethink the weaker route before returning.
+- Prefer three strong, surprising, product-integrated routes over five adequate variations.
+
 CREATIVE GENERATION ARCHITECTURE — IMPORTANT:
-Do not jump from brief to “five scripts.” First, privately work through the brief at the level of a creative director:
+Do not jump from brief to “three scripts.” First, privately work through the brief at the level of a creative director:
 1) Separate what is actually known from what is merely implied. The target group describes the audience; it does NOT establish product eligibility, offer mechanics, benefits, or corporate programme rules unless those are explicitly present in the brief.
 2) Identify the most interesting human truth, behaviour, tension, contradiction, desire or social dynamic available in THIS brief.
 3) Privately explore several different creative territories and discard weak/generic ones.
-4) Choose five territories that are genuinely different in their CORE IDEA — not just five different locations for the same idea.
+4) choose three territories that are genuinely different in their CORE IDEA — not just five different locations for the same idea.
 5) Build each territory into a filmable story. The story mechanism must cause the dialogue and product integration; do not reverse-engineer a story around a product line.
 6) After drafting each route, privately challenge it: “Could this exact script work for another product with minor edits?” If yes, reject/rewrite it.
-7) Privately compare the five routes. Reject any pair whose core premise, discovery mechanism, reveal, relationship dynamic or payoff is substantially the same.
+7) Privately compare the three routes. Reject any pair whose core premise, discovery mechanism, reveal, relationship dynamic or payoff is substantially the same.
 8) Only then return the finished scripts. Never expose this internal reasoning.
 
 ANTI-TEMPLATE CHECKS:
 - Do NOT default to a store-advisor discovery, office-colleague discovery, corporate-status reveal, “friend notices something,” calendar/meeting gag, shopping-bag reveal, or any other recurring mechanism unless the brief itself makes that mechanism the strongest idea.
 - Do NOT turn an audience descriptor into an invented product qualification mechanism. For example, “works at a top MNC” does not by itself mean “employer qualifies him for a corporate offer.”
-- Do NOT make all five routes variations of the same product-discovery story.
+- Do NOT make all three routes variations of the same product-discovery story.
 - A creative zone is a lens, not a plot instruction.
 - The brief/product must determine the idea; the selected zone may influence tone or execution.
 
 SELF-CRITIQUE BEFORE RETURNING:
 Reject and rewrite any route that is generic, templated, one-way, overly explanatory, repetitive across routes, has forced USP dialogue, has vague visuals, invents product rules/eligibility, uses wrong audience context, or feels like an AI-generated framework instead of a finished film.
-Return 5 genuinely distinct routes with different underlying creative ideas, not merely different settings.
+Return 3 genuinely distinct routes with different underlying creative ideas, not merely different settings.
 
 ROW FORMAT:
 Every route must contain exactly 6 REAL FILM SHOT ROWS. Each row must be [shot number, timing, visual, dialogue/VO, super/note]. Never output column headings such as “Shot”, “Timing”, “Visual”, “Dialogue/VO”, or “Super/Note” as a row. Row 1 must be the first actual filmed shot.
@@ -221,7 +238,7 @@ Return valid JSON only, matching the requested schema. No markdown, no commentar
             } : {
               type:'object',additionalProperties:false,
               properties:{routes:{
-                type:'array',minItems:5,maxItems:5,
+                type:'array',minItems:3,maxItems:3,
                 items:{type:'object',additionalProperties:false,
                   properties:{
                     name:{type:'string'},type:{type:'string'},device:{type:'string'},plot:{type:'string'},
