@@ -422,11 +422,11 @@ async function makeScripts(){
    }
   };
   const res=await fetch('/api/generate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
-    prompt:'Create 5 original advertising film routes from this brief. Think deeply before writing. Do not reveal your internal reasoning. Return only the requested JSON schema.\\n\\n'+JSON.stringify(payload)
+    prompt:'Create 3 original advertising film routes from this brief. Think deeply before writing. Do not reveal your internal reasoning. Return only the requested JSON schema.\\n\\n'+JSON.stringify(payload)
   })});
   const data=await res.json();
   if(!res.ok) throw new Error(data.error||'Creative Brain AI generation failed');
-  if(!Array.isArray(data.routes)||data.routes.length<5) throw new Error('Creative Brain returned fewer than 5 complete routes.');
+  if(!Array.isArray(data.routes)||data.routes.length<3) throw new Error('Creative Brain returned fewer than 3 complete routes.');
   const routes=data.routes.map((r,i)=>({
    name:r.name||('CREATIVE ROUTE '+(i+1)),
    type:r.type||'Creative Brain · AI generated',
@@ -440,9 +440,9 @@ async function makeScripts(){
      row[4]||''
    ]):[]
   })).filter(r=>r.rows.length===6);
-  if(routes.length<5) throw new Error('Creative Brain could not complete all five film routes.');
+  if(routes.length<3) throw new Error('Creative Brain could not complete all three film routes.');
   const selected=(state.basic.zones||[]).join(', ');
-  $('workspace').innerHTML='<div class="card"><div class="title">Creative Brain — '+state.basic.duration+' sec</div><div class="sub">5 original routes · AI creative reasoning · Creative zones: '+esc(selected||'Adaptive')+'</div></div>'+routes.map(x=>render(x)).join('');
+  $('workspace').innerHTML='<div class="card"><div class="title">Creative Brain — '+state.basic.duration+' sec</div><div class="sub">3 original routes · AI creative reasoning · Creative zones: '+esc(selected||'Adaptive')+'</div></div>'+routes.map(x=>render(x)).join('');
   $('workspace').scrollIntoView({behavior:'smooth',block:'start'});
  }catch(err){
   console.error('Script Lab makeScripts error:',err);
