@@ -11,6 +11,35 @@ export default async function handler(req, res) {
     const mode = body.mode || 'generate';
     if (!prompt) return res.status(400).json({error:'Missing creative brief'});
 
+    // Stage 1: Creative Director selects three genuinely different ideas.
+    let territories = null;
+    if (mode === 'generate') {
+      const d = await fetch('https://api.openai.com/v1/chat/completions', {
+        method:'POST',
+        headers:{'Authorization':`Bearer ${key}`,'Content-Type':'application/json'},
+        body:JSON.stringify({
+          model:'gpt-5.6-sol',
+          reasoning_effort:'low',
+          messages:[
+            {role:'system',content:`You are Stage 1, the Creative Director. Do not write scripts or scenes. From the CURRENT brief, select exactly three genuinely different central advertising ideas. Think beyond different executions of one thought. Different locations, characters, jokes, tones or devices do not count as different ideas. Do not let one phrase such as a corporate/employer name become the platform for all three. Use only product facts and mechanics explicitly present in the current brief; never import claims from examples, prior scripts or memory. Do not invent eligibility, fees, rates, limits, journeys or offer mechanics. For each selected idea return centralThought, humanTruth, productRole and guardrail. Before returning, privately paraphrase all three centralThoughts and replace any semantic duplicate. Return JSON only.`},
+            {role:'user',content:prompt}
+          ],
+          max_completion_tokens:1600,
+          response_format:{type:'json_schema',json_schema:{name:'territories',strict:true,schema:{
+            type:'object',additionalProperties:false,
+            properties:{territories:{type:'array',minItems:3,maxItems:3,items:{type:'object',additionalProperties:false,properties:{
+              centralThought:{type:'string'},humanTruth:{type:'string'},productRole:{type:'string'},guardrail:{type:'string'}
+            },required:['centralThought','humanTruth','productRole','guardrail']}}},
+            required:['territories']
+          }}}
+        })
+      });
+      const dj=await d.json();
+      if (!d.ok) return res.status(d.status).json({error:String(dj?.error?.message||'Creative Director stage failed')});
+      try { territories=JSON.parse(dj?.choices?.[0]?.message?.content||'{}').territories; } catch(e) {}
+      if (!Array.isArray(territories)||territories.length!==3) return res.status(502).json({error:'Creative Director could not select three territories'});
+    }
+
     const response = await fetch('https://api.openai.com/v1/chat/completions', {
       method:'POST',
       headers:{'Authorization':`Bearer ${key}`,'Content-Type':'application/json'},
@@ -235,7 +264,7 @@ Every route must contain exactly 6 REAL FILM SHOT ROWS. Each row must be [shot n
 
 OUTPUT:
 Return valid JSON only, matching the requested schema. No markdown, no commentary.`},
-          {role:'user',content:prompt}
+          {role:'user',content: mode==='generate' ? prompt+'\n\nSTAGE 1 HAS SELECTED THESE THREE DISTINCT CREATIVE TERRITORIES. Write exactly one finished route from each territory, in order. Preserve their distinct central thoughts. These are creative launchpads, not beat sheets. Do not merge them. Do not add product facts or mechanics beyond the current brief:\n'+JSON.stringify(territories) : prompt}
         ],
         max_completion_tokens:6000,
         response_format:{
