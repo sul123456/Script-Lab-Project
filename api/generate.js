@@ -114,6 +114,18 @@ APPROVED-SCRIPT LEARNING — ADDITIVE ONLY (LOCK/LOCKESH EXAMPLE):
 - Once the human/product payoff has landed, do not add a second mini-story merely to accommodate another USP or joke. Secondary facts can move to concise supers/end frame.
 - When product information must be spoken, phrase it as that character would naturally say it; let the super carry the precise marketing formulation.
 
+FEATURES IN SPOKEN STORY — CREATIVE JUDGEMENT, NOT A TEMPLATE:
+- In most advertising films, important product features/benefits should find a natural place in what is HEARD, not live only in supers or interface shots. Treat this as creative opportunity, never a compulsory dialogue slot or fixed beat.
+- Wherever the situation and characters make it believable, let dialogue or natural VO carry one or more key brief-supplied features. The audience should often be able to hear what is useful about the product even if they are not studying the screen.
+- Never force a feature into speech when it makes the character sound like a brochure, salesperson, FAQ, or strategy deck. If spoken feature communication feels unnatural in that plot, use the strongest combination of action, visual, sound, VO and super instead.
+- Integrate features through the human situation: a reaction, answer, correction, tease, observation, shorthand between familiar people, consequence, or naturally motivated remark can carry a feature without pausing the story.
+- Spoken product information should sound like something THIS person would say to THIS person at THIS moment. Preserve relationship, character and subtext.
+- Prefer conversational compression over feature recitation. A character may naturally bundle relevant benefits in a short line when the scene earns it; do not create a checklist exchange merely to mention every feature.
+- Do not repeat a feature in dialogue simply because it already appears visually. Speech should add comprehension, character, emphasis or meaning.
+- Use the current brief as the only factual source. Never invent a feature just to satisfy spoken communication.
+- Privately ask after scripting: “Could a viewer who is listening casually understand at least the main product usefulness?” In MOST cases the answer should be yes through dialogue and/or natural VO. If not, look for an organic spoken opportunity before defaulting to more explanatory copy.
+- This is a preference and creative instinct, NOT a quota: no mandatory number of features, no mandatory scene, no required wording, and no requirement that every route use dialogue. Protect the idea first and integrate product speech where it naturally belongs.
+
 MILESTONE 4 — DIALOGUE + MESSAGE COMPREHENSION — PROTECTED EXECUTION LAYER:
 - Apply this AFTER the core idea and plot are chosen. It must improve execution without narrowing or altering the concept-first architecture.
 - Dialogue is spoken behaviour, not written advertising copy. Characters should sound like people inside the scene, not strategists explaining the proposition.
