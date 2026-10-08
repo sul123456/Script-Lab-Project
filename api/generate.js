@@ -114,6 +114,29 @@ APPROVED-SCRIPT LEARNING — ADDITIVE ONLY (LOCK/LOCKESH EXAMPLE):
 - Once the human/product payoff has landed, do not add a second mini-story merely to accommodate another USP or joke. Secondary facts can move to concise supers/end frame.
 - When product information must be spoken, phrase it as that character would naturally say it; let the super carry the precise marketing formulation.
 
+MILESTONE 4 — DIALOGUE + MESSAGE COMPREHENSION — PROTECTED EXECUTION LAYER:
+- Apply this AFTER the core idea and plot are chosen. It must improve execution without narrowing or altering the concept-first architecture.
+- Dialogue is spoken behaviour, not written advertising copy. Characters should sound like people inside the scene, not strategists explaining the proposition.
+- Keep exchanges economical. Default to short conversational turns: many lines around 3–6 spoken words; 1–3 words when natural; 7–8 words only when the thought genuinely needs it. Do NOT make every line the same length and do NOT shorten a line until it sounds robotic.
+- One dialogue turn should normally do one job. Avoid sentences that simultaneously explain context + feature + benefit + reaction.
+- Cut throat-clearing and polished ad-language. Prefer the shortest natural version a real person would actually say in that exact relationship and moment.
+- Reject dialogue that sounds like a headline, strategy sentence or end-frame copy placed in a character's mouth. Lines such as abstract statements about “privilege”, “value”, “convenience”, “corporate identity”, “better banking” etc. must earn their place as believable speech or move to VO/super/end frame.
+- Dialogue must react to the immediately previous action/line. If either speaker could say their line without hearing/seeing what came before, the exchange is probably written rather than conversational.
+- Do not make characters ask convenient questions solely so another character can explain a USP.
+- Use reaction, pause, look, action, object or visual consequence instead of another sentence whenever the film can communicate the beat more naturally without words.
+- After drafting, privately READ EVERY DIALOGUE EXCHANGE ALOUD at realistic performance speed. Rewrite anything that feels long, formal, copywritten, expositional or difficult to say in one breath.
+- Then perform a dialogue compression pass: remove words that do not change character, meaning, humour, emotion or comprehension. Compression must preserve natural speech.
+
+MESSAGE COMPREHENSION — MILESTONE 4:
+- After the dialogue pass, privately test the film as a first-time viewer. In ONE viewing, the intended audience must understand: (1) what is being offered/product category, (2) the single main benefit/message, and (3) why it is relevant to this person/audience when that causal fact matters.
+- Do not make dialogue carry all three. Allocate communication intelligently across VISUAL + DIALOGUE/VO + SUPER/END FRAME.
+- The main message must not be hidden behind clever wordplay. If the viewer needs to decode the joke before understanding the proposition, simplify.
+- Preserve exact product facts in concise supers/end frame rather than making people recite marketing language.
+- For 20 seconds, protect ONE dominant takeaway. Secondary claims belong in concise supers/end frame only when supplied by the brief and when they do not compete with the main message.
+- Before returning, privately answer: “What will a viewer say this ad was offering after one watch?” If that answer is vague, incomplete, or different from the brief's intended message, rewrite.
+- Also ask: “Could I remove 20% of the spoken words and retain the same comprehension and character?” If yes, compress before output.
+- Never sacrifice comprehension merely to make dialogue shorter; never sacrifice naturalness merely to state every product fact aloud.
+
 CHANGE MOOD — CREATIVE RE-DIRECTION, NOT WORD-SWAPPING:
 - When mode is a mood revision, treat the selected mood as a NEW CREATIVE LENS on the existing route, not as a request to synonym-swap dialogue or add mood adjectives.
 - Preserve the route's strategic spine: binding brief facts, core proposition, causal logic, product benefit, key human truth, message comprehension, and first-33% product entry.
