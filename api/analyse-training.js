@@ -1,4 +1,4 @@
-export const maxDuration=60;
+export const maxDuration=300;
 export default async function handler(req,res){
  if(req.method!=='POST')return res.status(405).json({error:'Method not allowed'});
  const {url}=req.body||{};let u;
@@ -14,7 +14,7 @@ export default async function handler(req,res){
  const prompt='Watch and listen to this advertising film. Analyse the actual video, not only its title or description. Respond with valid JSON containing summary (string), learnings (array of transferable creative principles), visual_limitations (string), suggested_application (string), observed_evidence (array of specific visual or audio observations with timestamps if possible). Focus on plot, observational insight, cinematic devices, performance, natural dialogue, audible product features, pacing and payoff. Do not copy the plot or dialogue as a template. Distinguish what is observed from interpretation. Never claim Creative Brain has already been trained.';
  let data,response;
  for(let attempt=0;attempt<2;attempt++){
-  response=await fetch('https://generativelanguage.googleapis.com/v1beta/interactions',{method:'POST',headers:{'Content-Type':'application/json','x-goog-api-key':key},body:JSON.stringify({model:'gemini-3.8-flash',input:[{type:'text',text:prompt},{type:'video',uri:url}]}),signal:AbortSignal.timeout(22000)});
+  response=await fetch('https://generativelanguage.googleapis.com/v1beta/interactions',{method:'POST',headers:{'Content-Type':'application/json','x-goog-api-key':key},body:JSON.stringify({model:'gemini-3.8-flash',input:[{type:'text',text:prompt},{type:'video',uri:url}]})});
   data=await response.json().catch(()=>({}));
   if(response.ok)break;
   const message=data.error?.message||'YouTube video could not be accessed or analysed';
@@ -25,5 +25,5 @@ export default async function handler(req,res){
  }
  const raw=data.output_text||data.steps?.flatMap(step=>step.content||[]).map(item=>item.text||'').join('')||'';if(!raw)return res.status(502).json({error:'No usable video analysis returned',status:'analysis_failed'});
  const parsed=JSON.parse(raw.replace(/^```(?:json)?\s*/,'').replace(/\s*```$/,''));return res.status(200).json({...parsed,status:'analysed',platform:'YouTube'});
- }catch(e){return res.status(504).json({error:e.name==='TimeoutError'?'Video analysis exceeded the 22-second provider response limit. Please try a shorter public video or retry later.':'Video analysis failed: '+e.message,status:'analysis_failed'})}
+ }catch(e){return res.status(504).json({error:e.name==='TimeoutError'?'The video-analysis provider did not finish the request. Please retry later.':'Video analysis failed: '+e.message,status:'analysis_failed'})}
 }
