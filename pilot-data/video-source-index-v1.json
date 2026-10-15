@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "register_type": "video_source_index",
+  "scope": "isolated pilot only",
+  "counting_rules": {
+    "video_count": "Count unique identified source videos, not number of Gemini responses. Do not count unidentified analyses as new videos until matched.",
+    "learning_count": "Track extracted observations separately from distinct deduplicated principles. Cross-reference multiple videos for repeated principles.",
+    "review": "All learnings pending until approved in app."
+  },
+  "videos": [
+    {
+      "video_id": "V001",
+      "title": "iMobile Pay — Anil Kapoor and Rajesh Sharma (Scan & pay any QR code)",
+      "brand": "ICICI Bank",
+      "source_url": null,
+      "source_type": "Gemini analysis pasted by user",
+      "staged_file": "pilot-data/gemini-imobile-pay-pending-review.json",
+      "proposed_learning_count": 12,
+      "status": "pending",
+      "identification": "identified_by_user_text"
+    },
+    {
+      "video_id": "V002",
+      "title": "SmartLock — Rawat Ji and Meera Ji",
+      "brand": "ICICI Bank",
+      "source_url": "https://www.facebook.com/icicibank/videos/433017949689965/",
+      "source_type": "campaign-description-derived",
+      "staged_file": "pilot-data/rawat-meera-pending-review.json",
+      "proposed_learning_count": 4,
+      "status": "pending",
+      "identification": "identified"
+    },
+    {
+      "video_id": "UNMATCHED-001",
+      "title": "Unidentified commercial — second Gemini micro-filmmaking analysis",
+      "brand": null,
+      "source_url": null,
+      "source_type": "Gemini analysis pasted by user",
+      "staged_file": "pilot-data/gemini-followup-02-pending-review.json",
+      "extracted_observations": 11,
+      "new_unique_principles": 6,
+      "status": "pending_source_identification",
+      "count_as_new_video": false
+    }
+  ],
+  "identified_video_count": 2,
+  "unmatched_analysis_count": 1,
+  "distinct_proposed_principles": 22,
+  "notes": [
+    "Separate uploaded iMobile Pay MP4 has five visual-only proposals not yet confirmed saved; do not count those proposals.",
+    "V001 title inferred from user's description, not verified by independent playback.",
+    "The second Gemini analysis may be a different video or the same video; user must identify to avoid double counting.",
+    "App Training Register not yet connected to pilot JSON."
+  ]
+}
