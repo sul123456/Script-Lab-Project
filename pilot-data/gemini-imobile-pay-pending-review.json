@@ -1,0 +1,99 @@
+{
+  "schema_version": 1,
+  "record_type": "creative_learning_proposals",
+  "title": "iMobile Pay — Anil Kapoor and Rajesh Sharma",
+  "source": "User-supplied Gemini analysis",
+  "source_video_url": null,
+  "evidence_level": "gemini_reported_not_independently_verified",
+  "video_count": 1,
+  "learning_count": 12,
+  "approval_status": "pending",
+  "live_register_updated": false,
+  "creative_brain_updated": false,
+  "learnings": [
+    {
+      "id": "gemini-imobile-01",
+      "category": "hook",
+      "principle": "Establish everyday friction within the first three seconds",
+      "application": "Use a small recognisable problem to initiate the story",
+      "approval_status": "pending"
+    },
+    {
+      "id": "gemini-imobile-02",
+      "category": "comedy",
+      "principle": "Build humour around stubbornness or minor frustration",
+      "application": "Escalate character behaviour rather than forcing exaggerated jokes",
+      "approval_status": "pending"
+    },
+    {
+      "id": "gemini-imobile-03",
+      "category": "celebrity",
+      "principle": "Integrate celebrity talent as a story character",
+      "application": "Give celebrity talent a functional role in the situation",
+      "approval_status": "pending"
+    },
+    {
+      "id": "gemini-imobile-04",
+      "category": "dialogue",
+      "principle": "Contrast fast and slow dialogue rhythms",
+      "application": "Write push-and-pull beats between energetic and grounded characters",
+      "approval_status": "pending"
+    },
+    {
+      "id": "gemini-imobile-05",
+      "category": "cinematography",
+      "principle": "Match camera movement to character energy",
+      "application": "Use framing and tracking to support emotional momentum",
+      "approval_status": "pending"
+    },
+    {
+      "id": "gemini-imobile-06",
+      "category": "production_design",
+      "principle": "Use authentic environments and background activity",
+      "application": "Populate realistic locations with functional props and organic extras",
+      "approval_status": "pending"
+    },
+    {
+      "id": "gemini-imobile-07",
+      "category": "sound",
+      "principle": "Use everyday Foley for tactile realism",
+      "application": "Build the scene's sound from real actions and objects",
+      "approval_status": "pending"
+    },
+    {
+      "id": "gemini-imobile-08",
+      "category": "comedy_timing",
+      "principle": "Make room for audio beat drops before punchlines",
+      "application": "Reduce background sound at critical reactions or punchlines",
+      "approval_status": "pending"
+    },
+    {
+      "id": "gemini-imobile-09",
+      "category": "performance",
+      "principle": "Direct physical reactions before dialogue",
+      "application": "Use a pause, blink, tilt or glance to communicate character response",
+      "approval_status": "pending"
+    },
+    {
+      "id": "gemini-imobile-10",
+      "category": "character",
+      "principle": "Create comedy through opposing personalities",
+      "application": "Build a character pair with contrasting behaviours",
+      "approval_status": "pending"
+    },
+    {
+      "id": "gemini-imobile-11",
+      "category": "product_integration",
+      "principle": "Show product interaction within the story",
+      "application": "Demonstrate the feature in the dramatic situation",
+      "approval_status": "pending"
+    },
+    {
+      "id": "gemini-imobile-12",
+      "category": "ui",
+      "principle": "Use natural phone framing and realistic compositing",
+      "application": "Plan over-the-shoulder shots and practical screen tracking",
+      "approval_status": "pending"
+    }
+  ]
+}
