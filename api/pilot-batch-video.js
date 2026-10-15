@@ -1,6 +1,6 @@
 // Preview-only bulk video pilot. No database writes or Creative Brain changes.
 export const maxDuration=300;
-const MODELS=['gemini-2.5-flash','gemini-3.7-flash'];
+const MODELS=['gemini-3.8-flash'];
 const sleep=ms=>new Promise(r=>setTimeout(r,ms));
 function parseVideo(url){try{const u=new URL(url);const h=u.hostname.toLowerCase().replace(/^www\.|^m\./,'');let id;if(h==='youtu.be')id=u.pathname.slice(1).split('/')[0];else if(h==='youtube.com')id=u.searchParams.get('v')||(u.pathname.match(/^\/(?:shorts|live|embed)\/([\w-]+)/)||[])[1];if(id&&/^[\w-]{11}$/.test(id))return {type:'youtube',id,url:'https://www.youtube.com/watch?v='+id};if(['facebook.com','fb.watch','instagram.com'].includes(h))return {type:'meta',url:u.href};return null}catch{return null}}
 function readText(x){return(x.candidates||[]).flatMap(c=>(c.content?.parts||[]).map(p=>p.text||'')).join('')}
@@ -13,7 +13,7 @@ export default async function handler(req,res){
  if(source.type==='meta')return res.status(200).json({status:'needs_authorised_media',url:source.url,video_observed:false,message:'Meta watch links cannot currently be ingested by this pilot. No analysis or training was performed.'});
  const key=process.env.GEMINI_API_KEY;if(!key)return res.status(503).json({error:'GEMINI_API_KEY missing in Preview'});
  const started=Date.now(),attempts=[];
- for(const model of MODELS)for(let i=0;i<2;i++){
+ for(const model of MODELS)for(let i=0;i<3;i++){
   try{
    const controller=new AbortController();const timeout=setTimeout(()=>controller.abort(),70000);
    let response;try{response=await fetch('https://generativelanguage.googleapis.com/v1beta/models/'+model+':generateContent',{method:'POST',headers:{'Content-Type':'application/json','x-goog-api-key':key},body:JSON.stringify({contents:[{role:'user',parts:[{text:prompt},{file_data:{mime_type:'video/mp4',file_uri:source.url}}]}],generationConfig:{responseMimeType:'application/json'}}),signal:controller.signal})}finally{clearTimeout(timeout)}
@@ -24,7 +24,7 @@ export default async function handler(req,res){
    }
    if(![429,500,502,503,504].includes(response.status))break;
   }catch(e){attempts.push({model,error:e.name==='AbortError'?'timeout':e.message})}
-  await sleep(1200);
+  await sleep(2000*Math.pow(2,i)+Math.floor(Math.random()*1000));
  }
- return res.status(200).json({status:'failed_retryable',url:source.url,video_observed:false,elapsed_ms:Date.now()-started,attempts,message:'No video was analysed; retry later.'});
+ return res.status(200).json({status:'failed_retryable',url:source.url,video_observed:false,elapsed_ms:Date.now()-started,attempts,message:'No video was analysed. Gemini 3.8 Flash was unavailable or unable to read the media; do not mark as trained.'});
 }
