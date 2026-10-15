@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "record_type": "gemini_learning_proposals",
+  "source": "User-pasted Gemini analysis",
+  "source_video_url": null,
+  "source_video_identity": "not provided",
+  "video_count_increment": "unverified_do_not_increment",
+  "evidence_level": "gemini_reported_not_independently_verified",
+  "approval_status": "pending",
+  "total_extracted": 11,
+  "new_principles": 6,
+  "refinements": 3,
+  "duplicates": 2,
+  "entries": [
+    {
+      "id": "gemini-followup-01",
+      "category": "narrative",
+      "principle": "Anchor the opening in instantly recognisable psychological friction",
+      "execution_guidance": "Within the first two seconds, depict a low-stakes situation that triggers immediate viewer recognition",
+      "dedup_status": "overlap_refinement",
+      "dedup_note": "Earlier register includes everyday friction in first three seconds; adds emphasis on viewer empathy and first two seconds",
+      "approval_status": "pending"
+    },
+    {
+      "id": "gemini-followup-02",
+      "category": "narrative",
+      "principle": "Escalate friction linearly, then release it through the product",
+      "execution_guidance": "Make each beat increase discomfort slightly so the resolution feels like emotional relief",
+      "dedup_status": "new",
+      "dedup_note": "",
+      "approval_status": "pending"
+    },
+    {
+      "id": "gemini-followup-03",
+      "category": "cinematography",
+      "principle": "Use medium close-ups and shallow depth of field for micro-expressions",
+      "execution_guidance": "Keep expressions sharp and setting legible but visually unobtrusive",
+      "dedup_status": "new",
+      "dedup_note": "",
+      "approval_status": "pending"
+    },
+    {
+      "id": "gemini-followup-04",
+      "category": "cinematography",
+      "principle": "Change focal length to match emotional or spatial shifts",
+      "execution_guidance": "Use tighter framing for intimacy and wider frames to establish environmental freedom",
+      "dedup_status": "new",
+      "dedup_note": "",
+      "approval_status": "pending"
+    },
+    {
+      "id": "gemini-followup-05",
+      "category": "lighting",
+      "principle": "Build controlled naturalism with soft practical-motivated light",
+      "execution_guidance": "Mimic window or street lighting; preserve natural skin tones and subtle shadows",
+      "dedup_status": "new",
+      "dedup_note": "",
+      "approval_status": "pending"
+    },
+    {
+      "id": "gemini-followup-06",
+      "category": "sound",
+      "principle": "Use restrained environmental micro-Foley",
+      "execution_guidance": "Support believable action through subtle clothing, environment and tactile interaction sounds",
+      "dedup_status": "overlap_refinement",
+      "dedup_note": "Earlier register already includes everyday Foley; adds restraint and fine-grain ambience",
+      "approval_status": "pending"
+    },
+    {
+      "id": "gemini-followup-07",
+      "category": "sound",
+      "principle": "Dip ambient sound at a reaction beat",
+      "execution_guidance": "Briefly lower music or background audio to focus attention on a facial response or punchline",
+      "dedup_status": "duplicate",
+      "dedup_note": "Earlier Gemini register already includes audio beat drops",
+      "approval_status": "pending"
+    },
+    {
+      "id": "gemini-followup-08",
+      "category": "music",
+      "principle": "Let score or voiceover support dialogue and swell at resolution",
+      "execution_guidance": "Keep dialogue dominant; use crescendo to underscore the product payoff",
+      "dedup_status": "new",
+      "dedup_note": "",
+      "approval_status": "pending"
+    },
+    {
+      "id": "gemini-followup-09",
+      "category": "casting_direction",
+      "principle": "Cast and direct for ordinary human behaviour",
+      "execution_guidance": "Use relatable posture, unchoreographed body language and avoid commercial stereotypes",
+      "dedup_status": "new",
+      "dedup_note": "",
+      "approval_status": "pending"
+    },
+    {
+      "id": "gemini-followup-10",
+      "category": "performance",
+      "principle": "Capture the micro-hesitation before speech",
+      "execution_guidance": "Direct natural pauses, sighs or quick glances rather than theatrical reactions",
+      "dedup_status": "overlap_refinement",
+      "dedup_note": "Earlier register includes physical reaction before dialogue; adds hesitation and naturalism",
+      "approval_status": "pending"
+    },
+    {
+      "id": "gemini-followup-11",
+      "category": "product_integration",
+      "principle": "Treat product use as a natural character action",
+      "execution_guidance": "Shoot phone interactions at realistic eye-level or over-the-shoulder angles with practical reflections",
+      "dedup_status": "duplicate",
+      "dedup_note": "Earlier register already covers natural OTS product UI integration",
+      "approval_status": "pending"
+    }
+  ],
+  "production_updated": false,
+  "app_register_synced": false
+}
