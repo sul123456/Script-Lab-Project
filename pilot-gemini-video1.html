@@ -3,9 +3,20 @@
 <style>body{font:16px system-ui,-apple-system,sans-serif;background:#f7f7f7;color:#202020;margin:0;padding:20px}main{max-width:740px;margin:20px auto;background:white;border-radius:16px;padding:22px;box-shadow:0 4px 20px #0001}h1{font-size:24px}label{display:block;margin:20px 0 8px;font-weight:600}input{box-sizing:border-box;width:100%;font:inherit;padding:14px;border:1px solid #bbb;border-radius:8px}button{margin-top:16px;padding:14px 22px;background:#ec6d22;color:white;border:0;border-radius:8px;font-weight:700;font-size:16px}button:disabled{opacity:.55}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#f3f4f6;padding:14px;border-radius:8px;font-size:13px}small{color:#555}a{color:#ae4d0d}</style></head>
 <body><main><h1>Gemini Baseline · Video 1</h1><p><a href="https://www.youtube.com/watch?v=IrD3B0NfW-4" target="_blank" rel="noopener">Watch test video</a></p><p>This is an isolated pilot. It does not modify Creative Brain or save anything to the Training Register.</p>
 <label for="token">Pilot access token</label><input id="token" type="password" autocomplete="off" placeholder="Enter PILOT_BENCHMARK_TOKEN"><small>Token stays in this page's memory and is sent only to this preview's API endpoint. Do not share it in chat.</small>
-<p><button id="run">Run Video 1 Analysis</button></p><p id="status" role="status">Ready to test.</p><pre id="result" hidden></pre>
+<p><button id="models" type="button">Check Available Gemini Models</button> <button id="run">Run Video 1 Analysis</button></p><p id="status" role="status">Ready to test.</p><pre id="result" hidden></pre>
 <script>
 const button=document.getElementById('run'),status=document.getElementById('status'),out=document.getElementById('result');
+document.getElementById('models').addEventListener('click',async()=>{
+ const token=document.getElementById('token').value.trim();if(!token){status.textContent='Enter your pilot token first.';return}
+ const btn=document.getElementById('models');btn.disabled=true;out.hidden=true;status.textContent='Checking Gemini model availability...';
+ try{
+ const response=await fetch('/api/pilot-list-models',{method:'POST',headers:{'Content-Type':'application/json','x-pilot-token':token},body:'{}'});
+ const body=await response.text();let data;try{data=JSON.parse(body)}catch{data={raw_response:body.slice(0,2000)}}
+ status.textContent='Model check: HTTP '+response.status+' · '+(data.count??0)+' models returned';
+ out.textContent=JSON.stringify(data,null,2);out.hidden=false;
+ }catch(e){status.textContent='Model check failed: '+e.message}
+ finally{btn.disabled=false}
+});
 button.addEventListener('click',async()=>{
  const token=document.getElementById('token').value.trim();if(!token){status.textContent='Enter your pilot token first.';return}
  button.disabled=true;out.hidden=true;status.textContent='Analysing video. This may take several minutes. Keep this page open.';
