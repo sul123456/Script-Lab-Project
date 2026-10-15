@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "register_type": "pilot_review_staging",
+  "note": "Not connected to browser-local Training Register or Creative Brain. No approved learnings.",
+  "entries": [
+    {
+      "source_url": "https://www.facebook.com/icicibank/videos/433017949689965/",
+      "source_platform": "facebook",
+      "title": "Rawat Ji or Meera Ji: Who's Got the Better Idea?",
+      "product": "iMobile SmartLock",
+      "evidence_level": "description_based",
+      "video_observed": false,
+      "approval_status": "pending",
+      "source_basis": "Previously identified ICICI Bank campaign description, not video frames or audio.",
+      "unverified": [
+        "actual dialogue",
+        "visual hook",
+        "shot composition",
+        "editing",
+        "music",
+        "pacing",
+        "product reveal timing"
+      ],
+      "proposed_learnings": [
+        {
+          "id": "rawat-meera-1",
+          "principle": "Contrasting characters",
+          "description": "Use two characters with opposing approaches to the same problem.",
+          "status": "pending"
+        },
+        {
+          "id": "rawat-meera-2",
+          "principle": "Everyday behaviour",
+          "description": "Start with a recognisable habit rather than a product explanation.",
+          "status": "pending"
+        },
+        {
+          "id": "rawat-meera-3",
+          "principle": "Product-led resolution",
+          "description": "Let the product demonstrate a smarter solution to the problem.",
+          "status": "pending"
+        },
+        {
+          "id": "rawat-meera-4",
+          "principle": "Light-hearted comparison",
+          "description": "Use character interaction to make a functional banking benefit engaging.",
+          "status": "pending"
+        }
+      ]
+    }
+  ]
+}
