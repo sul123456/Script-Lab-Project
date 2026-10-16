@@ -134,8 +134,19 @@
   "totals": {
     "confirmed_identified_source_videos": 9,
     "provisional_video_records": 1,
-    "distinct_proposed_principles": 44,
-    "total_source_records": 10
+    "distinct_proposed_principles": 48,
+    "total_source_records": 10,
+    "genre_framework_records": 1
   },
-  "note": "The separate iMobile Pay uploaded MP4 was visually sampled, but its five proposals were not successfully staged. Do not automatically merge it with V002 without checking identity."
+  "note": "The separate iMobile Pay uploaded MP4 was visually sampled, but its five proposals were not successfully staged. Do not automatically merge it with V002 without checking identity.",
+  "genre_frameworks": [
+    {
+      "title": "Six creative genre script mechanisms",
+      "record": "pilot-data/genre-scriptwriting-mechanisms-pending-review.json",
+      "new_principles": 4,
+      "refinements": 2,
+      "review_status": "pending",
+      "counts_as_video": false
+    }
+  ]
 }
