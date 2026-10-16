@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "scope": "isolated_pilot_only",
+  "purpose": "Trace every proposed creative learning to its source video",
+  "counting_rules": {
+    "unique_video_count": "Count each distinct identified advertisement once; do not count unverified identity as a confirmed unique video",
+    "unique_learning_count": "Count new principles once; refinements attach to existing principles and duplicates do not increase count",
+    "approval": "All new entries pending app review"
+  },
+  "sources": [
+    {
+      "video_id": "V001",
+      "title": "ICICI Bank SmartLock — Rawat Ji / Meera Ji",
+      "source_kind": "official_campaign_description",
+      "source_url": "https://www.facebook.com/icicibank/videos/433017949689965/",
+      "record": "pilot-data/rawat-meera-pending-review.json",
+      "new_principles": 4,
+      "refinements": 0,
+      "identity_status": "identified",
+      "review_status": "pending"
+    },
+    {
+      "video_id": "V002",
+      "title": "iMobile Pay — Anil Kapoor and Rajesh Sharma",
+      "source_kind": "user_pasted_gemini_analysis",
+      "source_url": null,
+      "record": "pilot-data/gemini-imobile-pay-pending-review.json",
+      "new_principles": 12,
+      "refinements": 0,
+      "identity_status": "identified_by_user_analysis",
+      "review_status": "pending"
+    },
+    {
+      "video_id": "V003",
+      "title": "Unidentified advertisement — second Gemini analysis",
+      "source_kind": "user_pasted_gemini_analysis",
+      "source_url": null,
+      "record": "pilot-data/gemini-followup-02-pending-review.json",
+      "new_principles": 6,
+      "refinements": 3,
+      "duplicates": 2,
+      "identity_status": "provisional_not_counted_as_confirmed_unique_video",
+      "review_status": "pending"
+    }
+  ],
+  "totals": {
+    "confirmed_identified_source_videos": 2,
+    "provisional_video_records": 1,
+    "distinct_proposed_principles": 22
+  },
+  "note": "The separate iMobile Pay uploaded MP4 was visually sampled, but its five proposals were not successfully staged. Do not automatically merge it with V002 without checking identity."
+}
