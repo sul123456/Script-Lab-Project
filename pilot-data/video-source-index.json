@@ -77,13 +77,65 @@
       "duplicates": 0,
       "identity_status": "identified_by_filename_not_independently_verified",
       "review_status": "pending"
+    },
+    {
+      "video_id": "V007",
+      "title": "YouTube video KsV1hqG__2g",
+      "source_url": "https://www.youtube.com/watch?v=KsV1hqG__2g",
+      "playlist_index": 10,
+      "source_kind": "user_pasted_gemini_analysis_unverified",
+      "record": "pilot-data/gemini-youtube-KsV1hqG__2g-pending-review.json",
+      "new_principles": 2,
+      "refinements": 2,
+      "duplicates": 1,
+      "identity_status": "identified_by_youtube_id_not_video_verified",
+      "review_status": "pending"
+    },
+    {
+      "video_id": "V008",
+      "title": "YouTube video Gxtp21pgou0",
+      "source_url": "https://www.youtube.com/watch?v=Gxtp21pgou0",
+      "playlist_index": 7,
+      "source_kind": "user_pasted_gemini_analysis_unverified",
+      "record": "pilot-data/gemini-youtube-Gxtp21pgou0-pending-review.json",
+      "new_principles": 1,
+      "refinements": 3,
+      "duplicates": 2,
+      "identity_status": "identified_by_youtube_id_not_video_verified",
+      "review_status": "pending"
+    },
+    {
+      "video_id": "V009",
+      "title": "YouTube video GTR0SotluB4",
+      "source_url": "https://www.youtube.com/watch?v=GTR0SotluB4",
+      "playlist_index": 5,
+      "source_kind": "user_pasted_gemini_analysis_unverified",
+      "record": "pilot-data/gemini-youtube-GTR0SotluB4-pending-review.json",
+      "new_principles": 2,
+      "refinements": 2,
+      "duplicates": 2,
+      "identity_status": "identified_by_youtube_id_not_video_verified",
+      "review_status": "pending"
+    },
+    {
+      "video_id": "V010",
+      "title": "YouTube video NRoFpZDkMjs",
+      "source_url": "https://www.youtube.com/watch?v=NRoFpZDkMjs",
+      "playlist_index": 6,
+      "source_kind": "user_pasted_gemini_analysis_unverified",
+      "record": "pilot-data/gemini-youtube-NRoFpZDkMjs-pending-review.json",
+      "new_principles": 2,
+      "refinements": 2,
+      "duplicates": 1,
+      "identity_status": "identified_by_youtube_id_not_video_verified",
+      "review_status": "pending"
     }
   ],
   "totals": {
-    "confirmed_identified_source_videos": 5,
+    "confirmed_identified_source_videos": 9,
     "provisional_video_records": 1,
-    "distinct_proposed_principles": 37,
-    "total_source_records": 6
+    "distinct_proposed_principles": 44,
+    "total_source_records": 10
   },
   "note": "The separate iMobile Pay uploaded MP4 was visually sampled, but its five proposals were not successfully staged. Do not automatically merge it with V002 without checking identity."
 }
