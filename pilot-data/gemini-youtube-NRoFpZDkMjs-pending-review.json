@@ -1,0 +1,44 @@
+{
+  "video_id": "V010",
+  "title": "YouTube video NRoFpZDkMjs",
+  "video_url": "https://www.youtube.com/watch?v=NRoFpZDkMjs",
+  "playlist_index": 6,
+  "genre": "trust and reliability",
+  "source": "user-pasted Gemini analysis",
+  "verification": "not independently video-verified; technical details and scene claims are Gemini-reported",
+  "review_status": "pending",
+  "new_principles": 2,
+  "refinements": 2,
+  "duplicates": 1,
+  "entries": [
+    {
+      "id": "V010-N1",
+      "status": "new",
+      "principle": "Trust through friction-free continuity",
+      "script_instruction": "Write a sequence in which the product works reliably without theatrical struggle; let uninterrupted user behaviour demonstrate dependability"
+    },
+    {
+      "id": "V010-N2",
+      "status": "new",
+      "principle": "Sonic closure as proof of completion",
+      "script_instruction": "Design one restrained, recognisable confirmation sound to resolve the user action and provide emotional reassurance"
+    },
+    {
+      "id": "V010-R1",
+      "status": "refinement",
+      "principle": "Contrast cumbersome and effortless methods"
+    },
+    {
+      "id": "V010-R2",
+      "status": "refinement",
+      "principle": "Calm body language supports credible trust"
+    },
+    {
+      "id": "V010-D1",
+      "status": "duplicate",
+      "principle": "Clear phone interaction and clean brand sign-off"
+    }
+  ],
+  "production_updated": false,
+  "app_register_synced": false
+}
