@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "video_id": "V006",
+  "video_title": "Script 5_ICICI Salary account_1-1_Draft_2.mp4",
+  "source": "User-pasted Gemini analysis",
+  "video_verified_by_assistant": false,
+  "evidence_level": "gemini_reported_format_level_guidance_not_independently_verified",
+  "review_status": "pending",
+  "counts": {
+    "new": 4,
+    "refinements": 2,
+    "duplicates": 0,
+    "total": 6
+  },
+  "entries": [
+    {
+      "id": "salary-square-1",
+      "category": "composition",
+      "principle": "Keep essential subjects and text inside a square-format central safe area",
+      "execution_guidance": "Compose 1:1 frames so actions, faces and supers remain legible across social feeds",
+      "dedup_status": "new",
+      "approval_status": "pending"
+    },
+    {
+      "id": "salary-square-2",
+      "category": "script",
+      "principle": "Translate product features into relatable personal advantages",
+      "execution_guidance": "Anchor salary-account benefits in everyday convenience, pride or financial agency rather than a perk list",
+      "dedup_status": "new",
+      "approval_status": "pending"
+    },
+    {
+      "id": "salary-square-3",
+      "category": "editing",
+      "principle": "Use rapid-fire micro-benefits with deliberate visual rhythm",
+      "execution_guidance": "Sequence short benefit beats using brisk cuts and animated text without sacrificing comprehension",
+      "dedup_status": "new",
+      "approval_status": "pending"
+    },
+    {
+      "id": "salary-square-4",
+      "category": "motion_graphics",
+      "principle": "Synchronise kinetic typography to audio inflections",
+      "execution_guidance": "Time transitions and supers to music accents or voiceover emphasis",
+      "dedup_status": "new",
+      "approval_status": "pending"
+    },
+    {
+      "id": "salary-square-5",
+      "category": "audio",
+      "principle": "Keep voiceover intelligible over subtle music beds",
+      "execution_guidance": "Mix crisp dialogue ahead of unobtrusive background sound",
+      "dedup_status": "refinement",
+      "approval_status": "pending"
+    },
+    {
+      "id": "salary-square-6",
+      "category": "branding",
+      "principle": "Use clean corporate graphics and a reassuring closing brand sign-off",
+      "execution_guidance": "Employ balanced lower thirds and a clear final brand frame",
+      "dedup_status": "refinement",
+      "approval_status": "pending"
+    }
+  ],
+  "production_updated": false,
+  "app_register_synced": false
+}
