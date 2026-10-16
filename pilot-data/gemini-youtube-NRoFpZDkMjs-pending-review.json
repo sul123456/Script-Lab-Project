@@ -40,5 +40,19 @@
     }
   ],
   "production_updated": false,
-  "app_register_synced": false
+  "app_register_synced": false,
+  "additional_source_evidence": [
+    {
+      "source": "Second user-pasted 20-parameter Gemini breakdown",
+      "classification": "reinforcement_only",
+      "new_principles": 0,
+      "notes": [
+        "Question/problem-led opening and reliability theme",
+        "Financial interdependence → unified platform → uninterrupted execution → reassuring close",
+        "Calm body language, clean UI action, controlled cuts and confirmation sound",
+        "Gemini describes hook as question-led OR problem-led; exact opening is uncertain"
+      ],
+      "verification": "Not independently viewed; no verified timestamps or transcripts"
+    }
+  ]
 }
