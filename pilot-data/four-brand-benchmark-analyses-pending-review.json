@@ -1,0 +1,110 @@
+{
+  "record_type": "benchmark_video_wise_analysis",
+  "title": "Four benchmark advertisements — scriptwriting mechanism analysis",
+  "source": "User-pasted 20-parameter video-wise analyses",
+  "source_verification": "Not independently watched; specific descriptions are user/Gemini-supplied, not verified facts",
+  "candidate_reference_list": "pilot-data/brand-ad-20-candidates-scriptwriting-guidelines-pending-review.json",
+  "candidate_matches": [
+    {
+      "benchmark_id": "B001",
+      "brand": "Fevicol",
+      "title": "The Election / Bus Seating Ad",
+      "mechanism": "Inconvenient Law",
+      "observations": [
+        "Crowded transit or political seating scene",
+        "External pressure fails to separate people",
+        "Deadpan acceptance and minimal dialogue",
+        "Product pack acts as punchline"
+      ],
+      "instructions": [
+        "Start from a visible social constraint, not an adhesive claim",
+        "Escalate the physical test and hold a reaction beat",
+        "Reveal product causality only when audience can infer it"
+      ],
+      "cautions": [
+        "Description merges election and bus executions; precise asset identity unresolved",
+        "No independently verified footage, duration, shot types or sound"
+      ],
+      "approval_status": "pending",
+      "new_distinct_principles": 0,
+      "genre_framework_reinforcement": true
+    },
+    {
+      "benchmark_id": "B002",
+      "brand": "CRED",
+      "title": "Rahul Dravid — Indiranagar Ka Gunda",
+      "mechanism": "Authority Subversion",
+      "observations": [
+        "Respected public figure reportedly behaves in exaggerated road rage",
+        "Traffic chaos contrasts with calm pitch delivery",
+        "Quotable out-of-character line drives reversal",
+        "Brand links the sketch to credit card rewards"
+      ],
+      "instructions": [
+        "Establish a persona expectation instantly",
+        "Write behaviour contradicting that expectation, with rising specificity",
+        "Pivot into product proposition without losing message clarity"
+      ],
+      "cautions": [
+        "Celebrity behaviour and chronology are Gemini/user-reported, not video-verified",
+        "Do not rely on celebrity fame as the only joke"
+      ],
+      "approval_status": "pending",
+      "new_distinct_principles": 0,
+      "genre_framework_reinforcement": true
+    },
+    {
+      "benchmark_id": "B003",
+      "brand": "Surf Excel",
+      "title": "Holi / Daag Acche Hain",
+      "mechanism": "Inverse Value",
+      "observations": [
+        "Child reportedly protects another during Holi",
+        "Physical staining is reinterpreted as kindness",
+        "Sparse dialogue and protective action carry emotion",
+        "Brand philosophy resolves the apparent contradiction"
+      ],
+      "instructions": [
+        "Identify the negative category symbol and a credible human act that redefines it",
+        "Show cost before revealing benevolent motive",
+        "End on a human consequence, not a moralising explanation"
+      ],
+      "cautions": [
+        "Precise plot details and child roles not independently verified",
+        "Do not trivialise actual risk or financial hardship"
+      ],
+      "approval_status": "pending",
+      "new_distinct_principles": 0,
+      "genre_framework_reinforcement": true
+    },
+    {
+      "benchmark_id": "B004",
+      "brand": "Volkswagen",
+      "title": "The Force — Darth Vader Kid",
+      "mechanism": "Retroactive Clarity",
+      "observations": [
+        "Costumed child repeatedly attempts telekinetic gestures",
+        "Series of failures establishes a visual rule",
+        "Car reacts through adult-operated remote action",
+        "Final reveal reframes the child's perceived success"
+      ],
+      "instructions": [
+        "Design the recontextualising product payoff first",
+        "Plant clear repeated attempts that make the final success surprising",
+        "Preserve first-view comprehension of what the product actually does"
+      ],
+      "cautions": [
+        "Original commercial length and any 30-second cut not verified",
+        "Technical description of the vehicle feature must be checked before reuse"
+      ],
+      "approval_status": "pending",
+      "new_distinct_principles": 0,
+      "genre_framework_reinforcement": true
+    }
+  ],
+  "new_video_records": 0,
+  "new_distinct_principles": 0,
+  "review_status": "pending",
+  "app_register_synced": false,
+  "production_updated": false
+}
