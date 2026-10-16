@@ -1,0 +1,48 @@
+{
+  "video_id": "V008",
+  "title": "YouTube video Gxtp21pgou0",
+  "video_url": "https://www.youtube.com/watch?v=Gxtp21pgou0",
+  "playlist_index": 7,
+  "genre": "transaction micro-comedy",
+  "source": "user-pasted Gemini analysis",
+  "verification": "not independently video-verified; technical details and scene claims are Gemini-reported",
+  "review_status": "pending",
+  "new_principles": 1,
+  "refinements": 3,
+  "duplicates": 2,
+  "entries": [
+    {
+      "id": "V008-N1",
+      "status": "new",
+      "principle": "Payment mismatch as immediate scene trigger",
+      "script_instruction": "Open mid-transaction with an unmistakable interoperability mismatch; make the specific obstacle understandable before the punchline"
+    },
+    {
+      "id": "V008-R1",
+      "status": "refinement",
+      "principle": "Escalating micro-friction resolved by product"
+    },
+    {
+      "id": "V008-R2",
+      "status": "refinement",
+      "principle": "Opposing character energy and dialogue interruptions"
+    },
+    {
+      "id": "V008-R3",
+      "status": "refinement",
+      "principle": "Show transaction proof as product payoff"
+    },
+    {
+      "id": "V008-D1",
+      "status": "duplicate",
+      "principle": "Authentic street ambience and Foley"
+    },
+    {
+      "id": "V008-D2",
+      "status": "duplicate",
+      "principle": "Rapid cuts aligned to comic beats"
+    }
+  ],
+  "production_updated": false,
+  "app_register_synced": false
+}
