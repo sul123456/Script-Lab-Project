@@ -1,0 +1,49 @@
+{
+  "video_id": "V009",
+  "title": "YouTube video GTR0SotluB4",
+  "video_url": "https://www.youtube.com/watch?v=GTR0SotluB4",
+  "playlist_index": 5,
+  "genre": "multi-context utility montage",
+  "source": "user-pasted Gemini analysis",
+  "verification": "not independently video-verified; technical details and scene claims are Gemini-reported",
+  "review_status": "pending",
+  "new_principles": 2,
+  "refinements": 2,
+  "duplicates": 2,
+  "entries": [
+    {
+      "id": "V009-N1",
+      "status": "new",
+      "principle": "One thematic spine across multiple micro-stories",
+      "script_instruction": "Use a recurring visual or verbal motif to connect diverse use-cases so a montage proves one coherent benefit instead of becoming a feature list"
+    },
+    {
+      "id": "V009-N2",
+      "status": "new",
+      "principle": "Cross-context repetition as cumulative product proof",
+      "script_instruction": "Repeat a recognisable user action across different situations; vary the setting and stakes while keeping the core product outcome consistent"
+    },
+    {
+      "id": "V009-R1",
+      "status": "refinement",
+      "principle": "Rhythmic editing with benefit-led supers"
+    },
+    {
+      "id": "V009-R2",
+      "status": "refinement",
+      "principle": "Product action demonstrated within scene"
+    },
+    {
+      "id": "V009-D1",
+      "status": "duplicate",
+      "principle": "Music-synchronised kinetic typography"
+    },
+    {
+      "id": "V009-D2",
+      "status": "duplicate",
+      "principle": "Natural phone handling"
+    }
+  ],
+  "production_updated": false,
+  "app_register_synced": false
+}
