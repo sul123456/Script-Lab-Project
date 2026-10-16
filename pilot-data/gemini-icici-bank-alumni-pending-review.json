@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "video_id": "V004",
+  "video_title": "ICICI Bank_Alumni",
+  "source_kind": "user_pasted_gemini_analysis",
+  "source_url": null,
+  "video_playback_verified": false,
+  "evidence_level": "genre_based_gemini_guidance_not_video_observed",
+  "review_status": "pending",
+  "counts": {
+    "new": 6,
+    "refinements": 4,
+    "duplicates": 1,
+    "total": 11
+  },
+  "entries": [
+    {
+      "id": "alumni-01",
+      "category": "narrative",
+      "principle": "Open with shared heritage",
+      "execution_guidance": "Begin with a common place, milestone or formative memory to create instant collective recognition",
+      "dedup_status": "new",
+      "approval_status": "pending"
+    },
+    {
+      "id": "alumni-02",
+      "category": "narrative",
+      "principle": "Bridge nostalgia to present-day achievement",
+      "execution_guidance": "Structure the story from origins to current journeys, showing a continuing community",
+      "dedup_status": "new",
+      "approval_status": "pending"
+    },
+    {
+      "id": "alumni-03",
+      "category": "colour",
+      "principle": "Shift colour grade across timelines",
+      "execution_guidance": "Use subtly warmer or softer archive imagery and crisper contemporary grading",
+      "dedup_status": "new",
+      "approval_status": "pending"
+    },
+    {
+      "id": "alumni-04",
+      "category": "cinematography",
+      "principle": "Use intimate prime-lens interview framing",
+      "execution_guidance": "Choose medium close-ups and shallow depth of field to prioritise eye contact and genuine expressions",
+      "dedup_status": "refinement",
+      "approval_status": "pending"
+    },
+    {
+      "id": "alumni-05",
+      "category": "music",
+      "principle": "Score a progression from personal memory to collective pride",
+      "execution_guidance": "Start with sparse piano or acoustic textures and layer warmth as the narrative expands",
+      "dedup_status": "new",
+      "approval_status": "pending"
+    },
+    {
+      "id": "alumni-06",
+      "category": "sound",
+      "principle": "Use subtle tactile and room-tone ambience in interviews",
+      "execution_guidance": "Layer documentary room tone and quiet prop sounds beneath speech without distraction",
+      "dedup_status": "refinement",
+      "approval_status": "pending"
+    },
+    {
+      "id": "alumni-07",
+      "category": "casting_direction",
+      "principle": "Prioritise unscripted documentary realism",
+      "execution_guidance": "Invite genuine recollections rather than over-rehearsed testimonial delivery",
+      "dedup_status": "new",
+      "approval_status": "pending"
+    },
+    {
+      "id": "alumni-08",
+      "category": "performance",
+      "principle": "Capture micro-hesitations, laughs and spontaneous gestures",
+      "execution_guidance": "Allow pauses and unplanned reactions to convey emotional credibility",
+      "dedup_status": "refinement",
+      "approval_status": "pending"
+    },
+    {
+      "id": "alumni-09",
+      "category": "branding",
+      "principle": "End with a soft, organic brand reveal",
+      "execution_guidance": "Transition gently from a warm closing image to logo and community CTA",
+      "dedup_status": "new",
+      "approval_status": "pending"
+    },
+    {
+      "id": "alumni-10",
+      "category": "branding",
+      "principle": "Avoid intrusive floating brand graphics",
+      "execution_guidance": "Keep the brand organically integrated rather than visually forced",
+      "dedup_status": "duplicate",
+      "approval_status": "pending"
+    },
+    {
+      "id": "alumni-11",
+      "category": "cinematography",
+      "principle": "Use focal length to support emotional intimacy",
+      "execution_guidance": "Use longer lenses and shallow depth of field when foregrounding expression",
+      "dedup_status": "refinement",
+      "approval_status": "pending"
+    }
+  ],
+  "production_updated": false,
+  "app_register_synced": false
+}
