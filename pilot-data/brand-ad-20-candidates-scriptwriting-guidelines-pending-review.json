@@ -1,0 +1,343 @@
+{
+  "record_type": "candidate_reference_list_and_scriptwriting_guidelines",
+  "title": "20 brand-ad candidates and 20 scriptwriting training guidelines",
+  "source": "User-pasted curated list and training guide",
+  "candidate_count": 20,
+  "analysed_video_count_increment": 0,
+  "distinct_principles_increment": 0,
+  "source_verification": "Candidate titles, claimed 30-second duration and specific assets not independently verified; some may be longer than 30 seconds",
+  "references": [
+    {
+      "candidate_id": "C001",
+      "brand": "Fevicol",
+      "asset": "The Bus/Furniture Seating Ad",
+      "genre": "Humour",
+      "individual_video_url": null,
+      "duration_verified": false,
+      "identity_verified": false,
+      "review_status": "candidate_unverified"
+    },
+    {
+      "candidate_id": "C002",
+      "brand": "Fevikwik",
+      "asset": "Todo Nahi Jodo (Broken Glasses/Moustache)",
+      "genre": "Humour",
+      "individual_video_url": null,
+      "duration_verified": false,
+      "identity_verified": false,
+      "review_status": "candidate_unverified"
+    },
+    {
+      "candidate_id": "C003",
+      "brand": "CRED",
+      "asset": "Rahul Dravid — Indiranagar Ka Gunda",
+      "genre": "Witty dialogue",
+      "individual_video_url": null,
+      "duration_verified": false,
+      "identity_verified": false,
+      "review_status": "candidate_unverified"
+    },
+    {
+      "candidate_id": "C004",
+      "brand": "CRED",
+      "asset": "Jim Sarbh — Not Everyone Gets CRED",
+      "genre": "Witty dialogue",
+      "individual_video_url": null,
+      "duration_verified": false,
+      "identity_verified": false,
+      "review_status": "candidate_unverified"
+    },
+    {
+      "candidate_id": "C005",
+      "brand": "Surf Excel",
+      "asset": "Holi / Daag Achhe Hain (Brother & Sister Rickshaw)",
+      "genre": "Emotional storytelling",
+      "individual_video_url": null,
+      "duration_verified": false,
+      "identity_verified": false,
+      "review_status": "candidate_unverified"
+    },
+    {
+      "candidate_id": "C006",
+      "brand": "Surf Excel",
+      "asset": "Lal Daag / School Uniform Sharing",
+      "genre": "Emotional storytelling",
+      "individual_video_url": null,
+      "duration_verified": false,
+      "identity_verified": false,
+      "review_status": "candidate_unverified"
+    },
+    {
+      "candidate_id": "C007",
+      "brand": "Volkswagen",
+      "asset": "The Force (Darth Vader Kid)",
+      "genre": "Surprise and twist",
+      "individual_video_url": null,
+      "duration_verified": false,
+      "identity_verified": false,
+      "review_status": "candidate_unverified"
+    },
+    {
+      "candidate_id": "C008",
+      "brand": "Volkswagen",
+      "asset": "The Night Before (Backseat Driver)",
+      "genre": "Surprise and twist",
+      "individual_video_url": null,
+      "duration_verified": false,
+      "identity_verified": false,
+      "review_status": "candidate_unverified"
+    },
+    {
+      "candidate_id": "C009",
+      "brand": "Google India",
+      "asset": "Reunion (India-Pakistan Partition)",
+      "genre": "Digital product storytelling",
+      "individual_video_url": null,
+      "duration_verified": false,
+      "identity_verified": false,
+      "review_status": "candidate_unverified"
+    },
+    {
+      "candidate_id": "C010",
+      "brand": "Google Search",
+      "asset": "Help the Local Grocer / Bus 191",
+      "genre": "Digital product storytelling",
+      "individual_video_url": null,
+      "duration_verified": false,
+      "identity_verified": false,
+      "review_status": "candidate_unverified"
+    },
+    {
+      "candidate_id": "C011",
+      "brand": "ICICI Bank",
+      "asset": "iMobile Pay (Any App, Any QR)",
+      "genre": "Banking",
+      "individual_video_url": null,
+      "duration_verified": false,
+      "identity_verified": false,
+      "review_status": "candidate_unverified"
+    },
+    {
+      "candidate_id": "C012",
+      "brand": "ICICI Prudential Life",
+      "asset": "Chhote Sapne Ya Bade",
+      "genre": "Banking",
+      "individual_video_url": null,
+      "duration_verified": false,
+      "identity_verified": false,
+      "review_status": "candidate_unverified"
+    },
+    {
+      "candidate_id": "C013",
+      "brand": "HDFC Bank",
+      "asset": "#HabitOfSavings / The Little Piggy Bank",
+      "genre": "Banking",
+      "individual_video_url": null,
+      "duration_verified": false,
+      "identity_verified": false,
+      "review_status": "candidate_unverified"
+    },
+    {
+      "candidate_id": "C014",
+      "brand": "SBI",
+      "asset": "YONO App (Everyday Convenience)",
+      "genre": "Banking",
+      "individual_video_url": null,
+      "duration_verified": false,
+      "identity_verified": false,
+      "review_status": "candidate_unverified"
+    },
+    {
+      "candidate_id": "C015",
+      "brand": "Airtel",
+      "asset": "Boss is Coming",
+      "genre": "Humour / Telecom",
+      "individual_video_url": null,
+      "duration_verified": false,
+      "identity_verified": false,
+      "review_status": "candidate_unverified"
+    },
+    {
+      "candidate_id": "C016",
+      "brand": "Cadbury 5 Star",
+      "asset": "Ramesh & Suresh (Do Nothing)",
+      "genre": "Humour",
+      "individual_video_url": null,
+      "duration_verified": false,
+      "identity_verified": false,
+      "review_status": "candidate_unverified"
+    },
+    {
+      "candidate_id": "C017",
+      "brand": "Zomato",
+      "asset": "Kachhi Guava / Delivery Partner Stories",
+      "genre": "Witty / Emotional",
+      "individual_video_url": null,
+      "duration_verified": false,
+      "identity_verified": false,
+      "review_status": "candidate_unverified"
+    },
+    {
+      "candidate_id": "C018",
+      "brand": "Amazon India",
+      "asset": "Mom's New Job / Delivery Joy",
+      "genre": "Emotional storytelling",
+      "individual_video_url": null,
+      "duration_verified": false,
+      "identity_verified": false,
+      "review_status": "candidate_unverified"
+    },
+    {
+      "candidate_id": "C019",
+      "brand": "Swiggy Instamart",
+      "asset": "Late Night Cravings / Instant Delivery",
+      "genre": "Witty dialogue",
+      "individual_video_url": null,
+      "duration_verified": false,
+      "identity_verified": false,
+      "review_status": "candidate_unverified"
+    },
+    {
+      "candidate_id": "C020",
+      "brand": "Tata Tea",
+      "asset": "Jaago Re",
+      "genre": "Purpose storytelling",
+      "individual_video_url": null,
+      "duration_verified": false,
+      "identity_verified": false,
+      "review_status": "candidate_unverified"
+    }
+  ],
+  "scriptwriting_guidelines": [
+    {
+      "parameter_id": 1,
+      "parameter": "Core creative idea",
+      "guidance": "Find one human truth or specific friction instead of listing product features",
+      "source": "user-supplied framework with explicitly noted training safeguards"
+    },
+    {
+      "parameter_id": 2,
+      "parameter": "Opening hook",
+      "guidance": "Use visual disruption, surprise or recognisable friction; do not force concealment of product",
+      "source": "user-supplied framework with explicitly noted training safeguards"
+    },
+    {
+      "parameter_id": 3,
+      "parameter": "Situation specificity",
+      "guidance": "Define who, where, what they are doing, and what is at stake",
+      "source": "user-supplied framework with explicitly noted training safeguards"
+    },
+    {
+      "parameter_id": 4,
+      "parameter": "Story architecture",
+      "guidance": "Offer 0–8/8–18/18–25/25–30 as one possible arc, not mandatory",
+      "source": "user-supplied framework with explicitly noted training safeguards"
+    },
+    {
+      "parameter_id": 5,
+      "parameter": "Creative device",
+      "guidance": "Choose one dominant device, allow supporting mechanisms",
+      "source": "user-supplied framework with explicitly noted training safeguards"
+    },
+    {
+      "parameter_id": 6,
+      "parameter": "Originality",
+      "guidance": "Avoid stock category clichés and generic smiling-family exposition",
+      "source": "user-supplied framework with explicitly noted training safeguards"
+    },
+    {
+      "parameter_id": 7,
+      "parameter": "Character design",
+      "guidance": "Use immediately legible contrasting desires or behaviours",
+      "source": "user-supplied framework with explicitly noted training safeguards"
+    },
+    {
+      "parameter_id": 8,
+      "parameter": "Dialogue engineering",
+      "guidance": "Write overheard speech, brief interruptions, silences and purposeful lines",
+      "source": "user-supplied framework with explicitly noted training safeguards"
+    },
+    {
+      "parameter_id": 9,
+      "parameter": "Humour and emotion",
+      "guidance": "Build feeling from contrast, believable behaviour and consequences",
+      "source": "user-supplied framework with explicitly noted training safeguards"
+    },
+    {
+      "parameter_id": 10,
+      "parameter": "Product integration",
+      "guidance": "Make product action causally necessary; choose timing by objective and duration",
+      "source": "user-supplied framework with explicitly noted training safeguards"
+    },
+    {
+      "parameter_id": 11,
+      "parameter": "Message comprehension",
+      "guidance": "Test first-view benefit clarity including muted playback where appropriate",
+      "source": "user-supplied framework with explicitly noted training safeguards"
+    },
+    {
+      "parameter_id": 12,
+      "parameter": "Visual storytelling",
+      "guidance": "Replace exposition with expressive behaviour and visible action",
+      "source": "user-supplied framework with explicitly noted training safeguards"
+    },
+    {
+      "parameter_id": 13,
+      "parameter": "Cinematography",
+      "guidance": "Use shot language to support story emotion and comprehension",
+      "source": "user-supplied framework with explicitly noted training safeguards"
+    },
+    {
+      "parameter_id": 14,
+      "parameter": "Editing and pacing",
+      "guidance": "Match pace to dramatic or comic rhythm rather than default speed",
+      "source": "user-supplied framework with explicitly noted training safeguards"
+    },
+    {
+      "parameter_id": 15,
+      "parameter": "Performance direction",
+      "guidance": "Specify subtle reactions and timing rather than generic expressions",
+      "source": "user-supplied framework with explicitly noted training safeguards"
+    },
+    {
+      "parameter_id": 16,
+      "parameter": "Sound and music",
+      "guidance": "Use room tone, Foley, silence and sonic payoff intentionally",
+      "source": "user-supplied framework with explicitly noted training safeguards"
+    },
+    {
+      "parameter_id": 17,
+      "parameter": "Art direction",
+      "guidance": "Ground settings and wardrobe in credible lived-in specificity",
+      "source": "user-supplied framework with explicitly noted training safeguards"
+    },
+    {
+      "parameter_id": 18,
+      "parameter": "Brand integration",
+      "guidance": "Choose a brand landing appropriate to campaign objective, not always gentle",
+      "source": "user-supplied framework with explicitly noted training safeguards"
+    },
+    {
+      "parameter_id": 19,
+      "parameter": "Retention and repeat value",
+      "guidance": "Use rewarding details and satisfying payoffs without obscuring first-view comprehension",
+      "source": "user-supplied framework with explicitly noted training safeguards"
+    },
+    {
+      "parameter_id": 20,
+      "parameter": "Transferability",
+      "guidance": "Turn every insight into a reusable instruction for unrelated product briefs",
+      "source": "user-supplied framework with explicitly noted training safeguards"
+    }
+  ],
+  "training_cautions": [
+    "Do not require product reveal in final third",
+    "Do not mandate one timecoded story structure",
+    "Do not require hiding the advertised product in first three seconds",
+    "Do not assume all listed commercials are 30 seconds",
+    "Verify original footage before asserting observed details"
+  ],
+  "review_status": "pending",
+  "production_updated": false,
+  "app_register_synced": false
+}
