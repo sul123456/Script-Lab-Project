@@ -136,7 +136,8 @@
     "provisional_video_records": 1,
     "distinct_proposed_principles": 48,
     "total_source_records": 10,
-    "genre_framework_records": 1
+    "genre_framework_records": 1,
+    "benchmark_analysis_records": 1
   },
   "note": "The separate iMobile Pay uploaded MP4 was visually sampled, but its five proposals were not successfully staged. Do not automatically merge it with V002 without checking identity.",
   "genre_frameworks": [
@@ -147,6 +148,22 @@
       "refinements": 2,
       "review_status": "pending",
       "counts_as_video": false
+    }
+  ],
+  "benchmark_analysis_records": [
+    {
+      "title": "Four named brand benchmark video-wise analyses",
+      "record": "pilot-data/four-brand-benchmark-analyses-pending-review.json",
+      "brands": [
+        "Fevicol",
+        "CRED",
+        "Surf Excel",
+        "Volkswagen"
+      ],
+      "candidate_videos": 4,
+      "new_unique_principles": 0,
+      "verified_video_increment": 0,
+      "review_status": "pending"
     }
   ]
 }
