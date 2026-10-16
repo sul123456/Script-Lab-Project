@@ -1,0 +1,76 @@
+{
+  "record_type": "genre_level_scriptwriting_framework",
+  "title": "Six creative genre script mechanisms",
+  "source": "User-pasted genre analysis based on brand benchmarks",
+  "source_verification": "No individual video or timecodes provided; these are conceptual frameworks, not observed video evidence",
+  "review_status": "pending",
+  "video_count_increment": 0,
+  "principles": [
+    {
+      "genre": "Humour",
+      "benchmark": "Fevicol",
+      "name": "Inconvenient Law",
+      "mechanism": "Treat a functional product property as an unbreakable physical law; let the human inconvenience generate the joke",
+      "structure": "Ordinary setting → stress test → impossible durability → deadpan acceptance",
+      "instruction": "Write visual irony and delayed reactions; do not have characters explain the joke",
+      "caution": "Avoid misleading literal claims about financial products; hyperbole must be recognisably fictional",
+      "classification": "new"
+    },
+    {
+      "genre": "Witty dialogue",
+      "benchmark": "CRED",
+      "name": "Authority Subversion",
+      "mechanism": "Place a credible or high-status persona in an incongruous, self-aware situation",
+      "structure": "Status established → incongruous claim → sarcastic reversal → anti-climactic punchline",
+      "instruction": "Write crisp banter with controlled tonal contrast and a final concise reversal",
+      "caution": "Celebrity casting is optional; don't assume sarcasm suits trust-sensitive financial communications",
+      "classification": "new"
+    },
+    {
+      "genre": "Emotional storytelling",
+      "benchmark": "Surf Excel",
+      "name": "Inverse Value",
+      "mechanism": "Reframe a category's apparent negative as a sign of admirable human behaviour",
+      "structure": "Altruistic act → apparent cost/mess → motive understood → emotional brand meaning",
+      "instruction": "Use concrete action, reactions and silence to reveal the reframe rather than a moralising speech",
+      "caution": "Never trivialise genuine financial risk, debt or hardship",
+      "classification": "new"
+    },
+    {
+      "genre": "Surprise and twist",
+      "benchmark": "Volkswagen",
+      "name": "Retroactive Clarity",
+      "mechanism": "Design the payoff first and plant earlier clues that gain meaning at the reveal",
+      "structure": "Intriguing scene → plausible false interpretation → unobtrusive clues → recontextualising product reveal",
+      "instruction": "Back-solve the setup from a visual payoff; verify the twist stays understandable on first viewing",
+      "caution": "Avoid withholding the core product benefit so long that a 20-second ad loses comprehension",
+      "classification": "new"
+    },
+    {
+      "genre": "Digital product storytelling",
+      "benchmark": "Google India",
+      "name": "Invisible Tech",
+      "mechanism": "Dramatise the human change made possible by a digital feature rather than listing the feature",
+      "structure": "Human obstacle → relational stakes → simple feature action → emotional consequence",
+      "instruction": "Write product interaction as a short credible action beat followed by observable human payoff",
+      "caution": "Show enough of the actual feature to establish message comprehension",
+      "classification": "refinement"
+    },
+    {
+      "genre": "Banking and financial services",
+      "benchmark": "Indian Bank TVCs / ICICI campaigns",
+      "name": "Friction-to-Flow",
+      "mechanism": "Make time, paperwork or uncertainty the obstacle, with product action resolving a specific real-life impediment",
+      "structure": "Concrete money-related friction → rising social/time pressure → product action → visible relief",
+      "instruction": "Translate jargon into concrete action verbs; keep claims precise and demonstrable",
+      "caution": "Do not imply instant processing or guaranteed outcomes unless the product supports them",
+      "classification": "refinement"
+    }
+  ],
+  "classification_counts": {
+    "new": 4,
+    "refinements": 2
+  },
+  "app_register_synced": false,
+  "production_updated": false
+}
