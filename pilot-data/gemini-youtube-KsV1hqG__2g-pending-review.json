@@ -1,0 +1,44 @@
+{
+  "video_id": "V007",
+  "title": "YouTube video KsV1hqG__2g",
+  "video_url": "https://www.youtube.com/watch?v=KsV1hqG__2g",
+  "playlist_index": 10,
+  "genre": "emotional milestone",
+  "source": "user-pasted Gemini analysis",
+  "verification": "not independently video-verified; technical details and scene claims are Gemini-reported",
+  "review_status": "pending",
+  "new_principles": 2,
+  "refinements": 2,
+  "duplicates": 1,
+  "entries": [
+    {
+      "id": "V007-N1",
+      "status": "new",
+      "principle": "Ambition as hidden story engine",
+      "script_instruction": "Introduce a concrete unspoken personal milestone and dramatise the gap between present circumstances and desired future; let product enable action, not replace the emotional turn"
+    },
+    {
+      "id": "V007-N2",
+      "status": "new",
+      "principle": "Internal conflict through visual expansion",
+      "script_instruction": "Write an emotional progression from physically constrained, inward-looking behaviour to outward purposeful action; use widening visual space to externalise change"
+    },
+    {
+      "id": "V007-R1",
+      "status": "refinement",
+      "principle": "Anchor rational utility in emotional friction"
+    },
+    {
+      "id": "V007-R2",
+      "status": "refinement",
+      "principle": "Use sparse dialogue and expressive pauses"
+    },
+    {
+      "id": "V007-D1",
+      "status": "duplicate",
+      "principle": "Organic late brand reveal"
+    }
+  ],
+  "production_updated": false,
+  "app_register_synced": false
+}
