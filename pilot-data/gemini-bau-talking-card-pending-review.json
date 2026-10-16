@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "video_id": "V005",
+  "video_title": "Script 3 - BAU TALKING CARD_Adapt_9-16_Draft_3.mp4",
+  "source": "User-pasted Gemini analysis",
+  "video_verified_by_assistant": false,
+  "gemini_claimed_folder_access": true,
+  "video_evidence_status": "not independently verified; recommendations may be format-level guidance",
+  "review_status": "pending",
+  "counts": {
+    "new": 5,
+    "refinements": 1,
+    "duplicates": 0
+  },
+  "entries": [
+    {
+      "id": "bau-talking-card-1",
+      "category": "vertical_composition",
+      "principle": "Keep essential action and text inside mobile platform safe zones",
+      "execution_guidance": "Frame faces and supers away from interface overlays",
+      "dedup_status": "new",
+      "approval_status": "pending"
+    },
+    {
+      "id": "bau-talking-card-2",
+      "category": "vertical_composition",
+      "principle": "Compose tighter vertical headroom around facial expression",
+      "execution_guidance": "Prioritise expressive faces within portrait-oriented compositions",
+      "dedup_status": "new",
+      "approval_status": "pending"
+    },
+    {
+      "id": "bau-talking-card-3",
+      "category": "multiformat_production",
+      "principle": "Storyboard and shoot for multiple aspect ratios",
+      "execution_guidance": "Plan 9:16 guides during filming instead of relying on a late horizontal crop",
+      "dedup_status": "new",
+      "approval_status": "pending"
+    },
+    {
+      "id": "bau-talking-card-4",
+      "category": "script",
+      "principle": "Front-load the user benefit or problem in the first two seconds",
+      "execution_guidance": "For short BAU utility films, omit greetings and get to the offer or value immediately",
+      "dedup_status": "refinement",
+      "approval_status": "pending"
+    },
+    {
+      "id": "bau-talking-card-5",
+      "category": "motion_graphics",
+      "principle": "Make critical information understandable on mute",
+      "execution_guidance": "Use legible timed captions for features and calls to action",
+      "dedup_status": "new",
+      "approval_status": "pending"
+    },
+    {
+      "id": "bau-talking-card-6",
+      "category": "sound",
+      "principle": "Mix spoken dialogue for intelligibility on mobile speakers",
+      "execution_guidance": "Keep voice crisp and prominent relative to music at low playback volume",
+      "dedup_status": "new",
+      "approval_status": "pending"
+    }
+  ],
+  "production_updated": false,
+  "app_register_synced": false
+}
