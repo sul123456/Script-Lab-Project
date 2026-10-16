@@ -53,13 +53,25 @@
       "duplicates": 1,
       "identity_status": "identified_by_title_video_not_verified",
       "review_status": "pending"
+    },
+    {
+      "video_id": "V005",
+      "title": "Script 3 - BAU TALKING CARD_Adapt_9-16_Draft_3.mp4",
+      "source_kind": "user_pasted_gemini_analysis",
+      "source_url": null,
+      "record": "pilot-data/gemini-bau-talking-card-pending-review.json",
+      "new_principles": 5,
+      "refinements": 1,
+      "duplicates": 0,
+      "identity_status": "identified_by_filename_not_independently_verified",
+      "review_status": "pending"
     }
   ],
   "totals": {
-    "confirmed_identified_source_videos": 3,
+    "confirmed_identified_source_videos": 4,
     "provisional_video_records": 1,
-    "distinct_proposed_principles": 28,
-    "total_source_records": 4
+    "distinct_proposed_principles": 33,
+    "total_source_records": 5
   },
   "note": "The separate iMobile Pay uploaded MP4 was visually sampled, but its five proposals were not successfully staged. Do not automatically merge it with V002 without checking identity."
 }
