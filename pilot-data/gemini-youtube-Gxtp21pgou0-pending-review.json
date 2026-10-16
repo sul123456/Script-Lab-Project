@@ -44,5 +44,19 @@
     }
   ],
   "production_updated": false,
-  "app_register_synced": false
+  "app_register_synced": false,
+  "additional_source_evidence": [
+    {
+      "source": "Second user-pasted 20-parameter Gemini breakdown",
+      "classification": "reinforcement_only",
+      "new_principles": 0,
+      "notes": [
+        "Point-of-sale app mismatch as first-two-second friction",
+        "Glitch → escalation → comic intervention → scan-and-pay resolution",
+        "Stubborn/anxious straight character versus energetic catalyst; quick interruptions and delayed reactions",
+        "Verify actual QR interoperability demonstration and dialogue"
+      ],
+      "verification": "Not independently viewed; no verified timestamps or transcripts"
+    }
+  ]
 }
