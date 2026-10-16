@@ -45,5 +45,19 @@
     }
   ],
   "production_updated": false,
-  "app_register_synced": false
+  "app_register_synced": false,
+  "additional_source_evidence": [
+    {
+      "source": "Second user-pasted 20-parameter Gemini breakdown",
+      "classification": "reinforcement_only",
+      "new_principles": 0,
+      "notes": [
+        "Motion-led opening with several urban contexts",
+        "Context changes → repeated minor needs → one unifying utility payoff",
+        "Cross-cutting, kinetic supers, natural phone gestures and rhythmic VO",
+        "Verify individual features shown and avoid claiming speed equals comprehension"
+      ],
+      "verification": "Not independently viewed; no verified timestamps or transcripts"
+    }
+  ]
 }
