@@ -41,12 +41,25 @@
       "duplicates": 2,
       "identity_status": "provisional_not_counted_as_confirmed_unique_video",
       "review_status": "pending"
+    },
+    {
+      "video_id": "V004",
+      "title": "ICICI Bank_Alumni",
+      "source_kind": "user_pasted_gemini_analysis_genre_based_not_video_playback",
+      "source_url": null,
+      "record": "pilot-data/gemini-icici-bank-alumni-pending-review.json",
+      "new_principles": 6,
+      "refinements": 4,
+      "duplicates": 1,
+      "identity_status": "identified_by_title_video_not_verified",
+      "review_status": "pending"
     }
   ],
   "totals": {
-    "confirmed_identified_source_videos": 2,
+    "confirmed_identified_source_videos": 3,
     "provisional_video_records": 1,
-    "distinct_proposed_principles": 22
+    "distinct_proposed_principles": 28,
+    "total_source_records": 4
   },
   "note": "The separate iMobile Pay uploaded MP4 was visually sampled, but its five proposals were not successfully staged. Do not automatically merge it with V002 without checking identity."
 }
