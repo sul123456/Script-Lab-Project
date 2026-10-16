@@ -40,5 +40,19 @@
     }
   ],
   "production_updated": false,
-  "app_register_synced": false
+  "app_register_synced": false,
+  "additional_source_evidence": [
+    {
+      "source": "Second user-pasted 20-parameter Gemini breakdown",
+      "classification": "reinforcement_only",
+      "new_principles": 0,
+      "notes": [
+        "Tight mid-thought opening; inward posture and constrained framing",
+        "Internal doubt → societal constraint → mindset shift → purposeful action",
+        "Sparse dialogue, micro-hesitations, widening frame, measured-to-accelerating pacing",
+        "Product reportedly appears in final third; verify timing and benefit clarity"
+      ],
+      "verification": "Not independently viewed; no verified timestamps or transcripts"
+    }
+  ]
 }
